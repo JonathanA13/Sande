@@ -28,4 +28,17 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView" />
 
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="409dp"
+        android:layout_height="342dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="409dp"
+        android:layout_height="342dp"
+        app:headerLayout="layout"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="388dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
