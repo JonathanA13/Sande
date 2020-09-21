@@ -204,7 +204,8 @@
                 android:layout_height="52dp"
                 android:layout_weight="1"
                 android:entries="@array/ComboLado"
-                android:scrollbarSize="40dp" />
+                android:scrollbarSize="40dp"
+                android:textSize="100sp" />
         </LinearLayout>
 
         <LinearLayout
