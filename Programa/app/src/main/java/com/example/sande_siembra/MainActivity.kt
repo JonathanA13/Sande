@@ -1,11 +1,13 @@
 package com.example.sande_siembra
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         //parametros()
         agregar1()
         agregar2()
+
+
 
 
     }
@@ -30,21 +34,14 @@ class MainActivity : AppCompatActivity() {
 
     }*/
 
-    fun agregar1(){
-        val etiquetas = arrayOf("Flores","Bulbos")
+   
 
+    fun agregar1(){
+        val etiquetas = arrayOf("Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.ComboLado,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner.adapter = adapter
-        }
+        val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
+        spinner.setAdapter(adapter)
+
     }
 
     fun agregar2(){
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         val spinner: Spinner = findViewById(R.id.cmbEtiqueta)
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
+        /*ArrayAdapter.createFromResource(
             this,
             R.array.ComboEtiqueta,
             android.R.layout.simple_spinner_item
@@ -61,8 +58,17 @@ class MainActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
             spinner.adapter = adapter
-        }
+        }*/
+
+        val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
+        spinner.setAdapter(adapter)
+
     }
+
+    /*fun obtenerFechaActual(zonaHoraria: String?): String? {
+        val formato = "yyyy-MM-dd"
+        return obtenerFechaConFormato(formato, zonaHoraria)
+    }*/
 
 
 }
