@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">sande-siembra</string>
+
+    <string name="empty"></string>
+    <string name="tituloSiembra">REGISTRO SIEMBRA</string>
+    <string name="btnAgregar">AGREGAR</string>
+
+    <string-array name="ComboLado">
+        <item>SELECCIONA</item>
+        <item>NORTE</item>
+        <item>SUR</item>
+    </string-array>
+
+
+    <string-array name="ComboEtiqueta">
+        <item>SELECCIONA</item>
+        <item>FLORES</item>
+        <item>BULBOS</item>
+    </string-array>
+
+
+
+
+
 </resources>
