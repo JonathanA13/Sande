@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola Sande Siembra Mary"
+        android:text="Hola Sande Siembra"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,23 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="52dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toStartOf="@+id/textView" />
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="409dp"
-        android:layout_height="342dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="388dp" />
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="409dp"
-        android:layout_height="342dp"
-        app:headerLayout="layout"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="388dp" />
 
     <EditText
         android:id="@+id/editText2"
