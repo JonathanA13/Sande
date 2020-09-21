@@ -1,11 +1,12 @@
 package com.example.sande_siembra
 
+import android.R.layout
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.*
 
 
@@ -18,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         agregar1()
         agregar2()
 
+        val calendar = Calendar.getInstance()
+        val currentDate: String =
+            DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+        val textViewDate: TextView = findViewById(R.id.textViewFecha)
+        textViewDate.text = currentDate
 
 
 
