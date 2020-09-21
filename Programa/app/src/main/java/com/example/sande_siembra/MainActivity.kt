@@ -10,14 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn_llamar.setOnClickListener{ segunda() }
+
     }
 
-    fun segunda(){
-        val intentExplicito = Intent(
-            this,
-            MainActivity2::class.java
-        )
-        startActivity(intentExplicito)
-    }
+
 }
