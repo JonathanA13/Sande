@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.text.DateFormat
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     //val currentDate: String =
         //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     //val textViewDate: TextView = findViewById(R.id.textViewFecha)
+    private val db = FirebaseFirestore.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +70,14 @@ class MainActivity : AppCompatActivity() {
         val etiqueta = cmbEtiqueta.selectedItem.toString()
         Log.i("Eleccion: ", etiqueta)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
+
+        db.collection("Siembra").document(valvula.toString()).set(
+            hashMapOf("Fecha" to currentDate,
+                "Semana" to numeroSemana,
+            "Bloque" to bloque,
+            "Lado" to lado,
+            "Etiqueta" to etiqueta)
+        )
 
         val intentExplicito = Intent(
             this,
