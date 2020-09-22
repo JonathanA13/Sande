@@ -3,6 +3,7 @@
 
     <string name="empty"></string>
     <string name="tituloSiembra">REGISTRO SIEMBRA</string>
+    <string name="tituloRegistro">INGRESO DE DATOS</string>
     <string name="btnAgregar">AGREGAR</string>
 
     <string-array name="ComboLado">

@@ -1,6 +1,6 @@
 package com.example.sande_siembra
 
-import android.R.layout
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
-import java.io.FileOutputStream
 import java.text.DateFormat
 import java.util.*
 
@@ -43,8 +42,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun botonListo(){
-
         obtener()
+        val intentExplicito = Intent(
+            this,
+            Registro::class.java
+        )
+        intentExplicito.putExtra("Fecha", )
+        startActivity(intentExplicito)
     }
 
     fun obtener(){
@@ -64,12 +68,23 @@ class MainActivity : AppCompatActivity() {
         Log.i("Eleccion: ", etiqueta)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
 
+        val intentExplicito = Intent(
+            this,
+            Registro::class.java
+        )
+        intentExplicito.putExtra("Fecha", currentDate )
+        intentExplicito.putExtra("Semana", numeroSemana)
+        startActivity(intentExplicito)
+
         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
         val archivo: File = File("datos//cabecera.xlsx")
         val ingreso = FileOutputStream(archivo,true)
         ingreso.bufferedWriter().use { out ->
             out.write("$datosGuardarArchivo")
         }*/
+        //val internalStorageDir = filesDir
+        //val cabecera = File(internalStorageDir, "cabecera.csv")
+
     }
 
     fun agregar1(){
