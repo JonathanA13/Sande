@@ -119,8 +119,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="549dp"
-        android:layout_height="394dp"
+        android:layout_width="566dp"
+        android:layout_height="497dp"
         android:background="@drawable/bordes"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -227,8 +227,8 @@
                 android:id="@+id/cmbEtiqueta"
                 android:layout_width="260dp"
                 android:layout_height="52dp"
-                android:entries="@array/ComboEtiqueta"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:entries="@array/ComboEtiqueta" />
         </LinearLayout>
     </LinearLayout>
 
