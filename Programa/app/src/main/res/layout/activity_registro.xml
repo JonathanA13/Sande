@@ -159,7 +159,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/txt_valvula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="5"
