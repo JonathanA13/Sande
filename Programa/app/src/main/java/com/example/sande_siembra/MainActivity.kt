@@ -13,6 +13,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    //val calendar = Calendar.getInstance()
+    //val currentDate: String =
+        //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+    //val textViewDate: TextView = findViewById(R.id.textViewFecha)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,37 +29,43 @@ class MainActivity : AppCompatActivity() {
             DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
         val textViewDate: TextView = findViewById(R.id.textViewFecha)
         textViewDate.text = currentDate
+        //Log.i("Eleccion: ", "fecha ${currentDate}")
         //val numeroSemana = calendar.get(calendar.weekYear)
         val numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
-        Log.i("Eleccion: ", "semana ${numeroSemana}")
+        //Log.i("Eleccion: ", "semana ${numeroSemana}")
         txtViewNumeroSemana.text = numeroSemana.toString()
-        obtener()
+        //obtener()
         btnListo.setOnClickListener{ botonListo() }
     }
 
     fun botonListo(){
+
         obtener()
     }
 
     fun obtener(){
-        val valvula = editTxtValvula.text.toString()
-        Log.i("Eleccion: ", valvula)
-        val bloque = editTxtBloque.text.toString()
-        Log.i("Eleccion: ", bloque)
+        val calendar = Calendar.getInstance()
+        val currentDate: String =
+            DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+        Log.i("Eleccion: ", "fecha ${currentDate}")
+        val numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
+        Log.i("Eleccion: ", "semana ${numeroSemana}")
+        val valvula = editTxtValvula.text.toString().toInt()
+        //Log.i("Eleccion: ", valvula)
+        val bloque = editTxtBloque.text.toString().toInt()
+        //Log.i("Eleccion: ", bloque)
         val lado = cmbLado.selectedItem.toString()
         Log.i("Eleccion: ", lado)
         val etiqueta = cmbEtiqueta.selectedItem.toString()
         Log.i("Eleccion: ", etiqueta)
+        ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
     }
-
 
     fun agregar1(){
         val etiquetas = arrayOf("Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
-
-
     }
 
     fun agregar2(){
