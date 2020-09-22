@@ -8,6 +8,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.text.DateFormat
@@ -21,11 +22,15 @@ class MainActivity : AppCompatActivity() {
         //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     //val textViewDate: TextView = findViewById(R.id.textViewFecha)
     private val db = FirebaseFirestore.getInstance()
-
+    val settings = FirebaseFirestoreSettings.Builder()
+        .setPersistenceEnabled(true)
+        .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        db.firestoreSettings = settings
         //parametros()
         agregar1()
         agregar2()
