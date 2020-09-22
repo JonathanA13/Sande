@@ -1,6 +1,5 @@
 package com.example.sande_siembra
 
-import android.R.layout
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -9,7 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
-import java.io.FileOutputStream
 import java.text.DateFormat
 import java.util.*
 
@@ -70,6 +68,9 @@ class MainActivity : AppCompatActivity() {
         ingreso.bufferedWriter().use { out ->
             out.write("$datosGuardarArchivo")
         }*/
+        //val internalStorageDir = filesDir
+        //val cabecera = File(internalStorageDir, "cabecera.csv")
+
     }
 
     fun agregar1(){
