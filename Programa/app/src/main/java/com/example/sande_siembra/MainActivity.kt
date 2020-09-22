@@ -43,12 +43,12 @@ class MainActivity : AppCompatActivity() {
 
     fun botonListo(){
         obtener()
-        val intentExplicito = Intent(
+        /*val intentExplicito = Intent(
             this,
             Registro::class.java
         )
         intentExplicito.putExtra("Fecha", )
-        startActivity(intentExplicito)
+        startActivity(intentExplicito)*/
     }
 
     fun obtener(){
@@ -74,6 +74,8 @@ class MainActivity : AppCompatActivity() {
         )
         intentExplicito.putExtra("Fecha", currentDate )
         intentExplicito.putExtra("Semana", numeroSemana)
+        intentExplicito.putExtra("Bloque", bloque)
+        intentExplicito.putExtra("Valvula", valvula)
         startActivity(intentExplicito)
 
         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
@@ -88,14 +90,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun agregar1(){
-        val etiquetas = arrayOf("Norte","Sur")
+        val etiquetas = arrayOf("Seleccionar","Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
     }
 
     fun agregar2(){
-        val etiquetas = arrayOf("Flores","Bulbos")
+        val etiquetas = arrayOf("Seleccionar","Flores","Bulbos")
 
         val spinner: Spinner = findViewById(R.id.cmbEtiqueta)
         // Create an ArrayAdapter using the string array and a default spinner layout
