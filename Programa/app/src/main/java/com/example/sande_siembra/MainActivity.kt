@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.text.DateFormat
@@ -19,10 +21,16 @@ class MainActivity : AppCompatActivity() {
     //val currentDate: String =
         //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     //val textViewDate: TextView = findViewById(R.id.textViewFecha)
+    private val db = FirebaseFirestore.getInstance()
+    val settings = FirebaseFirestoreSettings.Builder()
+        .setPersistenceEnabled(true)
+        .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        db.firestoreSettings = settings
         //parametros()
         agregar1()
         agregar2()
@@ -43,12 +51,12 @@ class MainActivity : AppCompatActivity() {
 
     fun botonListo(){
         obtener()
-        val intentExplicito = Intent(
+        /*val intentExplicito = Intent(
             this,
             Registro::class.java
         )
         intentExplicito.putExtra("Fecha", )
-        startActivity(intentExplicito)
+        startActivity(intentExplicito)*/
     }
 
     fun obtener(){
@@ -68,12 +76,22 @@ class MainActivity : AppCompatActivity() {
         Log.i("Eleccion: ", etiqueta)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
 
+        db.collection("Siembra").document(valvula.toString()).set(
+            hashMapOf("Fecha" to currentDate,
+                "Semana" to numeroSemana,
+            "Bloque" to bloque,
+            "Lado" to lado,
+            "Etiqueta" to etiqueta)
+        )
+
         val intentExplicito = Intent(
             this,
             Registro::class.java
         )
         intentExplicito.putExtra("Fecha", currentDate )
         intentExplicito.putExtra("Semana", numeroSemana)
+        intentExplicito.putExtra("Bloque", bloque)
+        intentExplicito.putExtra("Valvula", valvula)
         startActivity(intentExplicito)
 
         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
@@ -88,14 +106,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun agregar1(){
-        val etiquetas = arrayOf("Norte","Sur")
+        val etiquetas = arrayOf("Seleccionar","Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
     }
 
     fun agregar2(){
-        val etiquetas = arrayOf("Flores","Bulbos")
+        val etiquetas = arrayOf("Seleccionar","Flores","Bulbos")
 
         val spinner: Spinner = findViewById(R.id.cmbEtiqueta)
         // Create an ArrayAdapter using the string array and a default spinner layout
