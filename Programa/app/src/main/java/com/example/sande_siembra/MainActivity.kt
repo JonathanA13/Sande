@@ -7,6 +7,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+import java.io.FileOutputStream
 import java.text.DateFormat
 import java.util.*
 
@@ -59,6 +61,13 @@ class MainActivity : AppCompatActivity() {
         val etiqueta = cmbEtiqueta.selectedItem.toString()
         Log.i("Eleccion: ", etiqueta)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
+
+        /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
+        val archivo: File = File("datos//cabecera.xlsx")
+        val ingreso = FileOutputStream(archivo,true)
+        ingreso.bufferedWriter().use { out ->
+            out.write("$datosGuardarArchivo")
+        }*/
     }
 
     fun agregar1(){
