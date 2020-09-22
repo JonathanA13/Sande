@@ -24,6 +24,23 @@
         <item>S4</item>
     </string-array>
 
+    <string-array name="ComboCalibre">
+        <item>0/4</item>
+        <item>6/9</item>
+        <item>9/12</item>
+        <item>12/15</item>
+        <item>15/18</item>
+        <item>18/20</item>
+        <item>20/+</item>
+    </string-array>
+
+    <string-array name="ComboPL">
+        <item>AF</item>
+        <item>AF-AF</item>
+        <item>HOLANDA</item>
+        <item>PL</item>
+    </string-array>
+
 
 
 
