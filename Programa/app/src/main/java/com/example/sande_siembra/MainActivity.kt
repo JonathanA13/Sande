@@ -2,10 +2,12 @@ package com.example.sande_siembra
 
 import android.R.layout
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import java.text.DateFormat
 import java.util.*
 
@@ -18,35 +20,42 @@ class MainActivity : AppCompatActivity() {
         //parametros()
         agregar1()
         agregar2()
-
         val calendar = Calendar.getInstance()
         val currentDate: String =
             DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
         val textViewDate: TextView = findViewById(R.id.textViewFecha)
         textViewDate.text = currentDate
-
-
+        //val numeroSemana = calendar.get(calendar.weekYear)
+        val numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
+        Log.i("Eleccion: ", "semana ${numeroSemana}")
+        txtViewNumeroSemana.text = numeroSemana.toString()
+        obtener()
+        btnListo.setOnClickListener{ botonListo() }
 
     }
 
-    /*fun parametros(){
-        var lado: MutableList<String> = mutableListOf()
-        lado.add("Norte")
-        lado.add("Sur")
+    fun botonListo(){
+        obtener()
+    }
 
-        var etiqueta: MutableList<String> = mutableListOf("")
-        etiqueta.add("Flores")
-        etiqueta.add("Bulbos")
+    fun obtener(){
+        val valvula = editTxtValvula.text.toString()
+        Log.i("Eleccion: ", valvula)
+        val bloque = editTxtBloque.text.toString()
+        Log.i("Eleccion: ", bloque)
+        val lado = cmbLado.selectedItem.toString()
+        Log.i("Eleccion: ", lado)
+        val etiqueta = cmbEtiqueta.selectedItem.toString()
+        Log.i("Eleccion: ", etiqueta)
+    }
 
-    }*/
-
-   
 
     fun agregar1(){
         val etiquetas = arrayOf("Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
+
 
     }
 
@@ -70,11 +79,5 @@ class MainActivity : AppCompatActivity() {
         spinner.setAdapter(adapter)
 
     }
-
-    /*fun obtenerFechaActual(zonaHoraria: String?): String? {
-        val formato = "yyyy-MM-dd"
-        return obtenerFechaConFormato(formato, zonaHoraria)
-    }*/
-
 
 }
