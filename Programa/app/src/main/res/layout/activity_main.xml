@@ -225,7 +225,6 @@
             <Spinner
                 android:id="@+id/cmbEtiqueta"
                 android:layout_width="260dp"
-                android:layout_height="52dp"
                 android:layout_height="59dp"
                 android:layout_weight="1"
                 android:entries="@array/ComboEtiqueta" />
