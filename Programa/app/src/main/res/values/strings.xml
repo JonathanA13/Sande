@@ -19,6 +19,11 @@
         <item>BULBOS</item>
     </string-array>
 
+    <string-array name="ComboFincaCabe">
+        <item>S2</item>
+        <item>S4</item>
+    </string-array>
+
 
 
 
