@@ -1,5 +1,6 @@
 package com.example.sande_siembra
 
+import android.R.layout
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         txtViewNumeroSemana.text = numeroSemana.toString()
         //obtener()
         btnListo.setOnClickListener{ botonListo() }
+
     }
 
     fun botonListo(){
