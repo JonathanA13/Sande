@@ -1,5 +1,6 @@
 package com.example.sande_siembra
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -41,8 +42,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun botonListo(){
-
         obtener()
+        val intentExplicito = Intent(
+            this,
+            Registro::class.java
+        )
+        intentExplicito.putExtra("Fecha", )
+        startActivity(intentExplicito)
     }
 
     fun obtener(){
@@ -61,6 +67,14 @@ class MainActivity : AppCompatActivity() {
         val etiqueta = cmbEtiqueta.selectedItem.toString()
         Log.i("Eleccion: ", etiqueta)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
+
+        val intentExplicito = Intent(
+            this,
+            Registro::class.java
+        )
+        intentExplicito.putExtra("Fecha", currentDate )
+        intentExplicito.putExtra("Semana", numeroSemana)
+        startActivity(intentExplicito)
 
         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
         val archivo: File = File("datos//cabecera.xlsx")
