@@ -65,6 +65,10 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                         Log.i("recuperacion1", "${document.id } "+ " => " +" ${document.data}")
+                        Log.i("valores ", "${document.getData().values}")
+                        document.getData().values.forEach {
+                            Log.i("valorsitos", "${it}")
+                        }
                     }
                 } else {
                     Log.i("recuperacion1", "Error getting documents: ", task.exception)
@@ -104,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             fincaNombre = "S4"
         }
+
         Log.i("Eleccion: ", fincaNombre)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta,fincaNombre)
 
