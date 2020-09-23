@@ -7,10 +7,10 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
 import java.text.DateFormat
 import java.util.*
 
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         //parametros()
         agregar1()
         agregar2()
+        agregar3()
         val calendar = Calendar.getInstance()
         val currentDate: String =
             DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
@@ -46,7 +47,29 @@ class MainActivity : AppCompatActivity() {
         txtViewNumeroSemana.text = numeroSemana.toString()
         //obtener()
         btnListo.setOnClickListener{ botonListo() }
+        btn_buscar.setOnClickListener{ buscar() }
 
+    }
+
+    fun buscar(){
+        /*var fechaRecuperacion = ""
+        val valvula = editTxtValvula.text.toString().toInt()
+        db.collection("Siembra").document(valvula.toString()).get().addOnSuccessListener {
+            fechaRecuperacion = it.get("Fecha") as String
+            Log.i("Recuperacion", fechaRecuperacion)
+        }*/
+
+        db.collection("Siembra")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        Log.i("recuperacion1", "${document.id } "+ " => " +" ${document.data}")
+                    }
+                } else {
+                    Log.i("recuperacion1", "Error getting documents: ", task.exception)
+                }
+            }
     }
 
     fun botonListo(){
@@ -74,14 +97,23 @@ class MainActivity : AppCompatActivity() {
         Log.i("Eleccion: ", lado)
         val etiqueta = cmbEtiqueta.selectedItem.toString()
         Log.i("Eleccion: ", etiqueta)
-        ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
+        val finca = cmbFinca.selectedItem.toString()
+        var fincaNombre = ""
+        if(finca.equals("Sande 2")){
+            fincaNombre = "S2"
+        } else {
+            fincaNombre = "S4"
+        }
+        Log.i("Eleccion: ", fincaNombre)
+        ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta,fincaNombre)
 
         db.collection("Siembra").document(valvula.toString()).set(
             hashMapOf("Fecha" to currentDate,
                 "Semana" to numeroSemana,
             "Bloque" to bloque,
             "Lado" to lado,
-            "Etiqueta" to etiqueta)
+            "Etiqueta" to etiqueta,
+            "Finca" to fincaNombre)
         )
 
         val intentExplicito = Intent(
@@ -131,6 +163,13 @@ class MainActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
 
+    }
+
+    fun agregar3(){
+        val finca = arrayOf("Seleccionar","Sande 2","Sande 4")
+        val spinner: Spinner = findViewById(R.id.cmbFinca)
+        val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, finca)
+        spinner.setAdapter(adapter)
     }
 
 }
