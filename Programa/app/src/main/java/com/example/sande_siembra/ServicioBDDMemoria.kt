@@ -13,9 +13,10 @@ class ServicioBDDMemoria {
             valvula : Int?,
             bloque : Int?,
             lado : String,
-            etiqueta : String
+            etiqueta : String,
+            finca : String
         ) {
-            this.listaCabecera.add(Cabecera(fecha,semana,valvula,bloque,lado,etiqueta))
+            this.listaCabecera.add(Cabecera(fecha,semana,valvula,bloque,lado,etiqueta,finca))
             Log.i("Lista", "La lista es: ${listaCabecera}")
         }
     }
