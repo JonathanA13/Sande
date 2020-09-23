@@ -6,11 +6,12 @@ class Cabecera (
     var valvula : Int?,
     val bloque : Int?,
     val lado : String,
-    val etiqueta : String
+    val etiqueta : String,
+    val finca : String
 ) {
 
     override fun toString(): String {
-        return "${fecha} ${semana} ${valvula} ${bloque} ${lado} ${etiqueta}"
+        return "${fecha} ${semana} ${valvula} ${bloque} ${lado} ${etiqueta} ${finca}"
     }
 
 }
