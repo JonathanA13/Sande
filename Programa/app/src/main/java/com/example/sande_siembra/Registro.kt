@@ -21,6 +21,7 @@ class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
+        db.firestoreSettings = settings
 
         val fecha = intent.getStringExtra("Fecha")
         val semana = intent.getIntExtra("Semana",0)
