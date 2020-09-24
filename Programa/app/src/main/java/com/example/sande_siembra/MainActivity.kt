@@ -253,13 +253,23 @@ class MainActivity : AppCompatActivity() {
             "Finca" to fincaNombre)
         )*/
 
-        db.collection("Siembra").add(
+        /*db.collection("Siembra").add(
             hashMapOf("Fecha" to currentDate,
             "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
             "Bloque" to bloque,
             "Lado" to lado,
             "Etiqueta" to etiqueta
-            ))
+            )
+        )*/
+
+        db.collection("SiembraPrueba").add(
+            hashMapOf("Fecha" to currentDate,
+                "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+                "Bloque" to bloque,
+                "Lado" to lado,
+                "Etiqueta" to etiqueta
+            )
+        )
 
         val intentExplicito = Intent(
             this,
@@ -269,7 +279,11 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("Semana", numeroSemana)
         intentExplicito.putExtra("Bloque", bloque)
         intentExplicito.putExtra("Valvula", valvula)
+        intentExplicito.putExtra("Finca", fincaNombre)
+        intentExplicito.putExtra("Lado", lado)
+        intentExplicito.putExtra("Etiqueta", etiqueta)
         startActivity(intentExplicito)
+
 
         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
         val archivo: File = File("datos//cabecera.xlsx")
