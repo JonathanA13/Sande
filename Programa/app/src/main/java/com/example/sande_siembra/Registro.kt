@@ -2,8 +2,10 @@ package com.example.sande_siembra
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_registro.*
@@ -135,6 +137,7 @@ class Registro : AppCompatActivity() {
     }
 
     fun obtener(){
+
         val cama = editTxtCama.text.toString().toInt()
         val variedad = cmbVariedad.selectedItem.toString()
         val tipoSiembra = cmbTipoSiembra.selectedItem.toString()
@@ -149,7 +152,7 @@ class Registro : AppCompatActivity() {
         val bulbos = editTextNumber7.text.toString().toInt()
 
         db.collection("SiembraDatos").add(
-            hashMapOf("Cama" to calibre,
+            hashMapOf("Cama" to cama,
             "Variedad" to variedad,
             "tipoSiembra" to tipoSiembra,
             "Procedimiento" to procedimiento,
@@ -163,8 +166,19 @@ class Registro : AppCompatActivity() {
             "Bulbos" to bulbos)
         )
 
-        /*
-        val lado = cmbLado.selectedItem.toString()
-         */
+        val toast = Toast.makeText(this, "DATO GUARDADO CORRECTAMENTE", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+        toast.show()
+        //limpiarCampos()
+
     }
+
+    /*fun limpiarCampos(){
+        editTxtCama.setText(" ")
+        editTxtSemanaCabe.setText(" ")
+        editTxtBloqueCabe.setText(" ")
+        editTxtMetros.setText(" ")
+        editTextNumber7.setText(" ")
+        definir()
+    }*/
 }
