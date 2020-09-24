@@ -2,12 +2,16 @@ package com.example.sande_siembra
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,9 +31,86 @@ class MainActivity : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
+
+
+
+        editTxtValvula.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    btnListo.isEnabled=false
+                }
+                else
+                {
+                    btnListo.setEnabled(true)
+                    btnListo.isEnabled=true
+                }
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+                // TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+        editTxtBloque.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    btnListo.isEnabled=false
+                }
+                else
+                {
+                    btnListo.setEnabled(true)
+                    btnListo.isEnabled=true
+                }
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+                // TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         db.firestoreSettings = settings
         //parametros()
         agregar1()
@@ -46,6 +127,7 @@ class MainActivity : AppCompatActivity() {
         //Log.i("Eleccion: ", "semana ${numeroSemana}")
         txtViewNumeroSemana.text = numeroSemana.toString()
         //obtener()
+
         btnListo.setOnClickListener{ botonListo() }
         btn_buscar.setOnClickListener{ buscar() }
 
@@ -72,8 +154,42 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+
+
+
+
+
     fun botonListo(){
-        obtener()
+
+
+        if(editTxtValvula.text.toString().trim().isEmpty())
+        {
+            val toast = Toast.makeText(this, "VALVULA NO PUEDE ESTAR VACIO", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            toast.show()
+            Log.i("Medida","campo vacio valvula")
+        }
+        else {
+
+            if(editTxtBloque.text.toString().trim().isEmpty())
+            {
+                val toast = Toast.makeText(this, "BLOQUE NO PUEDE ESTAR VACIO", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+                toast.show()
+                Log.i("Medida","campo bloque vacio")
+            }
+            else {
+                Log.i("Medida","campo bloque lleno")
+
+            }
+            Log.i("Medida","campo lleno valvula")
+
+
+
+        }
+
+
+
         /*val intentExplicito = Intent(
             this,
             Registro::class.java
