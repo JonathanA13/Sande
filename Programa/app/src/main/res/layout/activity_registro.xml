@@ -124,12 +124,12 @@
 
             <Space
                 android:layout_width="174dp"
-                android:layout_height="35dp" />
+                android:layout_height="28dp" />
 
             <Spinner
                 android:id="@+id/cmbTipoSiembra"
                 android:layout_width="186dp"
-                android:layout_height="37dp" />
+                android:layout_height="44dp" />
 
         </LinearLayout>
 
@@ -176,13 +176,13 @@
                 android:layout_height="42dp" />
 
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="32dp" />
+                android:layout_width="174dp"
+                android:layout_height="28dp" />
 
             <Spinner
                 android:id="@+id/cmbProce"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="44dp"
                 android:entries="@array/ComboPL" />
         </LinearLayout>
     </LinearLayout>
@@ -240,7 +240,7 @@
             <Spinner
                 android:id="@+id/cmbCalibre"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="50dp"
                 android:entries="@array/ComboCalibre" />
         </LinearLayout>
 
@@ -319,8 +319,8 @@
 
                 <Spinner
                     android:id="@+id/cmbFincaCabe"
-                    android:layout_width="101dp"
-                    android:layout_height="40dp"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
                     android:entries="@array/ComboFincaCabe" />
             </LinearLayout>
 
@@ -375,8 +375,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="639dp"
-        android:layout_height="88dp"
+        android:layout_width="637dp"
+        android:layout_height="97dp"
         android:layout_marginTop="16dp"
         android:background="#99FFFFFF"
         android:orientation="horizontal"
@@ -387,7 +387,7 @@
 
         <LinearLayout
             android:layout_width="316dp"
-            android:layout_height="76dp"
+            android:layout_height="84dp"
             android:orientation="vertical">
 
             <TextView
@@ -401,7 +401,7 @@
             <Spinner
                 android:id="@+id/cmbPruebas1"
                 android:layout_width="298dp"
-                android:layout_height="38dp" />
+                android:layout_height="50dp" />
         </LinearLayout>
 
         <Space
@@ -411,7 +411,7 @@
 
         <LinearLayout
             android:layout_width="313dp"
-            android:layout_height="74dp"
+            android:layout_height="84dp"
             android:orientation="vertical">
 
             <TextView
@@ -425,7 +425,7 @@
             <Spinner
                 android:id="@+id/cmbPruebas2"
                 android:layout_width="298dp"
-                android:layout_height="40dp" />
+                android:layout_height="50dp" />
         </LinearLayout>
     </LinearLayout>
 

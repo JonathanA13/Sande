@@ -1,16 +1,20 @@
 package com.example.sande_siembra
 
+import android.R.layout
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
+
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.*
+
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -128,10 +132,13 @@ class MainActivity : AppCompatActivity() {
         txtViewNumeroSemana.text = numeroSemana.toString()
         //obtener()
 
-        btnListo.setOnClickListener{ botonListo() }
+
+        btnListo.setOnClickListener{ obtener() }
+
         btn_buscar.setOnClickListener{ buscar() }
 
     }
+
 
     fun buscar(){
         /*var fechaRecuperacion = ""
@@ -147,12 +154,17 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                         Log.i("recuperacion1", "${document.id } "+ " => " +" ${document.data}")
+                        Log.i("valores ", "${document.getData().values}")
+                        document.getData().values.forEach {
+                            Log.i("valorsitos", "${it}")
+                        }
                     }
                 } else {
                     Log.i("recuperacion1", "Error getting documents: ", task.exception)
                 }
             }
     }
+
 
 
 
@@ -198,6 +210,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentExplicito)*/
     }
 
+
     fun obtener(){
         val calendar = Calendar.getInstance()
         val currentDate: String =
@@ -206,7 +219,14 @@ class MainActivity : AppCompatActivity() {
         val numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
         Log.i("Eleccion: ", "semana ${numeroSemana}")
         val valvula = editTxtValvula.text.toString().toInt()
-        //Log.i("Eleccion: ", valvula)
+        Log.i("Eleccion: ", valvula.toString())
+        /*if(editTxtValvula.text.toString().trim().isEmpty()){
+
+            val toast = Toast.makeText(this, "Mensaje 2", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            toast.show()
+            Log.i("Medida","campo vacio")
+        }*/
         val bloque = editTxtBloque.text.toString().toInt()
         //Log.i("Eleccion: ", bloque)
         val lado = cmbLado.selectedItem.toString()
@@ -220,17 +240,26 @@ class MainActivity : AppCompatActivity() {
         } else {
             fincaNombre = "S4"
         }
+
         Log.i("Eleccion: ", fincaNombre)
         ServicioBDDMemoria.agregarCabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta,fincaNombre)
 
-        db.collection("Siembra").document(valvula.toString()).set(
+        /*db.collection("Siembra").document(valvula.toString()).set(
             hashMapOf("Fecha" to currentDate,
                 "Semana" to numeroSemana,
             "Bloque" to bloque,
             "Lado" to lado,
             "Etiqueta" to etiqueta,
             "Finca" to fincaNombre)
-        )
+        )*/
+
+        db.collection("Siembra").add(
+            hashMapOf("Fecha" to currentDate,
+            "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+            "Bloque" to bloque,
+            "Lado" to lado,
+            "Etiqueta" to etiqueta
+            ))
 
         val intentExplicito = Intent(
             this,
@@ -250,6 +279,7 @@ class MainActivity : AppCompatActivity() {
         }*/
         //val internalStorageDir = filesDir
         //val cabecera = File(internalStorageDir, "cabecera.csv")
+
 
     }
 
