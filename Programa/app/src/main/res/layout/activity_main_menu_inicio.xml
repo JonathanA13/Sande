@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/agricultura"
-    tools:context=".MainActivityMenuInicio">
+    tools:context=".MenuInicio">
 
 
     <ImageView
@@ -42,7 +42,7 @@
         android:layout_width="215dp"
         android:layout_height="117dp"
         android:backgroundTint="#FFEB3B"
-        android:text="NUEVO REGISTRO1"
+        android:text="NUEVO REGISTRO"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

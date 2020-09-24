@@ -140,6 +140,7 @@
                 android:layout_width="332dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:text="Finca:  "
                 android:textAlignment="viewEnd"
                 android:textSize="33sp"
@@ -163,6 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Válvula:   "
+                android:textColor="#000000"
                 android:textAlignment="viewEnd"
                 android:textSize="33sp"
                 android:textStyle="bold" />
@@ -173,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Valvula"
+
                 android:inputType="number"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -188,6 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:text="Bloque:   "
                 android:textAlignment="viewEnd"
                 android:textSize="33sp"
@@ -199,7 +202,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Ingrese Bloque"
                 android:inputType="number"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -213,6 +215,7 @@
                 android:id="@+id/textViewLado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:layout_weight="1"
                 android:text="Lado:   "
                 android:textAlignment="viewEnd"
@@ -239,6 +242,7 @@
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="#000000"
                 android:text="Etiqueta:   "
                 android:textAlignment="viewEnd"
                 android:textSize="30sp"
@@ -270,12 +274,12 @@
         android:id="@+id/btn_buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="200dp"
         android:text="Buscar"
         app:layout_constraintBottom_toBottomOf="@+id/btnListo"
         app:layout_constraintStart_toEndOf="@+id/btnListo"
         app:layout_constraintTop_toTopOf="@+id/btnListo"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
