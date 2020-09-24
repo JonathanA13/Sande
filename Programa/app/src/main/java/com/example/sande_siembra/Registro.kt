@@ -1,14 +1,18 @@
 package com.example.sande_siembra
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R.layout
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_registro.*
+
 
 class Registro : AppCompatActivity() {
 
@@ -212,6 +216,21 @@ class Registro : AppCompatActivity() {
         toast.show()
         //limpiarCampos()
 
+        //mostrarDialogoBasico()
+
+        /*val builder = AlertDialog.Builder(this)
+        builder.setMessage("Datos guardado correctamente")
+            .setPositiveButton("Continuar",
+                DialogInterface.OnClickListener { dialog, id ->
+                    // FIRE ZE MISSILES!
+                })
+            .setNegativeButton("Cancelar",
+                DialogInterface.OnClickListener { dialog, id ->
+                    // User cancelled the dialog
+                })
+        // Create the AlertDialog object and return it
+        builder.create()*/
+
     }
 
     /*fun guardarGeneral(){
@@ -226,4 +245,30 @@ class Registro : AppCompatActivity() {
         editTextNumber7.setText(" ")
         definir()
     }*/
+
+    /*private fun mostrarDialogoBasico() {
+        val builder =
+            AlertDialog.Builder(
+                this
+            )
+        builder.setTitle("Titulo")
+        builder.setMessage("¿Quieres eliminar todos los datos?")
+            .setPositiveButton("Sí") { dialog, which ->
+                Toast.makeText(
+                    applicationContext,
+                    "Eliminamos datos...",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .setNegativeButton(
+                R.string.cancel
+            ) { dialog, which ->
+                Toast.makeText(applicationContext, "Cancel...", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+    }*/
+    
+    
 }
