@@ -42,7 +42,7 @@
         android:layout_width="215dp"
         android:layout_height="117dp"
         android:backgroundTint="#FFEB3B"
-        android:text="NUEVO REGISTRO1"
+        android:text="NUEVO REGISTRO"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,6 +64,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNuevo"
         app:layout_constraintVertical_bias="0.174" />
+
+    <Button
+        android:id="@+id/btn_sincro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Sincronizar"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
