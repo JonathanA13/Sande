@@ -270,12 +270,12 @@
         android:id="@+id/btn_buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="200dp"
         android:text="Buscar"
         app:layout_constraintBottom_toBottomOf="@+id/btnListo"
         app:layout_constraintStart_toEndOf="@+id/btnListo"
         app:layout_constraintTop_toTopOf="@+id/btnListo"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
