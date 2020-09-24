@@ -49,6 +49,7 @@ class MenuInicio : AppCompatActivity() {
             ) { dialog, which ->
                 Toast.makeText(applicationContext, "Cancelando...", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+                Log.i("Pantalla", comprobacion)
             }
             .setCancelable(false)
             .show()
