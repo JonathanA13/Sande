@@ -15,10 +15,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.329"
+        app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.59" />
+        app:layout_constraintVertical_bias="0.084" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -42,10 +42,10 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.119" />
 
     <TextView
         android:id="@+id/txtViewTituloSiembra"
@@ -64,8 +64,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="644dp"
-        android:layout_height="238dp"
+        android:layout_width="634dp"
+        android:layout_height="210dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +77,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="217dp"
+            android:layout_height="191dp"
             android:orientation="vertical">
 
             <Space
@@ -126,7 +126,7 @@
 
         <LinearLayout
             android:layout_width="197dp"
-            android:layout_height="217dp"
+            android:layout_height="196dp"
             android:orientation="vertical">
 
             <EditText
@@ -136,7 +136,7 @@
                 android:ems="10"
                 android:inputType="number"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
 
             <Space
                 android:layout_width="174dp"
@@ -160,7 +160,7 @@
 
         <LinearLayout
             android:layout_width="121dp"
-            android:layout_height="214dp"
+            android:layout_height="199dp"
             android:orientation="vertical">
 
             <Space
@@ -193,15 +193,15 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="37dp" />
+                android:layout_height="42dp" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ORIGEN:  "
-
                 android:textAlignment="viewEnd"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -209,7 +209,7 @@
 
         <LinearLayout
             android:layout_width="174dp"
-            android:layout_height="214dp"
+            android:layout_height="199dp"
             android:orientation="vertical">
 
             <Spinner
@@ -223,32 +223,37 @@
                 android:layout_height="21dp" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/cmbBrote"
                 android:layout_width="match_parent"
                 android:layout_height="43dp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="29dp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="43dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="641dp"
-        android:layout_height="64dp"
+        android:layout_width="635dp"
+        android:layout_height="88dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.077">
+        app:layout_constraintVertical_bias="0.061">
 
         <LinearLayout
             android:layout_width="215dp"
-            android:layout_height="wrap_content"
+            android:layout_height="82dp"
             android:orientation="horizontal">
 
             <TextView
@@ -263,17 +268,18 @@
 
             <EditText
                 android:id="@+id/editTxtMetros"
-                android:layout_width="98dp"
+                android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="236dp"
-            android:layout_height="match_parent"
+            android:layout_height="88dp"
             android:orientation="horizontal">
 
             <TextView
@@ -314,7 +320,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:textSize="25sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -326,8 +333,9 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.043">
 
         <LinearLayout
@@ -431,13 +439,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="637dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="639dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="32dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
@@ -495,15 +503,15 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.381"
         app:layout_constraintStart_toEndOf="@+id/btnOtroBloque"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <LinearLayout
 
-        android:layout_width="524dp"
-        android:layout_height="75dp"
+        android:layout_width="518dp"
+        android:layout_height="99dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -514,7 +522,7 @@
 
         <LinearLayout
             android:layout_width="295dp"
-            android:layout_height="wrap_content"
+            android:layout_height="113dp"
 
             android:orientation="horizontal">
 
@@ -528,8 +536,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="FECHA  "
-                    android:textColor="#000"
                     android:textAlignment="viewEnd"
+                    android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -538,32 +546,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SEMANA  "
-                    android:textColor="#000"
                     android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FINCA   "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="144dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtFechaRegistro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:hint="29/09/2020"
                     android:text="29/09/2020"
+                    android:textColor="#000"
                     android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/txtSemanaRegistro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
                     android:text="38"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/txtViewFincaSiembra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FINCA"
+                    android:textColor="#000"
                     android:textSize="24sp" />
             </LinearLayout>
         </LinearLayout>
@@ -583,8 +609,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BLOQUE  "
-                    android:textColor="#000"
                     android:textAlignment="viewEnd"
+                    android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -593,8 +619,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="VALVULA  "
-                    android:textColor="#000"
                     android:textAlignment="viewEnd"
+                    android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -607,23 +633,60 @@
                 <TextView
                     android:id="@+id/txtViewBloqueRegistro"
                     android:layout_width="match_parent"
-                    android:textColor="#000"
                     android:layout_height="wrap_content"
+                    android:background="#FFEB3B"
                     android:text="108"
-                    android:textSize="24sp" />
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_valvula"
                     android:layout_width="72dp"
-                    android:textColor="#000"
                     android:layout_height="wrap_content"
+                    android:background="#FFEB3B"
                     android:text="5"
-                    android:textSize="24sp" />
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="635dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="16dp"
+        android:background="#F2FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OTRAS PRUEBAS:  "
+            android:textAlignment="viewEnd"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="430dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
