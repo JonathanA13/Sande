@@ -27,6 +27,9 @@ class Registro : AppCompatActivity() {
         val semana = intent.getIntExtra("Semana",0)
         val bloque = intent.getIntExtra("Bloque",0)
         val valvula = intent.getIntExtra("Valvula",0)
+        val finca = intent.getStringExtra("Finca")
+        val lado = intent.getStringExtra("Lado")
+        val etiqueta = intent.getStringExtra("Etiqueta")
 
         txtFechaRegistro.text = fecha
         txtSemanaRegistro.text = semana.toString()
@@ -35,6 +38,7 @@ class Registro : AppCompatActivity() {
 
         definir()
 
+        //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
     }
 
@@ -136,7 +140,7 @@ class Registro : AppCompatActivity() {
         spinner7.setAdapter(adapter7)
 
     }
-
+    //fecha: String, semana: Int, bloque: Int, valvula: Int, finca: String, lado: String, etiqueta: String
     fun obtener(){
 
         val cama = editTxtCama.text.toString().toInt()
@@ -145,27 +149,63 @@ class Registro : AppCompatActivity() {
         val procedimiento = cmbProce.selectedItem.toString()
         val prueba1 = cmbPruebas1.selectedItem.toString()
         val prueba2 = cmbPruebas2.selectedItem.toString()
-        val finca = cmbFincaCabe.selectedItem.toString()
-        val semana = editTxtSemanaCabe.text.toString().toInt()
-        val bloque = editTxtBloqueCabe.text.toString().toInt()
+        val fincaCabe = cmbFincaCabe.selectedItem.toString()
+        val semanaCabe = editTxtSemanaCabe.text.toString().toInt()
+        val bloqueCabe = editTxtBloqueCabe.text.toString().toInt()
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
         val bulbos = editTextNumber7.text.toString().toInt()
 
-        db.collection("SiembraDatos").add(
+        /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
             "Variedad" to variedad,
             "tipoSiembra" to tipoSiembra,
             "Procedimiento" to procedimiento,
             "Prueba1" to prueba1,
             "Prueba2" to prueba2,
-            "Finca" to  finca,
-            "Semana" to semana,
-            "Bloque" to  bloque,
+            "FincaCabe" to  fincaCabe,
+            "SemanaCabe" to semanaCabe,
+            "BloqueCabe" to  bloqueCabe,
             "Metros" to metros,
             "Calibre" to calibre,
             "Bulbos" to bulbos)
+        )*/
+
+        db.collection("SiembraDatosPrueba").add(
+            hashMapOf("Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  fincaCabe,
+                "SemanaCabe" to semanaCabe,
+                "BloqueCabe" to  bloqueCabe,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos)
         )
+
+        /*db.collection("SiembraCompleta").add(
+            hashMapOf("Fecha" to fecha,
+                "Semana" to semana, "Finca" to finca, "Valvula" to valvula,
+                "Bloque" to bloque,
+                "Lado" to lado,
+                "Etiqueta" to etiqueta,
+                "Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  finca,
+                "SemanaCabe" to semana,
+                "BloqueCabe" to  bloque,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos
+            )
+        )*/
 
         val toast = Toast.makeText(this, "DATO GUARDADO CORRECTAMENTE", Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
@@ -173,6 +213,10 @@ class Registro : AppCompatActivity() {
         //limpiarCampos()
 
     }
+
+    /*fun guardarGeneral(){
+
+    }*/
 
     /*fun limpiarCampos(){
         editTxtCama.setText(" ")
