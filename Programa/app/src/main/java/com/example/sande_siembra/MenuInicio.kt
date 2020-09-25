@@ -3,6 +3,9 @@ package com.example.sande_siembra
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +24,37 @@ class MenuInicio : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu_inicio)
         btnNuevo.setOnClickListener { botonNuevo() }
         btn_sincro.setOnClickListener{ sincronizar() }
+        button2.setOnClickListener{ mostrarDialogoBasico() }
     }
+
+    private fun mostrarDialogoBasico() {
+        val comprobacion = "Entra en el sí"
+        val builder =
+            AlertDialog.Builder(
+
+                this
+            )
+        builder.setTitle("Registro de datos")
+        builder.setMessage("¿Los datos se guardaron correctamente. ¿Desea Continuar ingresando datos?")
+            .setPositiveButton("Sí") { dialog, which ->
+                Toast.makeText(
+                    applicationContext,
+                    "Guardando datos...",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.i("Pantalla", comprobacion)
+            }
+            .setNegativeButton(
+                android.R.string.cancel
+            ) { dialog, which ->
+                Toast.makeText(applicationContext, "Cancelando...", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+                Log.i("Pantalla", comprobacion)
+            }
+            .setCancelable(false)
+            .show()
+    }
+
     fun botonNuevo(){
 
         val intentExplicito = Intent(
