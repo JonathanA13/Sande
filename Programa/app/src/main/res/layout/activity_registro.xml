@@ -64,20 +64,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="634dp"
-        android:layout_height="210dp"
+        android:layout_width="637dp"
+        android:layout_height="258dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.031">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="191dp"
+            android:layout_height="248dp"
             android:orientation="vertical">
 
             <Space
@@ -99,6 +99,19 @@
                 android:layout_height="41dp" />
 
             <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TAMAÑO CAMA:"
+                android:textColor="#000000"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="38dp" />
+
+            <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +123,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="32dp" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -126,7 +139,7 @@
 
         <LinearLayout
             android:layout_width="197dp"
-            android:layout_height="196dp"
+            android:layout_height="248dp"
             android:orientation="vertical">
 
             <EditText
@@ -140,27 +153,36 @@
 
             <Space
                 android:layout_width="174dp"
-                android:layout_height="28dp" />
+                android:layout_height="18dp" />
 
             <Spinner
-                android:id="@+id/cmbTipoSiembra"
-                android:layout_width="186dp"
+                android:id="@+id/cmbTamanioCama"
+                android:layout_width="match_parent"
                 android:layout_height="44dp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="23dp" />
+                android:layout_height="21dp" />
+
+            <Spinner
+                android:id="@+id/cmbTipoSiembra"
+                android:layout_width="match_parent"
+                android:layout_height="44dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
 
             <Spinner
                 android:id="@+id/cmbVariedad"
                 android:layout_width="match_parent"
-                android:layout_height="42dp" />
+                android:layout_height="44dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="121dp"
-            android:layout_height="199dp"
+            android:layout_width="117dp"
+            android:layout_height="221dp"
             android:orientation="vertical">
 
             <Space
@@ -193,7 +215,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="42dp" />
+                android:layout_height="62dp" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -209,7 +231,7 @@
 
         <LinearLayout
             android:layout_width="174dp"
-            android:layout_height="199dp"
+            android:layout_height="220dp"
             android:orientation="vertical">
 
             <Spinner
@@ -225,35 +247,35 @@
             <Spinner
                 android:id="@+id/cmbBrote"
                 android:layout_width="match_parent"
-                android:layout_height="43dp" />
+                android:layout_height="71dp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="29dp" />
+                android:layout_height="18dp" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/cmbOrigen"
                 android:layout_width="match_parent"
-                android:layout_height="43dp" />
+                android:layout_height="44dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="635dp"
-        android:layout_height="88dp"
+        android:layout_width="637dp"
+        android:layout_height="80dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.061">
+        app:layout_constraintVertical_bias="0.031">
 
         <LinearLayout
             android:layout_width="215dp"
-            android:layout_height="82dp"
+            android:layout_height="71dp"
             android:orientation="horizontal">
 
             <TextView
@@ -271,15 +293,15 @@
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="number|numberDecimal"
                 android:textColor="#000"
                 android:textSize="25sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="236dp"
-            android:layout_height="88dp"
+            android:layout_width="225dp"
+            android:layout_height="66dp"
             android:orientation="horizontal">
 
             <TextView
@@ -316,7 +338,7 @@
 
             <EditText
                 android:id="@+id/editTextNumber7"
-                android:layout_width="94dp"
+                android:layout_width="98dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number"
@@ -327,16 +349,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="630dp"
+        android:layout_width="637dp"
         android:layout_height="100dp"
         android:background="#F2FFFFFF"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.043">
+        app:layout_constraintVertical_bias="0.031">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -349,7 +371,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="INFORMACION CABE"
+                android:text="   INFORMACION CABE"
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -362,7 +384,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="246dp"
+                android:layout_width="229dp"
                 android:layout_height="57dp"
                 android:orientation="horizontal">
 
@@ -378,24 +400,24 @@
 
                 <EditText
                     android:id="@+id/editTxtSemanaCabe"
-                    android:layout_width="104dp"
+                    android:layout_width="96dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="189dp"
+                android:layout_width="198dp"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView12"
-                    android:layout_width="95dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BLOQUE:  "
+                    android:text="BLOQUE C:  "
                     android:textAlignment="viewEnd"
                     android:textColor="#000"
                     android:textSize="20sp"
@@ -408,12 +430,12 @@
                     android:ems="10"
                     android:inputType="number"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="190dp"
+                android:layout_width="207dp"
                 android:layout_height="64dp"
                 android:orientation="horizontal">
 
@@ -429,7 +451,7 @@
 
                 <Spinner
                     android:id="@+id/cmbFincaCabe"
-                    android:layout_width="wrap_content"
+                    android:layout_width="97dp"
                     android:layout_height="53dp"
                     android:entries="@array/ComboFincaCabe" />
             </LinearLayout>
@@ -439,13 +461,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="639dp"
+        android:layout_width="637dp"
         android:layout_height="98dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
@@ -510,8 +532,8 @@
 
     <LinearLayout
 
-        android:layout_width="518dp"
-        android:layout_height="99dp"
+        android:layout_width="479dp"
+        android:layout_height="84dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -521,50 +543,50 @@
         app:layout_constraintVertical_bias="0.013">
 
         <LinearLayout
-            android:layout_width="295dp"
-            android:layout_height="113dp"
+            android:layout_width="248dp"
+            android:layout_height="match_parent"
 
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="148dp"
+                android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="match_parent"
+                    android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:text="FECHA  "
                     android:textAlignment="viewEnd"
                     android:textColor="#000"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="match_parent"
+                    android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:text="SEMANA  "
                     android:textAlignment="viewEnd"
                     android:textColor="#000"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView22"
-                    android:layout_width="match_parent"
+                    android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:text="FINCA   "
                     android:textAlignment="viewEnd"
                     android:textColor="#000"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="144dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -574,7 +596,7 @@
                     android:hint="29/09/2020"
                     android:text="29/09/2020"
                     android:textColor="#000"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtSemanaRegistro"
@@ -582,15 +604,15 @@
                     android:layout_height="wrap_content"
                     android:text="38"
                     android:textColor="#000"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtViewFincaSiembra"
-                    android:layout_width="match_parent"
+                    android:layout_width="116dp"
                     android:layout_height="wrap_content"
                     android:text="FINCA"
                     android:textColor="#000"
-                    android:textSize="24sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -642,7 +664,7 @@
 
                 <TextView
                     android:id="@+id/txt_valvula"
-                    android:layout_width="72dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFEB3B"
                     android:text="5"
@@ -655,19 +677,19 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="635dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="637dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="4dp"
         android:background="#F2FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <TextView
             android:id="@+id/textView26"
-            android:layout_width="203dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="OTRAS PRUEBAS:  "
@@ -683,7 +705,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="Ninguna"
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>

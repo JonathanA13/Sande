@@ -39,6 +39,7 @@ class Registro : AppCompatActivity() {
         txtSemanaRegistro.text = semana.toString()
         txtViewBloqueRegistro.text = bloque.toString()
         txt_valvula.text = valvula.toString()
+        txtViewFincaSiembra.text=finca.toString()
 
         definir()
 
@@ -93,24 +94,26 @@ class Registro : AppCompatActivity() {
         val adapter2: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tipoSiembra)
         spinner2.setAdapter(adapter2)
 
-        val pl_proce = arrayOf("AF","AF-AF","HOLANDA","PL")
+        val pl_proce = arrayOf("AF","AF-AF","af-af","HOLANDA","PL")
         val spinner3: Spinner = findViewById(R.id.cmbProce)
         val adapter3: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, pl_proce)
         spinner3.setAdapter(adapter3)
 
-        val prueba1 = arrayOf("PRUEBA A",
+        val prueba1 = arrayOf("NINGUNA",
+            "PRUEBA A",
             "PRUEBA B",
+            "PRUEBA C",
             "PRUEBA D",
             "PRUEBA E",
             "PRUEBA FERTILIZACION VALVULA 4",
             "PRUEBA FERTILIZACION VALVULA 5",
-            "TINAS",
-            "NINGUNA")
+            "TINAS")
         val spinner4: Spinner = findViewById(R.id.cmbPruebas1)
         val adapter4: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba1)
         spinner4.setAdapter(adapter4)
 
-        val prueba2 = arrayOf("ABIERTOS CON LA MANO",
+        val prueba2 = arrayOf("NINGUNA",
+            "ABIERTOS CON LA MANO",
             "BACTERIAS PLUS ORGANIC",
             "CRUZAMIENTOS",
             "MARCADOR 56",
@@ -125,10 +128,8 @@ class Registro : AppCompatActivity() {
             "SIN REVISAR ASIENTOS",
             "SIN VAPORIZAR",
             "TESTIGO",
-            "TESTIGO",
             "TESTIGO DESINFECCION",
-            "VAPORIZADA",
-            "NINGUNA")
+            "VAPORIZADA")
         val spinner5: Spinner = findViewById(R.id.cmbPruebas2)
         val adapter5: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba2)
         spinner5.setAdapter(adapter5)
@@ -142,6 +143,21 @@ class Registro : AppCompatActivity() {
         val spinner7: Spinner = findViewById(R.id.cmbCalibre)
         val adapter7: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibre)
         spinner7.setAdapter(adapter7)
+
+        val tamanioCama = arrayOf("0.9 mts","1.20 mts")
+        val spinner8: Spinner = findViewById(R.id.cmbTamanioCama)
+        val adapter8: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tamanioCama)
+        spinner8.setAdapter(adapter8)
+
+        val Origen = arrayOf("NACIONAL","HOL-19","HOL-20", "HOLANDA")
+        val spinner9: Spinner = findViewById(R.id.cmbOrigen)
+        val adapter9: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, Origen)
+        spinner9.setAdapter(adapter9)
+
+        val Brote = arrayOf("Entero con brote","Brote grande","Brote pequeño")
+        val spinner10: Spinner = findViewById(R.id.cmbBrote)
+        val adapter10: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, Brote)
+        spinner10.setAdapter(adapter10)
 
     }
     //fecha: String, semana: Int, bloque: Int, valvula: Int, finca: String, lado: String, etiqueta: String
