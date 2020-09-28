@@ -14,9 +14,8 @@
 
 
     <string-array name="ComboEtiqueta">
-        <item>SELECCIONA</item>
-        <item>FLORES</item>
-        <item>BULBOS</item>
+        <item>Flores</item>
+        <item>Bulbos</item>
     </string-array>
 
     <string-array name="ComboFincaCabe">

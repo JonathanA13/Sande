@@ -305,7 +305,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun agregar2(){
-        val etiquetas = arrayOf("Seleccionar","Flores","Bulbos")
+        val etiquetas = arrayOf("Flores","Bulbos")
 
         val spinner: Spinner = findViewById(R.id.cmbEtiqueta)
         // Create an ArrayAdapter using the string array and a default spinner layout
