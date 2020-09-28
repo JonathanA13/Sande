@@ -1,23 +1,17 @@
 package com.example.sande_siembra
 
-import android.R.layout
-import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -28,8 +22,6 @@ class Registro : AppCompatActivity() {
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,14 +46,11 @@ class Registro : AppCompatActivity() {
         val seleccionEtiqueta=etiqueta.toString()
 
         //LLENO CMBCALIBRE DE ACUERDO A SU ETIQUETA
-        if(seleccionEtiqueta.toString()=="Flores" ){
+        if(seleccionEtiqueta.equals("Flores") ){
             val calibre = arrayOf("9/12","12/15","15/18","18/20","20/26","26+")
             val spinner7: Spinner = findViewById(R.id.cmbCalibre)
             val adapterFlores: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibre)
             spinner7.setAdapter(adapterFlores)
-
-
-
 
         }//fin IF
         else{
@@ -72,10 +61,39 @@ class Registro : AppCompatActivity() {
 
         }
 
+        cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+
+                val posicion = cmbCalibre.getItemAtPosition(position).toString()
+                Log.i("Probar", posicion)
+                /*if( posicion.equals("0/4") ){
+                    txtViewBulbos.setText("Prueba de 0/4")
+                } else if (posicion.equals("4/6")){
+                    txtViewBulbos.setText("Prueba de 4/6")
+                } else if (posicion.equals("6/9")){
+                    txtViewBulbos.setText(" ")
+                }*/
+                txtViewBulbos.setText(posicion)
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
 
 
 
-        cmbCalibre.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
+
+
+
+
+
+        /*cmbCalibre.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
                 txtViewBulbos.text="vacio calibre"
@@ -90,7 +108,7 @@ class Registro : AppCompatActivity() {
                 TODO("Not yet implemented")
                 txtViewBulbos.text="lleno"
             }
-        }
+        }*/
 
 
 
@@ -104,6 +122,15 @@ class Registro : AppCompatActivity() {
         btnGuardar.setOnClickListener{ obtener() }
 
 
+    }
+
+    fun eleccionCalibre(prueba: String){
+
+        Log.i("Probar", prueba)
+        if(prueba.equals("null")){
+            Log.i("Probar", prueba)
+            txtViewBulbos.setText("Prueba de 4/6")
+        }
     }
 
 
@@ -375,6 +402,13 @@ class Registro : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }*/
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+
     
     
 }
