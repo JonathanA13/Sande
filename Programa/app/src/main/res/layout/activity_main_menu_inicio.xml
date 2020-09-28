@@ -78,5 +78,16 @@
         app:layout_constraintTop_toBottomOf="@+id/btnNuevo"
         app:layout_constraintVertical_bias="0.252" />
 
+    <Button
+        android:id="@+id/btn_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="@+id/btn_sincro"
+        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintStart_toStartOf="@+id/btn_sincro"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sincro" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
