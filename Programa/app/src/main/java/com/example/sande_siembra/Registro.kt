@@ -1,19 +1,17 @@
 package com.example.sande_siembra
 
-import android.R.layout
-import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -24,6 +22,7 @@ class Registro : AppCompatActivity() {
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +37,86 @@ class Registro : AppCompatActivity() {
         val lado = intent.getStringExtra("Lado")
         val etiqueta = intent.getStringExtra("Etiqueta")
 
+
         txtFechaRegistro.text = fecha
         txtSemanaRegistro.text = semana.toString()
         txtViewBloqueRegistro.text = bloque.toString()
         txt_valvula.text = valvula.toString()
         txtViewFincaSiembra.text=finca.toString()
+        val seleccionEtiqueta=etiqueta.toString()
+
+        //LLENO CMBCALIBRE DE ACUERDO A SU ETIQUETA
+        if(seleccionEtiqueta.equals("Flores") ){
+            val calibre = arrayOf("9/12","12/15","15/18","18/20","20/26","26+")
+            val spinner7: Spinner = findViewById(R.id.cmbCalibre)
+            val adapterFlores: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibre)
+            spinner7.setAdapter(adapterFlores)
+
+        }//fin IF
+        else{
+            val calibreBulbos = arrayOf("0/4","4/6","6/9","9/12")
+            val spinner77: Spinner = findViewById(R.id.cmbCalibre)
+            val adapter7: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibreBulbos)
+            spinner77.setAdapter(adapter7)
+
+        }
+
+        cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View,
+                position: Int,
+                id: Long
+            ) {
+
+                val posicion = cmbCalibre.getItemAtPosition(position).toString()
+                Log.i("Probar", posicion)
+                /*if( posicion.equals("0/4") ){
+                    txtViewBulbos.setText("Prueba de 0/4")
+                } else if (posicion.equals("4/6")){
+                    txtViewBulbos.setText("Prueba de 4/6")
+                } else if (posicion.equals("6/9")){
+                    txtViewBulbos.setText(" ")
+                }*/
+                txtViewBulbos.setText(posicion)
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                // your code here
+            }
+        })
+
+
+
+
+
+
+
+
+        /*cmbCalibre.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+                txtViewBulbos.text="vacio calibre"
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                TODO("Not yet implemented")
+                txtViewBulbos.text="lleno"
+            }
+        }*/
+
+
+
+
 
         definir()
-        calcularBulbos()
+        bulbos()
+
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
@@ -53,30 +124,39 @@ class Registro : AppCompatActivity() {
 
     }
 
-    fun calcularBulbos(){
-        editTxtMetros.addTextChangedListener(object: TextWatcher {
-            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+    fun eleccionCalibre(prueba: String){
 
-                if (s.toString().trim().isEmpty())
-                {
-                    txtViewBulbos.text="no mts"
-                }
-                else
-                {
+        Log.i("Probar", prueba)
+        if(prueba.equals("null")){
+            Log.i("Probar", prueba)
+            txtViewBulbos.setText("Prueba de 4/6")
+        }
+    }
 
-                    txtViewBulbos.text="calcular"      
-                }
-            }
-            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
-                                           after:Int) {
-                // TODO Auto-generated method stub
-            }
-            override fun afterTextChanged(s: Editable) {
-                // TODO Auto-generated method stub
-            }
-        })
+
+    fun bulbos()
+    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
+
+
+
+
 
 
 
@@ -173,10 +253,13 @@ class Registro : AppCompatActivity() {
         val adapter6: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, finca)
         spinner6.setAdapter(adapter6)
 
-        val calibre = arrayOf("0/4","6/9","9/12","12/15","15/18","18/20","20/+")
-        val spinner7: Spinner = findViewById(R.id.cmbCalibre)
-        val adapter7: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibre)
-        spinner7.setAdapter(adapter7)
+
+
+
+
+
+
+
 
         val tamanioCama = arrayOf("0.9 mts","1.20 mts")
         val spinner8: Spinner = findViewById(R.id.cmbTamanioCama)
@@ -319,6 +402,13 @@ class Registro : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }*/
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+
     
     
 }
