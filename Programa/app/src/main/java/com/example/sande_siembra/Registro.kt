@@ -3,6 +3,8 @@ package com.example.sande_siembra
 import android.R.layout
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -42,10 +45,41 @@ class Registro : AppCompatActivity() {
         txtViewFincaSiembra.text=finca.toString()
 
         definir()
+        calcularBulbos()
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
+
+
     }
+
+    fun calcularBulbos(){
+        editTxtMetros.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    txtViewBulbos.text="no mts"
+                }
+                else
+                {
+
+                    txtViewBulbos.text="calcular"      
+                }
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+                // TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+    }
+
+
+
 
     fun definir(){
         val variedad = arrayOf("ACCENT", "ARANAL", "ASPEN", "AUCKLAND", "AVIGNON", "BLACK DIAMOND", "BLACK VELVET", "BUICK", "CAPTAIN ROMANCE", "CAVALESE",
@@ -174,7 +208,7 @@ class Registro : AppCompatActivity() {
         val bloqueCabe = editTxtBloqueCabe.text.toString().toInt()
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
-        val bulbos = editTextNumber7.text.toString().toInt()
+        val bulbos = txtViewBulbos.text.toString().toInt()
 
         /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
