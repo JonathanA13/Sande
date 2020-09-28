@@ -298,7 +298,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun agregar1(){
-        val etiquetas = arrayOf("Seleccionar","Norte","Sur")
+        val etiquetas = arrayOf("Ninguno","Norte","Sur")
         val spinner: Spinner = findViewById(R.id.cmbLado)
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, etiquetas)
         spinner.setAdapter(adapter)
