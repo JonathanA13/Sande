@@ -25,6 +25,15 @@ class MenuInicio : AppCompatActivity() {
         btnNuevo.setOnClickListener { botonNuevo() }
         btn_sincro.setOnClickListener{ sincronizar() }
         button2.setOnClickListener{ mostrarDialogoBasico() }
+        btn_ver.setOnClickListener{ tabla() }
+    }
+
+    fun tabla(){
+        val intent = Intent(
+            this,
+            RecuperarDatos::class.java
+        )
+        startActivity(intent)
     }
 
     private fun mostrarDialogoBasico() {
