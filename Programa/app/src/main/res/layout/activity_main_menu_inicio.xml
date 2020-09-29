@@ -89,5 +89,16 @@
         app:layout_constraintStart_toStartOf="@+id/btn_sincro"
         app:layout_constraintTop_toBottomOf="@+id/btn_sincro" />
 
+    <Button
+        android:id="@+id/btn_lista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="216dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_ver"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ver"
+        app:layout_constraintTop_toTopOf="@+id/btn_ver"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
