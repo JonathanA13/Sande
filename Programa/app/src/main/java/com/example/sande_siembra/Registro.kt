@@ -293,7 +293,7 @@ class Registro : AppCompatActivity() {
         val bloqueCabe = editTxtBloqueCabe.text.toString().toInt()
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
-        val bulbos = txtViewBulbos.text.toString().toInt()
+        val bulbos = 350
 
         /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
