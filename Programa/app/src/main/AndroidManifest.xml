@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecuperarDatos"></activity>
+        <activity android:name=".Datos"></activity>
+        <activity android:name=".MostrarDatos" />
+        <activity android:name=".RecuperarDatos" />
         <activity android:name=".MenuInicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registro" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -26,6 +26,15 @@ class MenuInicio : AppCompatActivity() {
         btn_sincro.setOnClickListener{ sincronizar() }
         button2.setOnClickListener{ mostrarDialogoBasico() }
         btn_ver.setOnClickListener{ tabla() }
+        btn_lista.setOnClickListener{ irLista() }
+    }
+
+    fun irLista(){
+        val intent = Intent(
+            this,
+            Datos::class.java
+        )
+        startActivity(intent)
     }
 
     fun tabla(){

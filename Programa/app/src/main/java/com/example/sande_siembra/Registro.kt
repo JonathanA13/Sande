@@ -23,6 +23,8 @@ class Registro : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
 
+    var posicion = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -403,12 +405,259 @@ class Registro : AppCompatActivity() {
             .show()
     }*/
 
-    override fun onResume() {
-        super.onResume()
 
-    }
+    /*fun calcularBulbos(){
+        editTxtMetros.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    txtViewBulbos.text="no mts"
+                    btnGuardar.isEnabled=false
+                }
+                else
+                {
+                    if(cmbEtiqueta.selectedItem.toString()=="Flores")
+                    {
+                        if(txtViewFincaSiembra.toString()=="S4"){
+                            if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
+                                if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                    val calcular=editTxtMetros.text.toString().toDouble()*28
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else {
+                                    if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*20
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else{
+                                        if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*16
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*12
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*6
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+//si es de 1.90 la cama
+                                if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
+                                    if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*22
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else {
+                                        if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*16
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*13
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*10
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*7
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+                                                        if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                            val calcular=editTxtMetros.text.toString().toDouble()*5
+                                                            txtViewBulbos.text=calcular.toString()
+                                                        }
+                                                        else{
+//si no hay calibre
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }// fin de cama 1.90
+                                else{}
+                            }
+
+//sande 4 fin
+                        }
+                        else{
+//sande 2
+                            if(txtViewFincaSiembra.toString()=="S2"){
+                                if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
+                                    if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*44
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else {
+                                        if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*28
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*20
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*16
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+                                                        if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                            val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                            txtViewBulbos.text=calcular.toString()
+                                                        }
+                                                        else{
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+//si es de 1.90 la cama
+                                    if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
+                                        if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*35
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else {
+                                            if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*22
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*16
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*13
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+                                                        if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                            val calcular=editTxtMetros.text.toString().toDouble()*7
+                                                            txtViewBulbos.text=calcular.toString()
+                                                        }
+                                                        else{
+                                                            if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                                val calcular=editTxtMetros.text.toString().toDouble()*5
+                                                                txtViewBulbos.text=calcular.toString()
+                                                            }
+                                                            else{
+//si no hay calibre
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }// fin de cama 1.90
+                                    else{}
+                                }
+                            }
+                            else{}
+
+                        }// fin si sande 2
+                    }//fin si es Etiqueta Flores
 
 
-    
-    
+
+                    else{ //si es bulbos
+
+                        if(cmbCalibre.selectedItem.toString()=="0/4")
+                        {
+                            val calcular=editTxtMetros.text.toString().toDouble()*200
+                            txtViewBulbos.text=calcular.toString()
+                        }
+                        else{
+                            if(cmbCalibre.selectedItem.toString()=="4/6"){
+                                val calcular=editTxtMetros.text.toString().toDouble()*140
+                                txtViewBulbos.text=calcular.toString()
+                            }
+                            else{
+                                if(cmbCalibre.selectedItem.toString()=="6/9")
+                                {
+                                    val calcular=editTxtMetros.text.toString().toDouble()*60
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else
+                                    if(cmbCalibre.selectedItem.toString()=="6/9")
+                                    {
+                                        val calcular=editTxtMetros.text.toString().toDouble()*48
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else{}
+                            }
+                        }
+                    } // fin si es bulbos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }//fin si mts no es vacio
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+// TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+// TODO Auto-generated method stub
+            }
+        })
+
+    }*/
+
+
+
+
+
 }
