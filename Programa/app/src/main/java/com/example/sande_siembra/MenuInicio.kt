@@ -25,7 +25,6 @@ class MenuInicio : AppCompatActivity() {
         btnNuevo.setOnClickListener { botonNuevo() }
         btn_sincro.setOnClickListener{ sincronizar() }
         button2.setOnClickListener{ mostrarDialogoBasico() }
-        btn_ver.setOnClickListener{ tabla() }
         btn_lista.setOnClickListener{ irLista() }
     }
 
@@ -37,13 +36,7 @@ class MenuInicio : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun tabla(){
-        val intent = Intent(
-            this,
-            RecuperarDatos::class.java
-        )
-        startActivity(intent)
-    }
+
 
     private fun mostrarDialogoBasico() {
         val comprobacion = "Entra en el sí"
