@@ -1,6 +1,8 @@
 package com.example.sande_siembra
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -22,7 +25,7 @@ class Registro : AppCompatActivity() {
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
-
+ var posicion=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +72,7 @@ class Registro : AppCompatActivity() {
                 id: Long
             ) {
 
-                val posicion = cmbCalibre.getItemAtPosition(position).toString()
+                posicion = cmbCalibre.getItemAtPosition(position).toString()
                 Log.i("Probar", posicion)
                 /*if( posicion.equals("0/4") ){
                     txtViewBulbos.setText("Prueba de 0/4")
@@ -85,6 +88,53 @@ class Registro : AppCompatActivity() {
                 // your code here
             }
         })
+
+
+
+
+
+
+        editTxtMetros.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    txtViewBulbos.text="vacio"
+                }
+                else
+                {
+
+                    //txtViewBulbos.setText("hola")
+                    //Log.i("Juntar", posicion)
+                   Log.i("Juntar", posicion)
+
+                    if(posicion.equals("0/4")){
+                        Log.i("Juntar", "llega aqui")
+                        txtViewBulbos.setText("prueba 0/4")
+
+
+                    }
+                    else{
+                        Log.i("Juntar", "ingresa hasta aqui" + posicion)
+                        txtViewBulbos.setText("otro")
+                    }
+
+
+                }
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+                // TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+
+
+
+
 
 
 
