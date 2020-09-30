@@ -256,13 +256,6 @@ class Registro : AppCompatActivity() {
         spinner6.setAdapter(adapter6)
 
 
-
-
-
-
-
-
-
         val tamanioCama = arrayOf("0.9 mts","1.20 mts")
         val spinner8: Spinner = findViewById(R.id.cmbTamanioCama)
         val adapter8: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tamanioCama)
@@ -294,6 +287,29 @@ class Registro : AppCompatActivity() {
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
         val bulbos = 350
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
+        val brote = cmbBrote.selectedItem.toString()
+        val origen = cmbOrigen.selectedItem.toString()
+        val otraPrueba = editTextPersonName.text.toString()
+
+        db.collection("SiembraDatosPrueba").add(
+            hashMapOf("Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  fincaCabe,
+                "SemanaCabe" to semanaCabe,
+                "BloqueCabe" to  bloqueCabe,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos,
+                "TamanioCama" to tamanioCama,
+                "Brote" to brote,
+                "Origen" to origen,
+                "Prueba3" to otraPrueba)
+        )
 
         /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
@@ -310,20 +326,7 @@ class Registro : AppCompatActivity() {
             "Bulbos" to bulbos)
         )*/
 
-        db.collection("SiembraDatosPrueba").add(
-            hashMapOf("Cama" to cama,
-                "Variedad" to variedad,
-                "tipoSiembra" to tipoSiembra,
-                "Procedimiento" to procedimiento,
-                "Prueba1" to prueba1,
-                "Prueba2" to prueba2,
-                "FincaCabe" to  fincaCabe,
-                "SemanaCabe" to semanaCabe,
-                "BloqueCabe" to  bloqueCabe,
-                "Metros" to metros,
-                "Calibre" to calibre,
-                "Bulbos" to bulbos)
-        )
+
 
         /*db.collection("SiembraCompleta").add(
             hashMapOf("Fecha" to fecha,
