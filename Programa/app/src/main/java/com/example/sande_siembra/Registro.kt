@@ -1,5 +1,6 @@
 package com.example.sande_siembra
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -173,9 +174,25 @@ class Registro : AppCompatActivity() {
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
+        btnOtroBloque.setOnClickListener {botonNuevoBloque()}
 
 
     }
+
+    fun botonNuevoBloque(){
+
+        val intentExplicito = Intent(
+            this,
+            MainActivity::class.java
+        )
+        startActivity(intentExplicito)
+
+
+    }
+
+
+
+
 
     fun eleccionCalibre(prueba: String){
 
@@ -343,7 +360,7 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
-        db.collection("SiembraDatosPrueba").add(
+        db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
                 "Variedad" to variedad,
                 "tipoSiembra" to tipoSiembra,
