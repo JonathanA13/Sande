@@ -24,17 +24,19 @@ class MenuInicio : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu_inicio)
         btnNuevo.setOnClickListener { botonNuevo() }
         btn_sincro.setOnClickListener{ sincronizar() }
-        button2.setOnClickListener{ mostrarDialogoBasico() }
-        btn_ver.setOnClickListener{ tabla() }
+        //button2.setOnClickListener{ mostrarDialogoBasico() }
+        button2.setOnClickListener{ irLista() }
     }
 
-    fun tabla(){
+    fun irLista(){
         val intent = Intent(
             this,
-            RecuperarDatos::class.java
+            Datos::class.java
         )
         startActivity(intent)
     }
+
+
 
     private fun mostrarDialogoBasico() {
         val comprobacion = "Entra en el sí"

@@ -699,7 +699,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editTextPersonName"
             android:layout_width="430dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
