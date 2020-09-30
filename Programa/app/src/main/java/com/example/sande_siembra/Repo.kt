@@ -9,7 +9,7 @@ class Repo {
 
     fun getSiembraData(): LiveData<MutableList<Siembra>>{
         val mutableData = MutableLiveData<MutableList<Siembra>>()
-        FirebaseFirestore.getInstance().collection("Siembra").get().addOnSuccessListener {resultado ->
+        FirebaseFirestore.getInstance().collection("SiembraSprint").get().addOnSuccessListener {resultado ->
             val listData = mutableListOf<Siembra>()
             for (document in resultado){
                 val bloque = document.get("Bloque").toString().toInt()

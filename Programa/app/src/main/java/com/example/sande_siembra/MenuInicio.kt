@@ -85,7 +85,7 @@ class MenuInicio : AppCompatActivity() {
         val procedimiento = "Sincronizacion"
         val variedad = "Sincronizacion"
 
-        db.collection("SiembraPrueba").add(
+        db.collection("SiembraDatosPrueba").add(
             hashMapOf("Fecha" to fecha,
                 "Bloque" to bloque,
                 "Lado" to lado,
