@@ -437,7 +437,7 @@ class Registro : AppCompatActivity() {
         // Create the AlertDialog object and return it
         builder.create()*/
 
-    }
+    }//fin obtener
 
     /*fun guardarGeneral(){
 
