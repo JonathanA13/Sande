@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
@@ -12,6 +13,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -29,6 +31,8 @@ class Registro : AppCompatActivity() {
 
 
     var posicion = ""
+    var metros=""
+    var calibre=""
     
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +72,23 @@ class Registro : AppCompatActivity() {
 
         }
 
+        fun dialogo(){
+
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
+            with(builder)
+            {
+                setTitle("ACCION CMB")
+                setMessage("Ingrese METROS")
+                builder.setPositiveButton("OK") { dialogInterface, i ->
+                    Log.i("Pantalla", "aceptar")
+                }
+                show()
+            }
+        }
+
+
+
+
         cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
@@ -78,6 +99,24 @@ class Registro : AppCompatActivity() {
 
                 posicion = cmbCalibre.getItemAtPosition(position).toString()
                 Log.i("Probar", posicion)
+
+                if( posicion.equals("0/4") ){
+                    txtViewBulbos.setText("no hay mts")
+                    if(editTxtMetros.text.toString()==""){
+                        txtViewBulbos.setText("cmb-vacios")
+                    }
+                    else{
+                        txtViewBulbos.setText("cmb-hay metros")
+                    }
+                    
+
+                } else if (posicion.equals("4/6")){
+                    txtViewBulbos.setText("imprim 4/6")
+                }
+
+
+
+
                 /*if( posicion.equals("0/4") ){
                     txtViewBulbos.setText("Prueba de 0/4")
                 } else if (posicion.equals("4/6")){
@@ -89,6 +128,11 @@ class Registro : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
+                if(editTxtMetros.text.toString()==""){
+                    txtViewBulbos.text="verificar"
+
+
+                }
                 // your code here
             }
         })
@@ -103,25 +147,21 @@ class Registro : AppCompatActivity() {
 
                 if (s.toString().trim().isEmpty())
                 {
-                    txtViewBulbos.text="vacio"
+                    txtViewBulbos.text="txt-vacio"
                 }
                 else
                 {
 
                     //txtViewBulbos.setText("hola")
                     //Log.i("Juntar", posicion)
-                   Log.i("Juntar", posicion)
-
-                    if(posicion.equals("0/4")){
-                        Log.i("Juntar", "llega aqui")
-                        txtViewBulbos.setText("prueba 0/4")
-
+                    if(cmbCalibre.selectedItem.equals("0/4")){
+                        txtViewBulbos.text="f cmb 0/4"
 
                     }
-                    else{
-                        Log.i("Juntar", "ingresa hasta aqui" + posicion)
-                        txtViewBulbos.setText("otro")
-                    }
+
+
+
+
 
 
                 }

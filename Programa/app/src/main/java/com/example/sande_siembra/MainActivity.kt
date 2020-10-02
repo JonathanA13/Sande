@@ -215,7 +215,6 @@ class MainActivity : AppCompatActivity() {
 
             }
             else{
-
                 if(editTxtBloque.text.toString().equals("")){
                     val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
                     with(builder)
@@ -228,10 +227,7 @@ class MainActivity : AppCompatActivity() {
                         show()
                     }
                 }
-
-
                 else{
-
                     if(cmbEtiqueta.selectedItemPosition==0){
                         val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
                         with(builder)
