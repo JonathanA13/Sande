@@ -51,7 +51,7 @@
         android:id="@+id/txtViewTituloSiembra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tituloRegistro"
+        android:text="INGRESO DE DATOS CALLA"
         android:textColor="#FAF7F7"
         android:textSize="30sp"
         android:textStyle="bold"
