@@ -1,7 +1,11 @@
 package com.example.sande_siembra
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
@@ -9,9 +13,11 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -23,8 +29,11 @@ class Registro : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
 
-    var posicion = ""
 
+    var posicion = ""
+    var metros=""
+    var calibre=""
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +72,23 @@ class Registro : AppCompatActivity() {
 
         }
 
+        fun dialogo(){
+
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
+            with(builder)
+            {
+                setTitle("ACCION CMB")
+                setMessage("Ingrese METROS")
+                builder.setPositiveButton("OK") { dialogInterface, i ->
+                    Log.i("Pantalla", "aceptar")
+                }
+                show()
+            }
+        }
+
+
+
+
         cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
@@ -71,8 +97,26 @@ class Registro : AppCompatActivity() {
                 id: Long
             ) {
 
-                val posicion = cmbCalibre.getItemAtPosition(position).toString()
+                posicion = cmbCalibre.getItemAtPosition(position).toString()
                 Log.i("Probar", posicion)
+
+                if( posicion.equals("0/4") ){
+                    txtViewBulbos.setText("no hay mts")
+                    if(editTxtMetros.text.toString()==""){
+                        txtViewBulbos.setText("cmb-vacios")
+                    }
+                    else{
+                        txtViewBulbos.setText("cmb-hay metros")
+                    }
+                    
+
+                } else if (posicion.equals("4/6")){
+                    txtViewBulbos.setText("imprim 4/6")
+                }
+
+
+
+
                 /*if( posicion.equals("0/4") ){
                     txtViewBulbos.setText("Prueba de 0/4")
                 } else if (posicion.equals("4/6")){
@@ -84,9 +128,57 @@ class Registro : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
+                if(editTxtMetros.text.toString()==""){
+                    txtViewBulbos.text="verificar"
+
+
+                }
                 // your code here
             }
         })
+
+
+
+
+
+
+        editTxtMetros.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+                if (s.toString().trim().isEmpty())
+                {
+                    txtViewBulbos.text="txt-vacio"
+                }
+                else
+                {
+
+                    //txtViewBulbos.setText("hola")
+                    //Log.i("Juntar", posicion)
+                    if(cmbCalibre.selectedItem.equals("0/4")){
+                        txtViewBulbos.text="f cmb 0/4"
+
+                    }
+
+
+
+
+
+
+                }
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+                // TODO Auto-generated method stub
+            }
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+            }
+        })
+
+
+
+
+
 
 
 
@@ -122,9 +214,25 @@ class Registro : AppCompatActivity() {
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
+        btnOtroBloque.setOnClickListener {botonNuevoBloque()}
 
 
     }
+
+    fun botonNuevoBloque(){
+
+        val intentExplicito = Intent(
+            this,
+            MainActivity::class.java
+        )
+        startActivity(intentExplicito)
+
+
+    }
+
+
+
+
 
     fun eleccionCalibre(prueba: String){
 
@@ -292,7 +400,7 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
-        db.collection("SiembraDatosPrueba").add(
+        db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
                 "Variedad" to variedad,
                 "tipoSiembra" to tipoSiembra,
@@ -369,7 +477,7 @@ class Registro : AppCompatActivity() {
         // Create the AlertDialog object and return it
         builder.create()*/
 
-    }
+    }//fin obtener
 
     /*fun guardarGeneral(){
 

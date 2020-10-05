@@ -24,8 +24,8 @@ class MenuInicio : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu_inicio)
         btnNuevo.setOnClickListener { botonNuevo() }
         btn_sincro.setOnClickListener{ sincronizar() }
-        button2.setOnClickListener{ mostrarDialogoBasico() }
-        btn_lista.setOnClickListener{ irLista() }
+        //button2.setOnClickListener{ mostrarDialogoBasico() }
+        button2.setOnClickListener{ irLista() }
     }
 
     fun irLista(){
@@ -85,7 +85,7 @@ class MenuInicio : AppCompatActivity() {
         val procedimiento = "Sincronizacion"
         val variedad = "Sincronizacion"
 
-        db.collection("SiembraPrueba").add(
+        db.collection("SiembraDatosPrueba").add(
             hashMapOf("Fecha" to fecha,
                 "Bloque" to bloque,
                 "Lado" to lado,
