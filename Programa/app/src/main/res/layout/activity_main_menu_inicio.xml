@@ -55,7 +55,7 @@
         android:id="@+id/button2"
         android:layout_width="215dp"
         android:layout_height="117dp"
-        android:text="EDITAR REGISTRO"
+        android:text="MOSTRAR REGISTRO"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,28 +77,6 @@
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/btnNuevo"
         app:layout_constraintVertical_bias="0.252" />
-
-    <Button
-        android:id="@+id/btn_ver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/btn_sincro"
-        app:layout_constraintHorizontal_bias="0.653"
-        app:layout_constraintStart_toStartOf="@+id/btn_sincro"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sincro" />
-
-    <Button
-        android:id="@+id/btn_lista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="216dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_ver"
-        app:layout_constraintEnd_toStartOf="@+id/btn_ver"
-        app:layout_constraintTop_toTopOf="@+id/btn_ver"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
