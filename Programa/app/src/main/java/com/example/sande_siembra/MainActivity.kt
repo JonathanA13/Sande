@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
             )
         )*/
 
-        db.collection("SiembraPrueba").add(
+        db.collection("SiembraPrueba1").add(
             hashMapOf("Fecha" to currentDate,
                 "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
                 "Bloque" to bloque,
