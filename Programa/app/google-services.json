@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1009804417209-tigkrauucrv2vf57s6p8m7kaf362daui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sande_siembra",
+            "certificate_hash": "542c065e87ec508948058810fe515cffe00547d5"
+          }
+        },
+        {
           "client_id": "1009804417209-a7i65k42qnfvdnimab2mk8p8qfgg1k3i.apps.googleusercontent.com",
           "client_type": 3
         }

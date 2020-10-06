@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             Log.i("Recuperacion", fechaRecuperacion)
         }*/
 
-        db.collection("Siembra")
+        db.collection("SiembraSprint")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -198,9 +198,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 show()
             }
-        }
-
-        else{
+        } else{
             if(editTxtValvula.text.toString().equals("")){
                 val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
                 with(builder)
@@ -213,8 +211,7 @@ class MainActivity : AppCompatActivity() {
                     show()
                 }
 
-            }
-            else{
+            } else{
                 if(editTxtBloque.text.toString().equals("")){
                     val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
                     with(builder)
@@ -242,6 +239,8 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     else{ //CAMPOS LLENOS
+                        Log.i("Verificar", "LLega hasta aquí")
+
                         val calendar = Calendar.getInstance()
                         val currentDate: String =
                             DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
