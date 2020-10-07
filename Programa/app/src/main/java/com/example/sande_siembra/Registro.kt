@@ -30,30 +30,60 @@ class Registro : AppCompatActivity() {
 
 
     var posicion = ""
-    var metros=""
-    var calibre=""
-    
+    var metros= 0
+    var calibre= ""
+    val bulbos = 0
+
+    //val idGeneral = intent.getIntExtra("ID",0)
+    /*val fechaGeneral = intent.getStringExtra("Fecha")
+    val semanaGeneral = intent.getIntExtra("Semana",0)
+    val bloqueGeneral = intent.getIntExtra("Bloque",0)
+    val valvulaGeneral = intent.getIntExtra("Valvula",0)
+    val fincaGeneral = intent.getStringExtra("Finca")
+    val ladoGeneral = intent.getStringExtra("Lado")
+    val etiquetaGeneral = intent.getStringExtra("Etiqueta")
+    var contador = 0*/
+
+    var contador = 0
+    var fechaGeneral = ""
+    var semanaGeneral = 0
+    var bloqueGeneral = 0
+    var valvulaGeneral = 0
+    var fincaGeneral = ""
+    var ladoGeneral = ""
+    var etiquetaGeneral = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
         db.firestoreSettings = settings
 
-        val fecha = intent.getStringExtra("Fecha")
-        val semana = intent.getIntExtra("Semana",0)
-        val bloque = intent.getIntExtra("Bloque",0)
-        val valvula = intent.getIntExtra("Valvula",0)
-        val finca = intent.getStringExtra("Finca")
-        val lado = intent.getStringExtra("Lado")
-        val etiqueta = intent.getStringExtra("Etiqueta")
+        /*val fecha = fechaGeneral
+        val semana = semanaGeneral
+        val bloque = bloqueGeneral
+        val valvula = valvulaGeneral
+        val finca = fincaGeneral
+        val lado = ladoGeneral
+        val etiqueta = etiquetaGeneral*/
+
+        fechaGeneral = intent.getStringExtra("Fecha").toString()
+        semanaGeneral = intent.getIntExtra("Semana",0)
+        bloqueGeneral = intent.getIntExtra("Bloque",0)
+        valvulaGeneral = intent.getIntExtra("Valvula",0)
+        fincaGeneral = intent.getStringExtra("Finca").toString()
+        ladoGeneral = intent.getStringExtra("Lado").toString()
+        etiquetaGeneral = intent.getStringExtra("Etiqueta").toString()
 
 
-        txtFechaRegistro.text = fecha
-        txtSemanaRegistro.text = semana.toString()
-        txtViewBloqueRegistro.text = bloque.toString()
-        txt_valvula.text = valvula.toString()
-        txtViewFincaSiembra.text=finca.toString()
-        val seleccionEtiqueta=etiqueta.toString()
+
+        txtFechaRegistro.text = fechaGeneral.toString()
+        txtSemanaRegistro.text = semanaGeneral.toString()
+        txtViewBloqueRegistro.text = bloqueGeneral.toString()
+        txt_valvula.text = valvulaGeneral.toString()
+        txtViewFincaSiembra.text=fincaGeneral.toString()
+        val seleccionEtiqueta=etiquetaGeneral.toString()
+
+        verificar_id()
 
         //LLENO CMBCALIBRE DE ACUERDO A SU ETIQUETA
         if(seleccionEtiqueta.equals("Flores") ){
@@ -208,29 +238,122 @@ class Registro : AppCompatActivity() {
 
 
         definir()
-        bulbos()
+
 
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
-        btnOtroBloque.setOnClickListener {botonNuevoBloque()}
+        btnOtroBloque.setOnClickListener { botonNuevoBloque() }
+
+        if(etiquetaGeneral.equals("Bulbos")){
+            calcularBulbos()
+        } else {
+            calcularFloresS2()
+        }
 
 
     }
 
     fun botonNuevoBloque(){
-
         val intentExplicito = Intent(
             this,
             MainActivity::class.java
         )
         startActivity(intentExplicito)
 
+    }
+
+    fun calcularBulbos(){
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        var resultado = 0
+
+        if(calibre.equals("0/4")){
+            resultado = metros * 200
+        } else if (calibre.equals("4/6")){
+            resultado = metros * 140
+        } else if (calibre.equals("6/9")){
+            resultado = metros * 60
+        } else if (calibre.equals("9/12")){
+            resultado = metros * 48
+        }
+
+        txtViewBulbos.text = resultado.toString()
+
+    }
+
+    fun calcularFloresS2(){
+        var resultado = 0
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
+
+        if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 44
+        } else if (calibre.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 35
+        } else if (calibre.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 28
+        } else if (calibre.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 22
+        } else if (calibre.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 20
+        } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 13
+        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 7
+        } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 5
+        }
+
+        txtViewBulbos.text = resultado.toString()
 
     }
 
 
+    fun calcularFloresS4(){
+        var resultado = 0
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
 
+        if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 28
+        } else if (calibre.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 22
+        } else if (calibre.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 20
+        } else if (calibre.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 13
+        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 12
+        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 10
+        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 7
+        } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 6
+        } else if (calibre.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 5
+        }
+
+        txtViewBulbos.text = resultado.toString()
+
+    }
 
 
     fun eleccionCalibre(prueba: String){
@@ -242,35 +365,9 @@ class Registro : AppCompatActivity() {
         }
     }
 
-
-    fun bulbos()
-    {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
+    
     fun definir(){
+
         val variedad = arrayOf("ACCENT", "ARANAL", "ASPEN", "AUCKLAND", "AVIGNON", "BLACK DIAMOND", "BLACK VELVET", "BUICK", "CAPTAIN ROMANCE", "CAVALESE",
             "CONFETTI", "CORDOBA", "COUPLET", "DENVER", "DIAMANTE", "E-026", "E-1129", "E-1153", "Z-1180", "E-166", "E-175", "E-233", "E-270", "E-336", "E-343", "E-364",
             "E-367", "E-369", "E-370", "E-371", "E-383", "E-434", "E-439", "E-494", "E-507", "E-512", "E-603", "E-605", "E-607", "E-613", "E-615",
@@ -317,10 +414,12 @@ class Registro : AppCompatActivity() {
         val adapter2: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tipoSiembra)
         spinner2.setAdapter(adapter2)
 
+
         val pl_proce = arrayOf("AF","AF-AF","af-af","HOLANDA","PL")
         val spinner3: Spinner = findViewById(R.id.cmbProce)
         val adapter3: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, pl_proce)
         spinner3.setAdapter(adapter3)
+
 
         val prueba1 = arrayOf("NINGUNA",
             "PRUEBA A",
@@ -334,6 +433,7 @@ class Registro : AppCompatActivity() {
         val spinner4: Spinner = findViewById(R.id.cmbPruebas1)
         val adapter4: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba1)
         spinner4.setAdapter(adapter4)
+
 
         val prueba2 = arrayOf("NINGUNA",
             "ABIERTOS CON LA MANO",
@@ -357,6 +457,7 @@ class Registro : AppCompatActivity() {
         val adapter5: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba2)
         spinner5.setAdapter(adapter5)
 
+
         val finca = arrayOf("S2", "S4")
         val spinner6: Spinner = findViewById(R.id.cmbFincaCabe)
         val adapter6: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, finca)
@@ -368,10 +469,12 @@ class Registro : AppCompatActivity() {
         val adapter8: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tamanioCama)
         spinner8.setAdapter(adapter8)
 
+
         val Origen = arrayOf("NACIONAL","HOL-19","HOL-20", "HOLANDA")
         val spinner9: Spinner = findViewById(R.id.cmbOrigen)
         val adapter9: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, Origen)
         spinner9.setAdapter(adapter9)
+
 
         val Brote = arrayOf("Entero con brote","Brote grande","Brote pequeño")
         val spinner10: Spinner = findViewById(R.id.cmbBrote)
@@ -399,7 +502,36 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
-        db.collection("SiembraDatosSprint").add(
+        verificar_id()
+        val numeroID = contador
+
+        Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+        db.collection("Prueba").document("${numeroID}").set(
+            hashMapOf("Fecha" to fechaGeneral,
+                "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
+                "Bloque" to bloqueGeneral,
+                "Lado" to ladoGeneral,
+                "Etiqueta" to etiquetaGeneral,
+                "Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  fincaCabe,
+                "SemanaCabe" to semanaCabe,
+                "BloqueCabe" to  bloqueCabe,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos,
+                "TamanioCama" to tamanioCama,
+                "Brote" to brote,
+                "Origen" to origen,
+                "Prueba3" to otraPrueba
+            ))
+
+        /*db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
                 "Variedad" to variedad,
                 "tipoSiembra" to tipoSiembra,
@@ -416,7 +548,7 @@ class Registro : AppCompatActivity() {
                 "Brote" to brote,
                 "Origen" to origen,
                 "Prueba3" to otraPrueba)
-        )
+        )*/
 
         /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
@@ -477,6 +609,29 @@ class Registro : AppCompatActivity() {
         builder.create()*/
 
     }//fin obtener
+
+    fun verificar_id() {
+        var contadorSecundario1 = 0
+        var numeros = arrayListOf<Int>()
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
+            for (documento in resultado){
+                numeros.add(documento.id.toInt())
+                numeros.sort()
+                Log.i("recibir", "La lista es: ${numeros}")
+                val ultimo = numeros.last()
+                Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                //val idBase = documento.id.toInt()
+                //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = ultimo + 1
+                //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+            }
+            contador = contadorSecundario1
+            Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+        }
+
+
+    }
+
 
     /*fun guardarGeneral(){
 
@@ -765,9 +920,6 @@ class Registro : AppCompatActivity() {
         })
 
     }*/
-
-
-
 
 
 }
