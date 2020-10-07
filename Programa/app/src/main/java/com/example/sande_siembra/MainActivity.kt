@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         db.firestoreSettings = settings
 
-        verificar_id()
+        //verificar_id()
 
         editTxtValvula.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
@@ -313,7 +313,7 @@ class MainActivity : AppCompatActivity() {
                         )*/
 
                         //var idGuardarFirestore = verificar_id()
-                        verificar_id()
+                        /*verificar_id()
                         val numeroID = contador
 
                         Log.i("rece", "El id que se recibe es: ${numeroID}")
@@ -330,16 +330,25 @@ class MainActivity : AppCompatActivity() {
 
                         db.collection("Prueba").document("${numeroID}").set(
                             hashMapOf("Fecha" to currentDate,
+
                                 "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
                                 "Bloque" to bloque,
                                 "Lado" to lado,
                                 "Etiqueta" to etiqueta
                             ))
 
-                        /*val intentExplicito = Intent(
+                            "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+                            "Bloque" to bloque,
+                            "Lado" to lado,
+                            "Etiqueta" to etiqueta
+                        ))*/
+
+
+                        val intentExplicito = Intent(
                             this,
                             Registro::class.java
                         )
+                        //intentExplicito.putExtra("ID", numeroID)
                         intentExplicito.putExtra("Fecha", currentDate )
                         intentExplicito.putExtra("Semana", numeroSemana)
                         intentExplicito.putExtra("Bloque", bloque)
@@ -347,7 +356,7 @@ class MainActivity : AppCompatActivity() {
                         intentExplicito.putExtra("Finca", fincaNombre)
                         intentExplicito.putExtra("Lado", lado)
                         intentExplicito.putExtra("Etiqueta", etiqueta)
-                        startActivity(intentExplicito)*/
+                        startActivity(intentExplicito)
                         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
                         val archivo: File = File("datos//cabecera.xlsx")
                         val ingreso = FileOutputStream(archivo,true)
@@ -375,10 +384,12 @@ class MainActivity : AppCompatActivity() {
                 numeros.add(documento.id.toInt())
                 numeros.sort()
                 Log.i("recibir", "La lista es: ${numeros}")
-                val idBase = documento.id.toInt()
-                Log.i("recibir","El ******************* id de la base es: ${idBase}")
-                contadorSecundario1 = idBase + 1
-                Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                val ultimo = numeros.last()
+                Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                //val idBase = documento.id.toInt()
+                //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = ultimo + 1
+                //Log.i("recibir", "El ID es: ${contadorSecundario1}")
             }
             contador = contadorSecundario1
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
