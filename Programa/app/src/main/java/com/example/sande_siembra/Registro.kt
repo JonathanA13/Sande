@@ -355,6 +355,9 @@ class Registro : AppCompatActivity() {
 
     }
 
+    fun prueba(){
+
+    }
 
     fun eleccionCalibre(prueba: String){
 
