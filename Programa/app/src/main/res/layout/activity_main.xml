@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="232dp"
-        android:layout_height="98dp"
+        android:layout_width="200dp"
+        android:layout_height="71dp"
         android:contentDescription="@string/empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.075" />
 
     <TextView
         android:id="@+id/txtViewTituloSiembra"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tituloSiembra"
         android:textColor="#FAF7F7"
-        android:textSize="30sp"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
@@ -51,8 +51,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="680dp"
-        android:layout_height="131dp"
+        android:layout_width="681dp"
+        android:layout_height="109dp"
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
@@ -62,7 +62,7 @@
 
         <LinearLayout
             android:layout_width="350dp"
-            android:layout_height="120dp"
+            android:layout_height="99dp"
             android:orientation="vertical">
 
             <TextView
@@ -83,14 +83,14 @@
                 android:text="23/09/2020"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="36sp"
+                android:textSize="33sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="97dp"
             android:orientation="vertical">
 
             <TextView
@@ -108,10 +108,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#99FFFFFF"
-                android:text="38"
+                android:text="33"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="36sp"
+                android:textSize="32sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -119,20 +119,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="561dp"
-        android:layout_height="460dp"
+        android:layout_width="556dp"
+        android:layout_height="418dp"
         android:background="@drawable/bordes"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.052">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
+        app:layout_constraintVertical_bias="0.051">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="92dp"
+            android:layout_height="73dp"
             android:orientation="horizontal">
 
             <TextView
@@ -140,10 +140,10 @@
                 android:layout_width="332dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:text="Finca:  "
                 android:textAlignment="viewEnd"
-                android:textSize="33sp"
+                android:textColor="#000000"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <Spinner
@@ -155,7 +155,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="102dp"
+            android:layout_height="91dp"
             android:orientation="horizontal">
 
             <TextView
@@ -164,9 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Válvula:   "
-                android:textColor="#000000"
                 android:textAlignment="viewEnd"
-                android:textSize="33sp"
+                android:textColor="#000000"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -190,10 +190,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:text="Bloque:   "
                 android:textAlignment="viewEnd"
-                android:textSize="33sp"
+                android:textColor="#000000"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -215,11 +215,11 @@
                 android:id="@+id/textViewLado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
                 android:layout_weight="1"
                 android:text="Lado:   "
                 android:textAlignment="viewEnd"
-                android:textSize="33sp"
+                android:textColor="#000000"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
 
@@ -234,7 +234,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="83dp"
+            android:layout_height="74dp"
             android:orientation="horizontal">
 
             <TextView
@@ -242,9 +242,9 @@
                 android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
                 android:text="Etiqueta:   "
                 android:textAlignment="viewEnd"
+                android:textColor="#000000"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -268,7 +268,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.313" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <Button
         android:id="@+id/btn_buscar"
@@ -280,6 +280,37 @@
         app:layout_constraintStart_toEndOf="@+id/btnListo"
         app:layout_constraintTop_toTopOf="@+id/btnListo"
         app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="556dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bordes"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Especie:  "
+            android:textAlignment="viewEnd"
+            android:textColor="#020202"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/cmbEspecie"
+            android:layout_width="273dp"
+            android:layout_height="57dp"
+            android:layout_weight="1"
+            android:background="#FFEB3B" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

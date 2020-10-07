@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/liriobackground"
+    android:layout_height="match_parent"
+    tools:context=".activity_registro_lirios">
+
+
+    <ImageView
+        android:id="@+id/imageViewRL"
+        android:layout_width="176dp"
+        android:layout_height="56dp"
+        android:contentDescription="@string/empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/logo" />
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout9"
+        android:layout_width="479dp"
+        android:layout_height="84dp"
+        android:background="#F2FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewRL"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.013">
+
+        <LinearLayout
+            android:layout_width="248dp"
+            android:layout_height="match_parent"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="126dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewRL"
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:text="FECHA  "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewRL3"
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:text="SEMANA  "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewRL233"
+                    android:layout_width="121dp"
+                    android:layout_height="wrap_content"
+                    android:text="FINCA   "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtFechaRegistroRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="29/09/2020"
+                    android:text="29/09/2020"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtSemanaRegistroRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="38"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtViewFincaSiembraRL"
+                    android:layout_width="116dp"
+                    android:layout_height="wrap_content"
+                    android:text="FINCA"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="145dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtBloqueRegistroRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BLOQUE  "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView7RL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VALVULA  "
+                    android:textAlignment="viewEnd"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="84dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtViewBloqueRegistroRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFEB3B"
+                    android:text="108"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_valvulaRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFEB3B"
+                    android:text="5"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarRL"
+        android:layout_width="772dp"
+        android:layout_height="44dp"
+        android:background="#1F8076"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.119" />
+
+
+    <TextView
+        android:id="@+id/txtViewTituloSiembraRL"
+        android:layout_width="474dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="1080dp"
+        android:text="REGISTRO DATOS LIRIOS"
+        android:textColor="#FAF7F7"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4RL"
+        android:layout_width="637dp"
+        android:layout_height="258dp"
+        android:background="#F2FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRL"
+        app:layout_constraintVertical_bias="0.034">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="248dp"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/textView5RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CAMA: "
+                android:textAlignment="viewEnd"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="41dp" />
+
+            <TextView
+                android:id="@+id/textView25RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TAMAÑO CAMA:"
+                android:textColor="#000000"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:id="@+id/textView4RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TIPO SIEMBRA: "
+                android:textAlignment="viewEnd"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <TextView
+                android:id="@+id/textView6RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="VARIEDAD: "
+                android:textAlignment="viewEnd"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="197dp"
+            android:layout_height="248dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTxtCamaRL"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <Space
+                android:layout_width="174dp"
+                android:layout_height="18dp" />
+
+            <Spinner
+                android:id="@+id/cmbTamanioCamaRL"
+                android:layout_width="match_parent"
+                android:layout_height="44dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="21dp" />
+
+            <Spinner
+                android:id="@+id/cmbTipoSiembraRL"
+                android:layout_width="match_parent"
+                android:layout_height="44dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="19dp" />
+
+            <Spinner
+                android:id="@+id/cmbVariedadRL"
+                android:layout_width="match_parent"
+                android:layout_height="44dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="117dp"
+            android:layout_height="221dp"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
+
+            <TextView
+                android:id="@+id/textView10RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PL PROCE: "
+                android:textAlignment="viewEnd"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="33dp" />
+
+            <TextView
+                android:id="@+id/textView13RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BROTE:  "
+                android:textAlignment="viewEnd"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="62dp" />
+
+            <TextView
+                android:id="@+id/textView19RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ORIGEN:  "
+                android:textAlignment="viewEnd"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="174dp"
+            android:layout_height="220dp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/cmbProceRL"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:entries="@array/ComboPL" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="21dp" />
+
+            <Spinner
+                android:id="@+id/cmbBroteRL"
+                android:layout_width="match_parent"
+                android:layout_height="71dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="18dp" />
+
+            <Spinner
+                android:id="@+id/cmbOrigenRL"
+                android:layout_width="match_parent"
+                android:layout_height="44dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

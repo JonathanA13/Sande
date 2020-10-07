@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     //val calendar = Calendar.getInstance()
     //val currentDate: String =
-        //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+    //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     //val textViewDate: TextView = findViewById(R.id.textViewFecha)
     private val db = FirebaseFirestore.getInstance()
     val settings = FirebaseFirestoreSettings.Builder()
@@ -330,11 +330,11 @@ class MainActivity : AppCompatActivity() {
 
                         db.collection("Prueba").document("${numeroID}").set(
                             hashMapOf("Fecha" to currentDate,
-                            "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
-                            "Bloque" to bloque,
-                            "Lado" to lado,
-                            "Etiqueta" to etiqueta
-                        ))
+                                "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+                                "Bloque" to bloque,
+                                "Lado" to lado,
+                                "Etiqueta" to etiqueta
+                            ))
 
                         /*val intentExplicito = Intent(
                             this,
