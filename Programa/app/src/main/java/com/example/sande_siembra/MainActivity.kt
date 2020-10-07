@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         db.firestoreSettings = settings
 
-        verificar_id()
+        //verificar_id()
 
         editTxtValvula.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
@@ -313,7 +313,7 @@ class MainActivity : AppCompatActivity() {
                         )*/
 
                         //var idGuardarFirestore = verificar_id()
-                        verificar_id()
+                        /*verificar_id()
                         val numeroID = contador
 
                         Log.i("rece", "El id que se recibe es: ${numeroID}")
@@ -334,13 +334,13 @@ class MainActivity : AppCompatActivity() {
                             "Bloque" to bloque,
                             "Lado" to lado,
                             "Etiqueta" to etiqueta
-                        ))
+                        ))*/
 
                         val intentExplicito = Intent(
                             this,
                             Registro::class.java
                         )
-                        intentExplicito.putExtra("ID", numeroID)
+                        //intentExplicito.putExtra("ID", numeroID)
                         intentExplicito.putExtra("Fecha", currentDate )
                         intentExplicito.putExtra("Semana", numeroSemana)
                         intentExplicito.putExtra("Bloque", bloque)

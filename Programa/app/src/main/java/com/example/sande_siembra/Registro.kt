@@ -34,35 +34,56 @@ class Registro : AppCompatActivity() {
     var metros=""
     var calibre=""
 
-    val idGeneral = intent.getIntExtra("ID",0)
-    val fechaGeneral = intent.getStringExtra("Fecha")
+    //val idGeneral = intent.getIntExtra("ID",0)
+    /*val fechaGeneral = intent.getStringExtra("Fecha")
     val semanaGeneral = intent.getIntExtra("Semana",0)
     val bloqueGeneral = intent.getIntExtra("Bloque",0)
     val valvulaGeneral = intent.getIntExtra("Valvula",0)
     val fincaGeneral = intent.getStringExtra("Finca")
     val ladoGeneral = intent.getStringExtra("Lado")
     val etiquetaGeneral = intent.getStringExtra("Etiqueta")
+    var contador = 0*/
+
+    var contador = 0
+    var fechaGeneral = ""
+    var semanaGeneral = 0
+    var bloqueGeneral = 0
+    var valvulaGeneral = 0
+    var fincaGeneral = ""
+    var ladoGeneral = ""
+    var etiquetaGeneral = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
         db.firestoreSettings = settings
 
-        val fecha = fechaGeneral
+        /*val fecha = fechaGeneral
         val semana = semanaGeneral
         val bloque = bloqueGeneral
         val valvula = valvulaGeneral
         val finca = fincaGeneral
         val lado = ladoGeneral
-        val etiqueta = etiquetaGeneral
+        val etiqueta = etiquetaGeneral*/
+
+        fechaGeneral = intent.getStringExtra("Fecha").toString()
+        semanaGeneral = intent.getIntExtra("Semana",0)
+        bloqueGeneral = intent.getIntExtra("Bloque",0)
+        valvulaGeneral = intent.getIntExtra("Valvula",0)
+        fincaGeneral = intent.getStringExtra("Finca").toString()
+        ladoGeneral = intent.getStringExtra("Lado").toString()
+        etiquetaGeneral = intent.getStringExtra("Etiqueta").toString()
 
 
-        txtFechaRegistro.text = fecha
-        txtSemanaRegistro.text = semana.toString()
-        txtViewBloqueRegistro.text = bloque.toString()
-        txt_valvula.text = valvula.toString()
-        txtViewFincaSiembra.text=finca.toString()
-        val seleccionEtiqueta=etiqueta.toString()
+
+        txtFechaRegistro.text = fechaGeneral.toString()
+        txtSemanaRegistro.text = semanaGeneral.toString()
+        txtViewBloqueRegistro.text = bloqueGeneral.toString()
+        txt_valvula.text = valvulaGeneral.toString()
+        txtViewFincaSiembra.text=fincaGeneral.toString()
+        val seleccionEtiqueta=etiquetaGeneral.toString()
+
+        verificar_id()
 
         //LLENO CMBCALIBRE DE ACUERDO A SU ETIQUETA
         if(seleccionEtiqueta.equals("Flores") ){
@@ -217,7 +238,7 @@ class Registro : AppCompatActivity() {
 
 
         definir()
-        bulbos()
+
 
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
@@ -383,7 +404,36 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
-        db.collection("SiembraDatosSprint").add(
+        verificar_id()
+        val numeroID = contador
+
+        Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+        db.collection("Prueba").document("${numeroID}").set(
+            hashMapOf("Fecha" to fechaGeneral,
+                "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
+                "Bloque" to bloqueGeneral,
+                "Lado" to ladoGeneral,
+                "Etiqueta" to etiquetaGeneral,
+                "Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  fincaCabe,
+                "SemanaCabe" to semanaCabe,
+                "BloqueCabe" to  bloqueCabe,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos,
+                "TamanioCama" to tamanioCama,
+                "Brote" to brote,
+                "Origen" to origen,
+                "Prueba3" to otraPrueba
+            ))
+
+        /*db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
                 "Variedad" to variedad,
                 "tipoSiembra" to tipoSiembra,
@@ -400,7 +450,7 @@ class Registro : AppCompatActivity() {
                 "Brote" to brote,
                 "Origen" to origen,
                 "Prueba3" to otraPrueba)
-        )
+        )*/
 
         /*db.collection("SiembraDatos").add(
             hashMapOf("Cama" to cama,
@@ -461,6 +511,29 @@ class Registro : AppCompatActivity() {
         builder.create()*/
 
     }//fin obtener
+
+    fun verificar_id() {
+        var contadorSecundario1 = 0
+        var numeros = arrayListOf<Int>()
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
+            for (documento in resultado){
+                numeros.add(documento.id.toInt())
+                numeros.sort()
+                Log.i("recibir", "La lista es: ${numeros}")
+                val ultimo = numeros.last()
+                Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                //val idBase = documento.id.toInt()
+                //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = ultimo + 1
+                //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+            }
+            contador = contadorSecundario1
+            Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+        }
+
+
+    }
+
 
     /*fun guardarGeneral(){
 
