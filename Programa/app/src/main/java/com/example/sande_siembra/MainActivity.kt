@@ -336,10 +336,11 @@ class MainActivity : AppCompatActivity() {
                                 "Etiqueta" to etiqueta
                             ))
 
-                        /*val intentExplicito = Intent(
+                        val intentExplicito = Intent(
                             this,
                             Registro::class.java
                         )
+                        intentExplicito.putExtra("ID", numeroID)
                         intentExplicito.putExtra("Fecha", currentDate )
                         intentExplicito.putExtra("Semana", numeroSemana)
                         intentExplicito.putExtra("Bloque", bloque)
@@ -347,7 +348,7 @@ class MainActivity : AppCompatActivity() {
                         intentExplicito.putExtra("Finca", fincaNombre)
                         intentExplicito.putExtra("Lado", lado)
                         intentExplicito.putExtra("Etiqueta", etiqueta)
-                        startActivity(intentExplicito)*/
+                        startActivity(intentExplicito)
                         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
                         val archivo: File = File("datos//cabecera.xlsx")
                         val ingreso = FileOutputStream(archivo,true)
@@ -375,10 +376,12 @@ class MainActivity : AppCompatActivity() {
                 numeros.add(documento.id.toInt())
                 numeros.sort()
                 Log.i("recibir", "La lista es: ${numeros}")
-                val idBase = documento.id.toInt()
-                Log.i("recibir","El ******************* id de la base es: ${idBase}")
-                contadorSecundario1 = idBase + 1
-                Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                val ultimo = numeros.last()
+                Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                //val idBase = documento.id.toInt()
+                //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = ultimo + 1
+                //Log.i("recibir", "El ID es: ${contadorSecundario1}")
             }
             contador = contadorSecundario1
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
