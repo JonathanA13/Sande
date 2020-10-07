@@ -33,20 +33,28 @@ class Registro : AppCompatActivity() {
     var posicion = ""
     var metros=""
     var calibre=""
-    
+
+    val idGeneral = intent.getIntExtra("ID",0)
+    val fechaGeneral = intent.getStringExtra("Fecha")
+    val semanaGeneral = intent.getIntExtra("Semana",0)
+    val bloqueGeneral = intent.getIntExtra("Bloque",0)
+    val valvulaGeneral = intent.getIntExtra("Valvula",0)
+    val fincaGeneral = intent.getStringExtra("Finca")
+    val ladoGeneral = intent.getStringExtra("Lado")
+    val etiquetaGeneral = intent.getStringExtra("Etiqueta")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
         db.firestoreSettings = settings
 
-        val fecha = intent.getStringExtra("Fecha")
-        val semana = intent.getIntExtra("Semana",0)
-        val bloque = intent.getIntExtra("Bloque",0)
-        val valvula = intent.getIntExtra("Valvula",0)
-        val finca = intent.getStringExtra("Finca")
-        val lado = intent.getStringExtra("Lado")
-        val etiqueta = intent.getStringExtra("Etiqueta")
+        val fecha = fechaGeneral
+        val semana = semanaGeneral
+        val bloque = bloqueGeneral
+        val valvula = valvulaGeneral
+        val finca = fincaGeneral
+        val lado = ladoGeneral
+        val etiqueta = etiquetaGeneral
 
 
         txtFechaRegistro.text = fecha
@@ -238,13 +246,7 @@ class Registro : AppCompatActivity() {
         }
     }
 
-
-    fun bulbos()
-    {
-
-    }
-
-
+    
     fun definir(){
 
         val variedad = arrayOf("ACCENT", "ARANAL", "ASPEN", "AUCKLAND", "AVIGNON", "BLACK DIAMOND", "BLACK VELVET", "BUICK", "CAPTAIN ROMANCE", "CAVALESE",
