@@ -39,11 +39,18 @@ class MainActivity : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
     var posicion = ""
+    var id_guardar = 0
+    var contador = 0
+    var contadorSecundario = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
+        db.firestoreSettings = settings
+
+        verificar_id()
+
         editTxtValvula.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
 
@@ -89,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        db.firestoreSettings = settings
+
         //parametros()
         agregar1()
         agregar2()
@@ -137,6 +144,16 @@ class MainActivity : AppCompatActivity() {
                     Log.i("recuperacion1", "Error getting documents: ", task.exception)
                 }
             }
+    }
+
+
+
+    fun recepcionID(idAgregar: Int) {
+        Log.i("recibir","El contador que se envia es: ${idAgregar}")
+        //contador = idAgregar
+        contadorSecundario = idAgregar
+        Log.i("recibir","El contador secundario es: ${contadorSecundario}")
+        //return contador
     }
 
 
@@ -286,15 +303,40 @@ class MainActivity : AppCompatActivity() {
                             "Etiqueta" to etiqueta
                             )
                         )*/
-                        db.collection("SiembraSprint").add(
+                        /*db.collection("SiembraSprint").add(
                             hashMapOf("Fecha" to currentDate,
                                 "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
                                 "Bloque" to bloque,
                                 "Lado" to lado,
                                 "Etiqueta" to etiqueta
                             )
-                        )
-                        val intentExplicito = Intent(
+                        )*/
+
+                        //var idGuardarFirestore = verificar_id()
+                        verificar_id()
+                        val numeroID = contador
+
+                        Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+                        /*db.collection("Prueba").add(
+                            hashMapOf("Fecha" to currentDate,
+                            "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+                            "Bloque" to bloque,
+                            "Lado" to lado,
+                            "Etiqueta" to etiqueta
+                        ))*/
+
+                        //val id_base_datos = 0
+
+                        db.collection("Prueba").document("${numeroID}").set(
+                            hashMapOf("Fecha" to currentDate,
+                            "Semana" to numeroSemana, "Finca" to fincaNombre, "Valvula" to valvula,
+                            "Bloque" to bloque,
+                            "Lado" to lado,
+                            "Etiqueta" to etiqueta
+                        ))
+
+                        /*val intentExplicito = Intent(
                             this,
                             Registro::class.java
                         )
@@ -305,7 +347,7 @@ class MainActivity : AppCompatActivity() {
                         intentExplicito.putExtra("Finca", fincaNombre)
                         intentExplicito.putExtra("Lado", lado)
                         intentExplicito.putExtra("Etiqueta", etiqueta)
-                        startActivity(intentExplicito)
+                        startActivity(intentExplicito)*/
                         /*val datosGuardarArchivo = Cabecera(currentDate,numeroSemana,valvula,bloque,lado,etiqueta)
                         val archivo: File = File("datos//cabecera.xlsx")
                         val ingreso = FileOutputStream(archivo,true)
@@ -314,34 +356,99 @@ class MainActivity : AppCompatActivity() {
                         }*/
                         //val internalStorageDir = filesDir
                         //val cabecera = File(internalStorageDir, "cabecera.csv")
-
                     }
+
                 }//fin else
 
             }//fin else campo  vacio
 
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+    fun verificar_id() {
+        var contadorSecundario1 = 0
+        var numeros = arrayListOf<Int>()
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
+            for (documento in resultado){
+                numeros.add(documento.id.toInt())
+                numeros.sort()
+                Log.i("recibir", "La lista es: ${numeros}")
+                val idBase = documento.id.toInt()
+                Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = idBase + 1
+                Log.i("recibir", "El ID es: ${contadorSecundario1}")
+            }
+            contador = contadorSecundario1
+            Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+        }
+
+        /*db.collection("Prueba").get().addOnCompleteListener { resultado ->
+                if(resultado.isSuccessful){
+                    for(documento in resultado.result!!){
+                        var id_guardado = documento.id.toInt()
+                        contadorSecundario = id_guardado + 1
+                        contador = contadorSecundario
+                        Log.i("recibir", "El contador es: ${contador}")
+                    }
+                    recepcionID(contador)
+
+                } else {
+                    id_guardar = 0
+                    Log.i("recibir","Entra aqui **********************")
+                }
+            }*/
+
+        /*db.collection("Prueba").get().addOnSuccessListener { resultado ->
+            if (resultado.size() >= 0) {
+                //val ver = resultado.size()
+                Log.i("recibir", "El resultado es: ${resultado.size()}")
+                for (documento in resultado) {
+                    //documento.id.toInt()
+                    var id_guardado = documento.id.toInt()
+                    Log.i("recibir", "El id de la base es: ${id_guardado}")
+                    contadorSecundario1 = id_guardado + 1
+                    //contador = contadorSecundario
+                    Log.i("recibir", "El contador es: ${contador}")
+                }
+                contador = contadorSecundario1
+                Log.i("recibir", "El contador 1 es: ${contador}")
+                recepcionID(contador)
+            } else {
+                id_guardar = 0
+                Log.i("recibir", "Entra aqui **********************")
+            }*/
+
+
+
+        /* db.collection("Prueba").get().addOnSuccessListener { resultado ->
+         if(resultado.size() >= 0){
+             for(documento in resultado){
+                 documento.id.toInt()
+                 var id_guardado = documento.id.toInt()
+                 contadorSecundario = id_guardado + 1
+                 //contador = contadorSecundario
+                 Log.i("recibir", "El contador es: ${contador}")
+             }
+             contador = contadorSecundario
+             Log.i("recibir", "El contador 1 es: ${contador}")
+         } else {
+             id_guardar = 0
+             Log.i("recibir","Entra aqui **********************")
+         }
+         contador = contadorSecundario
+         Log.i("recibir", "El contador 2 es: ${contador}")
+         contador = recepcionID(contadorSecundario)
+     }
+     Log.i("recibir","El contador que se envia 1 es: ${contador}")
+     //if (contador!=0){
+     //} else {
+       //  verificar_id()
+     //}
+     return recepcionID(contadorSecundario)*/
+    }
+
 
     fun agregar1(){
         val etiquetas = arrayOf("Ninguno","Norte","Sur")
@@ -377,7 +484,5 @@ class MainActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size, finca)
         spinner.setAdapter(adapter)
     }
-
-
 
 }
