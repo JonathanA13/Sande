@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/agricultura"
+    android:layout_height="match_parent"
+    tools:context=".MainEspecie">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="356dp"
+        android:layout_height="144dp"
+        android:contentDescription="@string/empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btnCallas"
+        android:layout_width="251dp"
+        android:layout_height="128dp"
+        android:text="CALLAS"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnFlorVerano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.432" />
+
+    <Button
+        android:id="@+id/btnFlorVerano"
+        android:layout_width="251dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="128dp"
+        android:text="FLOR DE VERANO"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLirios"
+        app:layout_constraintEnd_toEndOf="@+id/btnCallas"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnCallas" />
+
+    <Button
+        android:id="@+id/btnLirios"
+        android:layout_width="251dp"
+        android:layout_height="128dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="324dp"
+        android:text="LIRIOS"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnFlorVerano" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
