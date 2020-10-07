@@ -354,7 +354,7 @@ class Registro : AppCompatActivity() {
         txtViewBulbos.text = resultado.toString()
 
     }
-
+    
 
     fun eleccionCalibre(prueba: String){
 
