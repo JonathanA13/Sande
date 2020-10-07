@@ -1,7 +1,8 @@
 package com.example.sande_siembra.modelo
 
 class Siembra (var bloque:Int?,
-               var valvula: Int?) {
+               var valvula: Int
+               ?) {
 
 }
 

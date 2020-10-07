@@ -220,18 +220,13 @@ class Registro : AppCompatActivity() {
     }
 
     fun botonNuevoBloque(){
-
         val intentExplicito = Intent(
             this,
             MainActivity::class.java
         )
         startActivity(intentExplicito)
 
-
     }
-
-
-
 
 
     fun eleccionCalibre(prueba: String){
@@ -247,31 +242,11 @@ class Registro : AppCompatActivity() {
     fun bulbos()
     {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
-
-
-
-
-
-
     fun definir(){
+
         val variedad = arrayOf("ACCENT", "ARANAL", "ASPEN", "AUCKLAND", "AVIGNON", "BLACK DIAMOND", "BLACK VELVET", "BUICK", "CAPTAIN ROMANCE", "CAVALESE",
             "CONFETTI", "CORDOBA", "COUPLET", "DENVER", "DIAMANTE", "E-026", "E-1129", "E-1153", "Z-1180", "E-166", "E-175", "E-233", "E-270", "E-336", "E-343", "E-364",
             "E-367", "E-369", "E-370", "E-371", "E-383", "E-434", "E-439", "E-494", "E-507", "E-512", "E-603", "E-605", "E-607", "E-613", "E-615",
@@ -318,10 +293,12 @@ class Registro : AppCompatActivity() {
         val adapter2: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tipoSiembra)
         spinner2.setAdapter(adapter2)
 
+
         val pl_proce = arrayOf("AF","AF-AF","af-af","HOLANDA","PL")
         val spinner3: Spinner = findViewById(R.id.cmbProce)
         val adapter3: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, pl_proce)
         spinner3.setAdapter(adapter3)
+
 
         val prueba1 = arrayOf("NINGUNA",
             "PRUEBA A",
@@ -335,6 +312,7 @@ class Registro : AppCompatActivity() {
         val spinner4: Spinner = findViewById(R.id.cmbPruebas1)
         val adapter4: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba1)
         spinner4.setAdapter(adapter4)
+
 
         val prueba2 = arrayOf("NINGUNA",
             "ABIERTOS CON LA MANO",
@@ -358,6 +336,7 @@ class Registro : AppCompatActivity() {
         val adapter5: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba2)
         spinner5.setAdapter(adapter5)
 
+
         val finca = arrayOf("S2", "S4")
         val spinner6: Spinner = findViewById(R.id.cmbFincaCabe)
         val adapter6: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, finca)
@@ -369,10 +348,12 @@ class Registro : AppCompatActivity() {
         val adapter8: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tamanioCama)
         spinner8.setAdapter(adapter8)
 
+
         val Origen = arrayOf("NACIONAL","HOL-19","HOL-20", "HOLANDA")
         val spinner9: Spinner = findViewById(R.id.cmbOrigen)
         val adapter9: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, Origen)
         spinner9.setAdapter(adapter9)
+
 
         val Brote = arrayOf("Entero con brote","Brote grande","Brote pequeño")
         val spinner10: Spinner = findViewById(R.id.cmbBrote)
@@ -766,9 +747,6 @@ class Registro : AppCompatActivity() {
         })
 
     }*/
-
-
-
 
 
 }
