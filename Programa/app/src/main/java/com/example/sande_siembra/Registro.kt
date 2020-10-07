@@ -31,8 +31,9 @@ class Registro : AppCompatActivity() {
 
 
     var posicion = ""
-    var metros=""
-    var calibre=""
+    var metros= 0
+    var calibre= ""
+    val bulbos = 0
 
     //val idGeneral = intent.getIntExtra("ID",0)
     /*val fechaGeneral = intent.getStringExtra("Fecha")
@@ -243,7 +244,13 @@ class Registro : AppCompatActivity() {
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
         btnGuardar.setOnClickListener{ obtener() }
-        btnOtroBloque.setOnClickListener {botonNuevoBloque()}
+        btnOtroBloque.setOnClickListener { botonNuevoBloque() }
+
+        if(etiquetaGeneral.equals("Bulbos")){
+            calcularBulbos()
+        } else {
+            calcularFloresS2()
+        }
 
 
     }
@@ -254,6 +261,98 @@ class Registro : AppCompatActivity() {
             MainActivity::class.java
         )
         startActivity(intentExplicito)
+
+    }
+
+    fun calcularBulbos(){
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        var resultado = 0
+
+        if(calibre.equals("0/4")){
+            resultado = metros * 200
+        } else if (calibre.equals("4/6")){
+            resultado = metros * 140
+        } else if (calibre.equals("6/9")){
+            resultado = metros * 60
+        } else if (calibre.equals("9/12")){
+            resultado = metros * 48
+        }
+
+        txtViewBulbos.text = resultado.toString()
+
+    }
+
+    fun calcularFloresS2(){
+        var resultado = 0
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
+
+        if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 44
+        } else if (calibre.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 35
+        } else if (calibre.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 28
+        } else if (calibre.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 22
+        } else if (calibre.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 20
+        } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 13
+        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 7
+        } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 5
+        }
+
+        txtViewBulbos.text = resultado.toString()
+
+    }
+
+
+    fun calcularFloresS4(){
+        var resultado = 0
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
+
+        if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 28
+        } else if (calibre.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 22
+        } else if (calibre.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 20
+        } else if (calibre.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 16
+        } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 13
+        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 12
+        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 10
+        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 9
+        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 7
+        } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metros * 6
+        } else if (calibre.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metros * 5
+        }
+
+        txtViewBulbos.text = resultado.toString()
 
     }
 
