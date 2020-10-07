@@ -127,6 +127,7 @@ class MenuInicio : AppCompatActivity() {
         startActivity(intentExplicito)
     }
 
+    fun prueba(){}
     fun sincronizar(){
 
         val fecha = "Sincronizacion"
