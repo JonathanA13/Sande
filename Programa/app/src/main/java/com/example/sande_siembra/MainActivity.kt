@@ -42,12 +42,24 @@ class MainActivity : AppCompatActivity() {
     var id_guardar = 0
     var contador = 0
     var contadorSecundario = 0
+    //var especie = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         db.firestoreSettings = settings
+
+
+        val especie = intent.getStringExtra("especie")
+        //txtViewEspecie.text= especie
+
+       /* var bunble=intent.extras
+
+        if (bunble != null) {
+            txtViewEspecie.text=bunble.getString("especieCalla")
+        }*/
+
 
         //verificar_id()
 
