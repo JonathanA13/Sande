@@ -1,20 +1,19 @@
 package com.example.sande_siembra
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
-import android.view.View
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_registro.*
@@ -92,13 +91,11 @@ class Registro : AppCompatActivity() {
             val adapterFlores: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibre)
             spinner7.setAdapter(adapterFlores)
 
-        }//fin IF
-        else{
+        } else {
             val calibreBulbos = arrayOf("0/4","4/6","6/9","9/12")
             val spinner77: Spinner = findViewById(R.id.cmbCalibre)
             val adapter7: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, calibreBulbos)
             spinner77.setAdapter(adapter7)
-
         }
 
         fun dialogo(){
@@ -118,7 +115,7 @@ class Registro : AppCompatActivity() {
 
 
 
-        cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
+        /*cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
                 selectedItemView: View,
@@ -164,14 +161,14 @@ class Registro : AppCompatActivity() {
                 }
                 // your code here
             }
-        })
+        })*/
 
 
 
 
 
 
-        editTxtMetros.addTextChangedListener(object: TextWatcher {
+        /*editTxtMetros.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
 
                 if (s.toString().trim().isEmpty())
@@ -202,7 +199,7 @@ class Registro : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
                 // TODO Auto-generated method stub
             }
-        })
+        })*/
 
 
 
@@ -245,11 +242,17 @@ class Registro : AppCompatActivity() {
         btnGuardar.setOnClickListener{ obtener() }
         btnOtroBloque.setOnClickListener { botonNuevoBloque() }
 
-        if(etiquetaGeneral.equals("Bulbos")){
-            calcularBulbos()
-        } else {
-            calcularFloresS2()
+        btnCalcularBulbo.setOnClickListener{
+            if(etiquetaGeneral.equals("Bulbos")){
+                calcularBulbos()
+            } else if (etiquetaGeneral.equals("Flores") && fincaGeneral.equals("S2")) {
+                calcularFloresS2()
+            } else if (etiquetaGeneral.equals("Flores") && fincaGeneral.equals("S4")) {
+                calcularFloresS4()
+            }
         }
+
+
 
 
     }
@@ -300,13 +303,13 @@ class Registro : AppCompatActivity() {
             resultado = metros * 20
         } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 16
-        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+        } else if (calibre.equals("18/20") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 16
-        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+        } else if (calibre.equals("18/20") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 13
-        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+        } else if (calibre.equals("20/26") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 9
-        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+        } else if (calibre.equals("20/26") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 7
         } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 9
@@ -337,13 +340,13 @@ class Registro : AppCompatActivity() {
             resultado = metros * 16
         } else if (calibre.equals("15/18") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 13
-        } else if (calibre.equals("18/22") && tamanioCama.equals("1.20 mts")){
+        } else if (calibre.equals("18/20") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 12
-        } else if (calibre.equals("18/22") && tamanioCama.equals("0.9 mts")){
+        } else if (calibre.equals("18/20") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 10
-        } else if (calibre.equals("22/26") && tamanioCama.equals("1.20 mts")){
+        } else if (calibre.equals("20/26") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 9
-        } else if (calibre.equals("22/26") && tamanioCama.equals("0.9 mts")){
+        } else if (calibre.equals("20/26") && tamanioCama.equals("0.9 mts")){
             resultado = metros * 7
         } else if (calibre.equals("26+") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 6
@@ -352,10 +355,6 @@ class Registro : AppCompatActivity() {
         }
 
         txtViewBulbos.text = resultado.toString()
-
-    }
-
-    fun prueba(){
 
     }
 
@@ -499,11 +498,31 @@ class Registro : AppCompatActivity() {
         val bloqueCabe = editTxtBloqueCabe.text.toString().toInt()
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
-        val bulbos = 350
+        val bulbos = txtViewBulbos.text.toString().toInt()
         val tamanioCama = cmbTamanioCama.selectedItem.toString()
         val brote = cmbBrote.selectedItem.toString()
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
+
+        /*val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo != null && networkInfo.isConnected) {
+            Log.d("MIAPP", "Estás online")
+            Log.d("MIAPP", " Estado actual: " + networkInfo.state)
+            if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                // Estas conectado a un Wi-Fi
+                Log.i("MIAPP", " Nombre red Wi-Fi: " + networkInfo.extraInfo)
+            }
+        } else {
+            Log.i("MIAPP", "Estás offline")
+        }*/
+
+        /*val cm = Context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true*/
+
+
 
         verificar_id()
         val numeroID = contador
@@ -634,6 +653,8 @@ class Registro : AppCompatActivity() {
 
 
     }
+
+
 
 
     /*fun guardarGeneral(){
