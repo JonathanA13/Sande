@@ -23,25 +23,29 @@
         android:id="@+id/btnCallas"
         android:layout_width="251dp"
         android:layout_height="128dp"
+        android:background="#FFEB3B"
         android:text="CALLAS"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnFlorVerano"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintVertical_bias="0.667" />
 
     <Button
         android:id="@+id/btnFlorVerano"
         android:layout_width="251dp"
         android:layout_height="128dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="80dp"
+        android:background="#FFEB3B"
         android:text="FLOR DE VERANO"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnLirios"
         app:layout_constraintEnd_toEndOf="@+id/btnCallas"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btnCallas" />
 
     <Button
@@ -49,9 +53,11 @@
         android:layout_width="251dp"
         android:layout_height="128dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginBottom="308dp"
+        android:background="#FFEB3B"
         android:text="LIRIOS"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnFlorVerano" />
 

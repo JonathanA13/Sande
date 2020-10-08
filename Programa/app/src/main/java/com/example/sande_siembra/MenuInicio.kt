@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_menu_inicio.*
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
@@ -25,6 +26,8 @@ class MenuInicio : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
 
+    var especie=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu_inicio)
@@ -32,6 +35,9 @@ class MenuInicio : AppCompatActivity() {
         System.setProperty("org.apache.poi.javax.xml.stream.XMLInputFactory", "com.fasterxml.aalto.stax.InputFactoryImpl")
         System.setProperty("org.apache.poi.javax.xml.stream.XMLOutputFactory", "com.fasterxml.aalto.stax.OutputFactoryImpl")
         System.setProperty("org.apache.poi.javax.xml.stream.XMLEventFactory", "com.fasterxml.aalto.stax.EventFactoryImpl")
+
+        especie = intent.getStringExtra("especie").toString()
+
 
         //val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
 
@@ -124,6 +130,7 @@ class MenuInicio : AppCompatActivity() {
             this,
             MainActivity::class.java
         )
+        intentExplicito.putExtra("especie", especie)
         startActivity(intentExplicito)
     }
 
