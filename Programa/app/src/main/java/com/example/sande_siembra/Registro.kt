@@ -572,7 +572,8 @@ class Registro : AppCompatActivity() {
                 "Brote" to brote,
                 "Origen" to origen,
                 "Prueba3" to otraPrueba
-            ))
+            )
+        )
 
         /*db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
