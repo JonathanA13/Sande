@@ -305,12 +305,20 @@
             android:textStyle="bold" />
 
         <TextView
+
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="CALLA" />
+
             android:id="@+id/txtViewEspecie"
             android:layout_width="250dp"
             android:layout_height="33dp"
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="24sp" />
+
 
     </LinearLayout>
 
