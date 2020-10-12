@@ -1,5 +1,6 @@
 package com.example.sande_siembra
 
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -14,8 +15,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.MetadataChanges
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -26,6 +29,10 @@ class Registro : AppCompatActivity() {
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
+
+    var context = this
+    var connectivity : ConnectivityManager? = null
+    var info : NetworkInfo? = null
 
 
     var posicion = ""
@@ -257,6 +264,19 @@ class Registro : AppCompatActivity() {
 
     }
 
+    fun isConnected() : Boolean {
+        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivity != null){
+            info = connectivity!!.activeNetworkInfo
+            if (info != null){
+                if(info!!.state == NetworkInfo.State.CONNECTED){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     fun botonNuevoBloque(){
         val intentExplicito = Intent(
             this,
@@ -290,6 +310,7 @@ class Registro : AppCompatActivity() {
         val metros = editTxtMetros.text.toString().toInt()
         val calibre = cmbCalibre.selectedItem.toString()
         val tamanioCama = cmbTamanioCama.selectedItem.toString()
+        val tipoVariedad = cmbVariedad.selectedItem.toString()
 
         if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 44
@@ -635,7 +656,7 @@ class Registro : AppCompatActivity() {
     fun verificar_id() {
         var contadorSecundario1 = 0
         var numeros = arrayListOf<Int>()
-        db.collection("Prueba").get().addOnSuccessListener { resultado ->
+        /*db.collection("Prueba").get().addOnSuccessListener { resultado ->
             for (documento in resultado){
                 numeros.add(documento.id.toInt())
                 numeros.sort()
@@ -649,6 +670,56 @@ class Registro : AppCompatActivity() {
             }
             contador = contadorSecundario1
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+        }*/
+
+        db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
+            if (e != null) {
+            Log.i("error", "Listen error", e)
+            return@addSnapshotListener
+            }
+
+            for (change in resultado!!.documentChanges) {
+                if (change.type == DocumentChange.Type.ADDED) {
+                    Log.i("error", "New city: ${change.document.data}")
+                }
+
+                val source = if (resultado.metadata.isFromCache){
+                    Log.i("almacenamiento", "Se almacena en la caché")
+                    for (documento in resultado){
+                        numeros.add(documento.id.toInt())
+                        numeros.sort()
+                        Log.i("recibir", "La lista es: ${numeros}")
+                        val ultimo = numeros.last()
+                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                        //val idBase = documento.id.toInt()
+                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                        contadorSecundario1 = ultimo + 1
+                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                    }
+                    contador = contadorSecundario1
+                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+                }
+
+                else {
+                    Log.i("almacenamiento", "Se almacena en la caché")
+                    for (documento in resultado){
+                        numeros.add(documento.id.toInt())
+                        numeros.sort()
+                        Log.i("recibir", "La lista es: ${numeros}")
+                        val ultimo = numeros.last()
+                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                        //val idBase = documento.id.toInt()
+                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                        contadorSecundario1 = ultimo + 1
+                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                    }
+                    contador = contadorSecundario1
+                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+                }
+                Log.i("error", "Data fetched from $source")
+            }
+
+
         }
 
 
