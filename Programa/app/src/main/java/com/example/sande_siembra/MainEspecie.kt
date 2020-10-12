@@ -60,8 +60,8 @@ class MainEspecie : AppCompatActivity() {
     fun Lirios(){
 
         val intentExplicito = Intent(this, MenuInicio::class.java)
-        val dato = "LIRIOS"
-        intentExplicito.putExtra("especie", dato )
+        val datolirio = "LIRIOS"
+        intentExplicito.putExtra("especie", datolirio )
         startActivity(intentExplicito)
 
 
@@ -70,8 +70,8 @@ class MainEspecie : AppCompatActivity() {
     fun FlorVerano(){
 
         val intentExplicito = Intent(this, MenuInicio::class.java)
-        val dato = "FLOR DE VERANO"
-        intentExplicito.putExtra("especie", dato )
+        val datoflor = "FLOR DE VERANO"
+        intentExplicito.putExtra("especie", datoflor )
         startActivity(intentExplicito)
 
 
