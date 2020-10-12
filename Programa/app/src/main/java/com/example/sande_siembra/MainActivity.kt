@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val especie = intent.getStringExtra("especie")
-        //txtViewEspecie.text= especie
+        tvEspecie.text= especie
 
        /* var bunble=intent.extras
 
