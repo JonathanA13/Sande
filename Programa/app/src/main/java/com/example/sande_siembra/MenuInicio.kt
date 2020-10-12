@@ -37,6 +37,7 @@ class MenuInicio : AppCompatActivity() {
         System.setProperty("org.apache.poi.javax.xml.stream.XMLEventFactory", "com.fasterxml.aalto.stax.EventFactoryImpl")
 
         especie = intent.getStringExtra("especie").toString()
+        Log.i("especie", "El nombre en menu inicio es: ${especie}")
 
 
         //val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)

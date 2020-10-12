@@ -54,6 +54,7 @@ class MainEspecie : AppCompatActivity() {
             MenuInicio::class.java)
         val dato = "CALLAS"
         intentExplicito.putExtra("especie", dato )
+        Log.i("especie", "El nombre es: ${dato}")
         startActivity(intentExplicito)
 
     }
