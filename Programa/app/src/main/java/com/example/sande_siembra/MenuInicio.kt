@@ -27,6 +27,7 @@ class MenuInicio : AppCompatActivity() {
         .build()
 
     var especie=""
+    var contador = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +48,19 @@ class MenuInicio : AppCompatActivity() {
         //val path = Environment.getStorageDirectory(Environment.DIRECTORY_DOCUMENTS)
         //val file = File(this.filesDir)
 
-        val fout = OutputStreamWriter(
+        /*val fout = OutputStreamWriter(
             openFileOutput("meminterna.xlsx", Context.MODE_PRIVATE)
         )
 
         fout.write("Contenido del fichero de memoria interna.")
-        //fout.close()
+        //fout.close()*/
 
 
         btnNuevo.setOnClickListener { botonNuevo() }
         //btn_sincro.setOnClickListener{ createXlsx(fout, "guardar") }
         //button2.setOnClickListener{ mostrarDialogoBasico() }
         button2.setOnClickListener{ irLista() }
+        btn_sincro.setOnClickListener{ sincronizar() }
 
         /*val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
@@ -136,9 +138,119 @@ class MenuInicio : AppCompatActivity() {
     }
 
     fun prueba(){}
+
     fun sincronizar(){
 
-        val fecha = "Sincronizacion"
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val lines: List<String> = file.readLines()
+        Log.i("Fechita", "El tamaño es: ${lines.size}")
+        lines.forEachIndexed { index, s ->
+            val line = lines[index]
+            Log.i("Fechita", "La fecha es: ${line}")
+            val tokens = line.split(",")
+            val fecha = tokens[0]
+            val cama = tokens[1]
+            val prueba1 = tokens[2]
+            val prueba2 = tokens[3]
+            val origen = tokens[4]
+            val variedad = tokens[5]
+            val tipoSiembra = tokens[6]
+            val fincaGeneral1 = tokens[7]
+            val bloqueGeneral1 = tokens[8]
+            val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[10]
+            val calibre = tokens[11]
+            val semanaGeneral1 = tokens[12]
+            val metros = tokens[13]
+            val bulbos = tokens[14]
+            val semanaCabe = tokens[15]
+            val bloqueCabe = tokens[16]
+            val fincaCabe = tokens[17]
+            val tamanioCama = tokens[18]
+            val brote = tokens[19]
+            val otraPrueba = tokens[20]
+            val valvulaGeneral = tokens[21]
+            val ladoGeneral1 = tokens[22]
+            val etiquetaGeneral1 = tokens[23]
+
+            Log.i("Fechita", "La fecha es: ${fecha}")
+            Log.i("Fechita", "La semana es: ${prueba1}")
+            Log.i("Fechita", "La semana es: ${origen}")
+            Log.i("Fechita", "La semana es: ${variedad}")
+            Log.i("Fechita", "La semana es: ${tipoSiembra}")
+            Log.i("Fechita", "La semana es: ${valvulaGeneral}")
+            Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+
+            verificar_id()
+            var numeroID = contador
+
+            guardarBaseDatos(cama.toInt(), variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe.toInt(),bloqueCabe.toInt(),metros.toInt(),
+                calibre, bulbos.toInt(),tamanioCama,brote,origen,otraPrueba,fecha,semanaGeneral1.toInt(),fincaGeneral1, valvulaGeneral.toInt(),
+                bloqueGeneral1.toInt(),ladoGeneral1,etiquetaGeneral1, numeroID)
+
+        }
+
+
+    }
+
+    fun guardarBaseDatos(cama: Int, variedad: String, tipoSiembra: String, procedimiento: String,
+                         prueba1: String,  prueba2: String, fincaCabe: String, semanaCabe: Int,
+                         bloqueCabe: Int, metros: Int, calibre: String, bulbos: Int,
+                         tamanioCama: String, brote: String, origen: String, otraPrueba: String,
+                         fecha: String, semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int,
+                         bloqueGeneral1: Int, ladoGeneral1: String, etiquetaGeneral1: String, numeroRegistro: Int){
+        //verificar_id()
+        var numeroID = numeroRegistro + 1
+
+        Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+        db.collection("Prueba").document("${numeroID}").set(
+            hashMapOf("Fecha" to fecha,
+                "Semana" to semanaGeneral1, "Finca" to fincaGeneral1, "Valvula" to valvulaGeneral,
+                "Bloque" to bloqueGeneral1,
+                "Lado" to ladoGeneral1,
+                "Etiqueta" to etiquetaGeneral1,
+                "Cama" to cama,
+                "Variedad" to variedad,
+                "tipoSiembra" to tipoSiembra,
+                "Procedimiento" to procedimiento,
+                "Prueba1" to prueba1,
+                "Prueba2" to prueba2,
+                "FincaCabe" to  fincaCabe,
+                "SemanaCabe" to semanaCabe,
+                "BloqueCabe" to  bloqueCabe,
+                "Metros" to metros,
+                "Calibre" to calibre,
+                "Bulbos" to bulbos,
+                "TamanioCama" to tamanioCama,
+                "Brote" to brote,
+                "Origen" to origen,
+                "Prueba3" to otraPrueba
+            )
+        )
+    }
+
+    fun verificar_id() {
+        var contadorSecundario1 = 0
+        var numeros = arrayListOf<Int>()
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
+            for (documento in resultado){
+                numeros.add(documento.id.toInt())
+                numeros.sort()
+                Log.i("recibir", "La lista es: ${numeros}")
+                val ultimo = numeros.last()
+                Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                //val idBase = documento.id.toInt()
+                //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                contadorSecundario1 = ultimo + 1
+                //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+            }
+            contador = contadorSecundario1
+            Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+        }
+
+
+        /*val fecha = "Sincronizacion"
         val bloque = "Sincronizacion"
         val lado = "Sincronizacion"
         val etiqueta = "Sincronizacion"
@@ -159,7 +271,7 @@ class MenuInicio : AppCompatActivity() {
                 "Variedad" to variedad,
                 "Procedimiento" to procedimiento
                 )
-        )
+        )*/
     }
 
     /*fun guardar() {
