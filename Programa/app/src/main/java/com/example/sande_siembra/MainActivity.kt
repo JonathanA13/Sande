@@ -277,6 +277,8 @@ class MainActivity : AppCompatActivity() {
                         val numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
                         Log.i("Eleccion: ", "semana ${numeroSemana}")
                         val valvula = editTxtValvula.text.toString().toInt()
+                        val especie = tvEspecie.text.toString()
+
                         Log.i("Eleccion: ", valvula.toString())
                         /*if(editTxtValvula.text.toString().trim().isEmpty()){
                             val toast = Toast.makeText(this, "Mensaje 2", Toast.LENGTH_SHORT)
@@ -363,6 +365,7 @@ class MainActivity : AppCompatActivity() {
                         //intentExplicito.putExtra("ID", numeroID)
                         intentExplicito.putExtra("Fecha", currentDate )
                         intentExplicito.putExtra("Semana", numeroSemana)
+                        intentExplicito.putExtra("Especie", especie)
                         intentExplicito.putExtra("Bloque", bloque)
                         intentExplicito.putExtra("Valvula", valvula)
                         intentExplicito.putExtra("Finca", fincaNombre)
