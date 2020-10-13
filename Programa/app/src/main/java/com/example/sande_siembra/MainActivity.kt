@@ -33,11 +33,11 @@ class MainActivity : AppCompatActivity() {
     //val currentDate: String =
     //DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     //val textViewDate: TextView = findViewById(R.id.textViewFecha)
-    private val db = FirebaseFirestore.getInstance()
-    val settings = FirebaseFirestoreSettings.Builder()
+    //private val db = FirebaseFirestore.getInstance()
+    /*val settings = FirebaseFirestoreSettings.Builder()
         .setPersistenceEnabled(true)
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
-        .build()
+        .build()*/
     var posicion = ""
     var id_guardar = 0
     var contador = 0
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        db.firestoreSettings = settings
+        //db.firestoreSettings = settings
 
 
         val especie = intent.getStringExtra("especie")
@@ -128,12 +128,12 @@ class MainActivity : AppCompatActivity() {
 
         btnListo.setOnClickListener{ obtener() }
 
-        btn_buscar.setOnClickListener{ buscar() }
+        //btn_buscar.setOnClickListener{ buscar() }
 
     }
 
 
-    fun buscar(){
+    /*fun buscar(){
         /*var fechaRecuperacion = ""
         val valvula = editTxtValvula.text.toString().toInt()
         db.collection("Siembra").document(valvula.toString()).get().addOnSuccessListener {
@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                     Log.i("recuperacion1", "Error getting documents: ", task.exception)
                 }
             }
-    }
+    }*/
 
 
 
@@ -391,7 +391,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun verificar_id() {
+    /*fun verificar_id() {
         var contadorSecundario1 = 0
         var numeros = arrayListOf<Int>()
         db.collection("Prueba").get().addOnSuccessListener { resultado ->
@@ -473,7 +473,7 @@ class MainActivity : AppCompatActivity() {
        //  verificar_id()
      //}
      return recepcionID(contadorSecundario)*/
-    }
+    }*/
 
 
     fun agregar1(){

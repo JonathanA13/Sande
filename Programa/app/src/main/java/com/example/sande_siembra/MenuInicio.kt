@@ -1,9 +1,13 @@
 package com.example.sande_siembra
 
+import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,20 +31,26 @@ class MenuInicio : AppCompatActivity() {
         .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
         .build()
 
+    var context = this
+    var connectivity : ConnectivityManager? = null
+    var info : NetworkInfo? = null
+
     var especie=""
     var contador = 0
     var listaSincroDatosSiembra = arrayListOf<SincronizacionDatosSiembra>()
+    var guardadoRegistro = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu_inicio)
 
-        System.setProperty("org.apache.poi.javax.xml.stream.XMLInputFactory", "com.fasterxml.aalto.stax.InputFactoryImpl")
-        System.setProperty("org.apache.poi.javax.xml.stream.XMLOutputFactory", "com.fasterxml.aalto.stax.OutputFactoryImpl")
-        System.setProperty("org.apache.poi.javax.xml.stream.XMLEventFactory", "com.fasterxml.aalto.stax.EventFactoryImpl")
+        db.firestoreSettings = settings
 
         especie = intent.getStringExtra("especie").toString()
         Log.i("especie", "El nombre en menu inicio es: ${especie}")
+        guardadoRegistro = 0
+
 
 
         //val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
@@ -62,7 +72,15 @@ class MenuInicio : AppCompatActivity() {
         //btn_sincro.setOnClickListener{ createXlsx(fout, "guardar") }
         //button2.setOnClickListener{ mostrarDialogoBasico() }
         button2.setOnClickListener{ irLista() }
-        btn_sincro.setOnClickListener{ sincronizar() }
+
+        /*if (!isConnected()){
+            btn_sincro.isEnabled = false
+            Log.i("error", "No se tiene conexion a internet")
+        }*/
+
+        btn_sincro.setOnClickListener{
+            detectar()
+        }
 
         /*val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("message")
@@ -77,8 +95,28 @@ class MenuInicio : AppCompatActivity() {
 
         myRef.setValue("Hello, World!")*/
 
+        verificar_id()
 
 
+    }
+
+    fun detectar(){
+        if (isConnected()){
+            sincronizar()
+        } else {
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogIncorrect))
+            with(builder)
+            {
+                setTitle("ATENCION")
+                setMessage("SE PRODUJO UN ERROR DEBIDO A QUE NO TIENE CONEXIÓN A INTERNET")
+                builder.setPositiveButton("OK") { dialogInterface, i ->
+                    Log.i("error", "No se tiene conexion a internet")
+                }
+                show()
+            }
+            //btn_sincro.isEnabled = false
+            //Log.i("error", "No se tiene conexion a internet")
+        }
     }
 
     fun guardar(){
@@ -140,6 +178,18 @@ class MenuInicio : AppCompatActivity() {
     }
 
     fun prueba(){}
+    fun isConnected() : Boolean {
+        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivity != null){
+            info = connectivity!!.activeNetworkInfo
+            if (info != null){
+                if(info!!.state == NetworkInfo.State.CONNECTED){
+                    return true
+                }
+            }
+        }
+        return false
+    }
 
     fun sincronizar(){
 
@@ -220,32 +270,79 @@ class MenuInicio : AppCompatActivity() {
     fun guardarBaseDatos(){
 
         val indices = listaSincroDatosSiembra.size
-        var cama = 0
-        var prueba = ""
-        var fecha = ""
+
+        var cama: Int
+        var variedad: String
+        var tipoSiembra: String
+        var procedimiento: String
+        var prueba1: String
+        var prueba2: String
+        var fincaCabe: String
+        var semanaCabe: Int
+        var bloqueCabe: Int
+        var metros: Int
+        var calibre: String
+        var bulbos: Int
+        var tamanioCama: String
+        var brote: String
+        var origen: String
+        var otraPrueba: String
+        var fechaGeneral1: String
+        var semanaGeneral1: Int
+        var fincaGeneral1: String
+        var valvulaGeneral: Int
+        var bloqueGeneral1: Int
+        var ladoGeneral1: String
+        var etiquetaGeneral1: String
+
+        //verificar_id()
+        var contadorsito = contador
+        //var numeroID = 0
+        //verificar_id()
         Log.i("Cantidad", "La cantidad total es: ${indices}")
         listaSincroDatosSiembra.forEach {
+            Log.i("Contadorsito", "El contadorsito del for each es: ${contadorsito}")
             cama = it.cama
-            Log.i("Cantidad", "La cama es: ${cama}")
-            prueba = it.prueba1
-            Log.i("Cantidad", "La prueba es: ${prueba}")
-            fecha = it.fechaGeneral1
-            Log.i("Cantidad", "La fecha es: ${fecha}")
+            variedad = it.variedad
+            tipoSiembra = it.tipoSiembra
+            procedimiento = it.procedimiento
+            prueba1 = it.prueba1
+            prueba2 = it.prueba2
+            fincaCabe = it.fincaCabe
+            semanaCabe = it.semanaCabe
+            bloqueCabe = it.bloqueCabe
+            metros = it.metros
+            calibre = it.calibre
+            bulbos = it.bulbos
+            tamanioCama = it.tamanioCama
+            brote = it.brote
+            origen = it.origen
+            otraPrueba = it.otraPrueba
+            fechaGeneral1 = it.fechaGeneral1
+            semanaGeneral1 = it.semanaGeneral1
+            fincaGeneral1 = it.fincaGeneral1
+            valvulaGeneral = it.valvulaGeneral
+            bloqueGeneral1 = it.bloqueGeneral1
+            ladoGeneral1 = it.ladoGeneral1
+            etiquetaGeneral1 = it.etiquetaGeneral1
+            //Log.i("Cantidad", "La cama es: ${cama}")
+            //prueba = it.prueba1
+            //Log.i("Cantidad", "La prueba es: ${prueba}")
+            //fecha = it.fechaGeneral1
+            //Log.i("Cantidad", "La fecha es: ${fecha}")
 
-            verificar_id()
-            var numeroID = contador
 
-            Log.i("rece", "El id que se recibe es: ${numeroID}")
+            Log.i("rece", "El id que se recibe es: ${contadorsito}")
 
-            db.collection("Prueba").document("${numeroID}").set(
-                hashMapOf("Fecha" to fecha,
-                    //"Semana" to semanaGeneral1, "Finca" to fincaGeneral1, "Valvula" to valvulaGeneral,
-                    //"Bloque" to bloqueGeneral1,
-                    //"Lado" to ladoGeneral1,
-                    //"Etiqueta" to etiquetaGeneral1,
-                    "Cama" to cama
-                    //"Variedad" to variedad,
-                    /*"tipoSiembra" to tipoSiembra,
+            db.collection("Prueba").document("${contadorsito}").set(
+                hashMapOf("Fecha" to fechaGeneral1,
+                    "Semana" to semanaGeneral1, "Finca" to fincaGeneral1, "Valvula" to valvulaGeneral,
+                    "Bloque" to bloqueGeneral1,
+                    "Lado" to ladoGeneral1,
+                    "Etiqueta" to etiquetaGeneral1,
+                    "Cama" to cama,
+                    "Variedad" to variedad,
+                    "tipoSiembra" to tipoSiembra,
                     "Procedimiento" to procedimiento,
                     "Prueba1" to prueba1,
                     "Prueba2" to prueba2,
@@ -258,11 +355,30 @@ class MenuInicio : AppCompatActivity() {
                     "TamanioCama" to tamanioCama,
                     "Brote" to brote,
                     "Origen" to origen,
-                    "Prueba3" to otraPrueba*/
+                    "Prueba3" to otraPrueba
                 )
             )
-
+            contadorsito = contadorsito + 1
+            //verificar_id()
+            Log.i("Contadorsito", "El contadorsito es: ${contadorsito}")
         }
+        guardadoRegistro = guardadoRegistro + 1
+        val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCorrect))
+        with(builder)
+        {
+            setTitle("CORRECTO")
+            setMessage("El dato se guardó exitosamente")
+            builder.setPositiveButton("OK") { dialogInterface, i ->
+                if(guardadoRegistro >= 1){
+                    btn_sincro.isEnabled = false
+                }
+            }
+            show()
+            if(guardadoRegistro >= 1){
+                btn_sincro.isEnabled = false
+            }
+        }
+
 
 
 

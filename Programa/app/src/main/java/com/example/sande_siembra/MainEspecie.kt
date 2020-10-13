@@ -73,7 +73,7 @@ class MainEspecie : AppCompatActivity() {
     fun Lirios(){
 
 
-        exportarCSV()
+        //exportarCSV()
         val intentExplicito = Intent(this, MenuInicio::class.java)
         val datolirio = "LIRIOS"
         intentExplicito.putExtra("especie", datolirio )
@@ -124,7 +124,7 @@ class MainEspecie : AppCompatActivity() {
     }
 
 
-    fun exportarCSV() {
+    /*fun exportarCSV() {
         val calendar = Calendar.getInstance()
         val currentDate: String =
             DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
@@ -193,7 +193,7 @@ class MainEspecie : AppCompatActivity() {
             ).show()
         } catch (e: Exception) {
         }
-    }
+    }*/
 
 
     fun exportarCSVBDD() {
