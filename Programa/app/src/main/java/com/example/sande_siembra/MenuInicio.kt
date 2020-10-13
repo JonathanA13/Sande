@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sande_siembra.modelo.SincronizacionDatosSiembra
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -28,6 +29,7 @@ class MenuInicio : AppCompatActivity() {
 
     var especie=""
     var contador = 0
+    var listaSincroDatosSiembra = arrayListOf<SincronizacionDatosSiembra>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -181,26 +183,97 @@ class MenuInicio : AppCompatActivity() {
             Log.i("Fechita", "La semana es: ${valvulaGeneral}")
             Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
 
-            verificar_id()
-            var numeroID = contador
+            listaSincroDatosSiembra.add(
+                SincronizacionDatosSiembra(cama.toInt(), variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe.toInt(),bloqueCabe.toInt(),metros.toInt(),
+                    calibre, bulbos.toInt(),tamanioCama,brote,origen,otraPrueba,fecha,semanaGeneral1.toInt(),fincaGeneral1, valvulaGeneral.toInt(),
+                    bloqueGeneral1.toInt(),ladoGeneral1,etiquetaGeneral1)
+            )
+
+            /*verificar_id()
+            //var numeroID = contador
 
             guardarBaseDatos(cama.toInt(), variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe.toInt(),bloqueCabe.toInt(),metros.toInt(),
                 calibre, bulbos.toInt(),tamanioCama,brote,origen,otraPrueba,fecha,semanaGeneral1.toInt(),fincaGeneral1, valvulaGeneral.toInt(),
-                bloqueGeneral1.toInt(),ladoGeneral1,etiquetaGeneral1, numeroID)
+                bloqueGeneral1.toInt(),ladoGeneral1,etiquetaGeneral1)*/
 
         }
+
+        guardarBaseDatos()
+        /*val indices = listaSincroDatosSiembra.size
+        Log.i("Cantidad", "La cantidad total es: ${indices}")
+        listaSincroDatosSiembra.forEach {
+            val cama = it.cama
+            Log.i("Cantidad", "La cama es: ${cama}")
+            val prueba = it.prueba1
+            Log.i("Cantidad", "La prueba es: ${prueba}")
+            val fecha = it.fechaGeneral1
+            Log.i("Cantidad", "La fecha es: ${fecha}")
+        }*/
+        /*for (datos in listaSincroDatosSiembra){
+            val fecha = datos.fechaGeneral1
+            Log.i("Cantidad", "La Fecha es: ${fecha}")
+        }*/
 
 
     }
 
-    fun guardarBaseDatos(cama: Int, variedad: String, tipoSiembra: String, procedimiento: String,
-                         prueba1: String,  prueba2: String, fincaCabe: String, semanaCabe: Int,
-                         bloqueCabe: Int, metros: Int, calibre: String, bulbos: Int,
-                         tamanioCama: String, brote: String, origen: String, otraPrueba: String,
-                         fecha: String, semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int,
-                         bloqueGeneral1: Int, ladoGeneral1: String, etiquetaGeneral1: String, numeroRegistro: Int){
+    fun guardarBaseDatos(){
+
+        val indices = listaSincroDatosSiembra.size
+        var cama = 0
+        var prueba = ""
+        var fecha = ""
+        Log.i("Cantidad", "La cantidad total es: ${indices}")
+        listaSincroDatosSiembra.forEach {
+            cama = it.cama
+            Log.i("Cantidad", "La cama es: ${cama}")
+            prueba = it.prueba1
+            Log.i("Cantidad", "La prueba es: ${prueba}")
+            fecha = it.fechaGeneral1
+            Log.i("Cantidad", "La fecha es: ${fecha}")
+
+            verificar_id()
+            var numeroID = contador
+
+            Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+            db.collection("Prueba").document("${numeroID}").set(
+                hashMapOf("Fecha" to fecha,
+                    //"Semana" to semanaGeneral1, "Finca" to fincaGeneral1, "Valvula" to valvulaGeneral,
+                    //"Bloque" to bloqueGeneral1,
+                    //"Lado" to ladoGeneral1,
+                    //"Etiqueta" to etiquetaGeneral1,
+                    "Cama" to cama
+                    //"Variedad" to variedad,
+                    /*"tipoSiembra" to tipoSiembra,
+                    "Procedimiento" to procedimiento,
+                    "Prueba1" to prueba1,
+                    "Prueba2" to prueba2,
+                    "FincaCabe" to  fincaCabe,
+                    "SemanaCabe" to semanaCabe,
+                    "BloqueCabe" to  bloqueCabe,
+                    "Metros" to metros,
+                    "Calibre" to calibre,
+                    "Bulbos" to bulbos,
+                    "TamanioCama" to tamanioCama,
+                    "Brote" to brote,
+                    "Origen" to origen,
+                    "Prueba3" to otraPrueba*/
+                )
+            )
+
+        }
+
+
+
+
+
+
+
         //verificar_id()
-        var numeroID = numeroRegistro + 1
+        //var numeroID = numeroRegistro + 1
+        /*
+        var numeroID = contador
 
         Log.i("rece", "El id que se recibe es: ${numeroID}")
 
@@ -227,7 +300,7 @@ class MenuInicio : AppCompatActivity() {
                 "Origen" to origen,
                 "Prueba3" to otraPrueba
             )
-        )
+        )*/
     }
 
     fun verificar_id() {
