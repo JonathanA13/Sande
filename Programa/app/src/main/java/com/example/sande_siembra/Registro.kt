@@ -15,10 +15,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
+import com.example.sande_siembra.modelo.RegistroSiembra
+import com.example.sande_siembra.modelo.Siembra
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.MetadataChanges
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 
 
@@ -52,6 +55,7 @@ class Registro : AppCompatActivity() {
 
     var contador = 0
     var fechaGeneral = ""
+    var especieGeneral = ""
     var semanaGeneral = 0
     var bloqueGeneral = 0
     var valvulaGeneral = 0
@@ -64,6 +68,10 @@ class Registro : AppCompatActivity() {
         setContentView(R.layout.activity_registro)
         db.firestoreSettings = settings
 
+        //SQL Lite
+        val context = this
+        var db = AdminSQLiteOpenHelper(this@Registro, "SIEMBRA_BDD", null, 5)
+
         /*val fecha = fechaGeneral
         val semana = semanaGeneral
         val bloque = bloqueGeneral
@@ -74,6 +82,7 @@ class Registro : AppCompatActivity() {
 
         fechaGeneral = intent.getStringExtra("Fecha").toString()
         semanaGeneral = intent.getIntExtra("Semana",0)
+        especieGeneral = intent.getIntExtra("Especie",0).toString()
         bloqueGeneral = intent.getIntExtra("Bloque",0)
         valvulaGeneral = intent.getIntExtra("Valvula",0)
         fincaGeneral = intent.getStringExtra("Finca").toString()
@@ -246,7 +255,8 @@ class Registro : AppCompatActivity() {
 
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
-        btnGuardar.setOnClickListener{ obtener() }
+        //btnGuardar.setOnClickListener{ obtener() }
+        btnGuardar.setOnClickListener{ guardarSQLite()}
         btnOtroBloque.setOnClickListener { botonNuevoBloque() }
 
         btnCalcularBulbo.setOnClickListener{
@@ -653,6 +663,45 @@ class Registro : AppCompatActivity() {
         builder.create()*/
 
     }//fin obtener
+
+
+
+    fun guardarSQLite(){
+
+        val admin = AdminSQLiteOpenHelper(this@Registro, "SIEMBRA_BDD", null, 5)
+
+        val cama = editTxtCama.text.toString().toInt()
+        val variedad = cmbVariedad.selectedItem.toString()
+        //val especie = tvEspecie.text.toString()
+        val tipoSiembra = cmbTipoSiembra.selectedItem.toString()
+        val procedimiento = cmbProce.selectedItem.toString()
+        val prueba1 = cmbPruebas1.selectedItem.toString()
+        val prueba2 = cmbPruebas2.selectedItem.toString()
+        val fincaCabe = cmbFincaCabe.selectedItem.toString()
+        val semanaCabe = editTxtSemanaCabe.text.toString().toInt()
+        val bloqueCabe = editTxtBloqueCabe.text.toString().toInt()
+        val metros = editTxtMetros.text.toString().toInt()
+        val calibre = cmbCalibre.selectedItem.toString()
+        val bulbos = txtViewBulbos.text.toString().toInt()
+        val tamanioCama = cmbTamanioCama.selectedItem.toString()
+        val brote = cmbBrote.selectedItem.toString()
+        val origen = cmbOrigen.selectedItem.toString()
+        val otraPrueba = editTextPersonName.text.toString()
+        val especiePRUEBA= "CALLAS"
+
+        val siembra = RegistroSiembra(fechaGeneral,semanaGeneral, especiePRUEBA,fincaGeneral,bloqueGeneral,valvulaGeneral,ladoGeneral,etiquetaGeneral,cama,
+            procedimiento,tamanioCama,brote,tipoSiembra,origen,variedad,prueba1,prueba2,otraPrueba,semanaCabe,bloqueCabe,fincaCabe,metros,calibre,bulbos)
+
+        admin.addSiembra(siembra)
+        Toast.makeText(context, "Se guardo en SQL Lite", Toast.LENGTH_SHORT).show()
+
+    }
+
+
+
+
+
+
 
     fun verificar_id() {
         var contadorSecundario1 = 0
