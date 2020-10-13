@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
@@ -17,12 +18,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.sande_siembra.modelo.RegistroSiembra
 import com.example.sande_siembra.modelo.Siembra
+import com.example.sande_siembra.modelo.DatosSiembra
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.MetadataChanges
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
+import java.io.File
+import java.io.FileWriter
 
 
 class Registro : AppCompatActivity() {
@@ -62,11 +66,15 @@ class Registro : AppCompatActivity() {
     var fincaGeneral = ""
     var ladoGeneral = ""
     var etiquetaGeneral = ""
+    var listaDatosSiembra = arrayListOf<DatosSiembra>()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
         db.firestoreSettings = settings
+
 
         //SQL Lite
         val context = this
@@ -89,7 +97,7 @@ class Registro : AppCompatActivity() {
         ladoGeneral = intent.getStringExtra("Lado").toString()
         etiquetaGeneral = intent.getStringExtra("Etiqueta").toString()
 
-
+        listaDatosSiembra = ServicioBDDMemoria.listaDatosSiembra
 
         txtFechaRegistro.text = fechaGeneral.toString()
         txtSemanaRegistro.text = semanaGeneral.toString()
@@ -274,18 +282,6 @@ class Registro : AppCompatActivity() {
 
     }
 
-    fun isConnected() : Boolean {
-        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivity != null){
-            info = connectivity!!.activeNetworkInfo
-            if (info != null){
-                if(info!!.state == NetworkInfo.State.CONNECTED){
-                    return true
-                }
-            }
-        }
-        return false
-    }
 
     fun botonNuevoBloque(){
         val intentExplicito = Intent(
@@ -535,6 +531,51 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
+        ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
+            calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
+            bloqueGeneral,ladoGeneral,etiquetaGeneral)
+
+        //exportarCSV()
+
+        if (isConnected()){
+
+            verificar_id()
+            val numeroID = contador
+
+            Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+            db.collection("Prueba").document("${numeroID}").set(
+                hashMapOf("Fecha" to fechaGeneral,
+                    "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
+                    "Bloque" to bloqueGeneral,
+                    "Lado" to ladoGeneral,
+                    "Etiqueta" to etiquetaGeneral,
+                    "Cama" to cama,
+                    "Variedad" to variedad,
+                    "tipoSiembra" to tipoSiembra,
+                    "Procedimiento" to procedimiento,
+                    "Prueba1" to prueba1,
+                    "Prueba2" to prueba2,
+                    "FincaCabe" to  fincaCabe,
+                    "SemanaCabe" to semanaCabe,
+                    "BloqueCabe" to  bloqueCabe,
+                    "Metros" to metros,
+                    "Calibre" to calibre,
+                    "Bulbos" to bulbos,
+                    "TamanioCama" to tamanioCama,
+                    "Brote" to brote,
+                    "Origen" to origen,
+                    "Prueba3" to otraPrueba
+                )
+            )
+
+        } else {
+
+            exportarCSV()
+
+        //  Log.i("error", "No se tiene conexion a internet")
+        }
+
         /*val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
 
@@ -554,8 +595,8 @@ class Registro : AppCompatActivity() {
         val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true*/
 
 
-
-        verificar_id()
+    // AQUI COMIENZA LO QUE SI FUNCIONA *********************************************************************
+        /*verificar_id()
         val numeroID = contador
 
         Log.i("rece", "El id que se recibe es: ${numeroID}")
@@ -583,7 +624,9 @@ class Registro : AppCompatActivity() {
                 "Origen" to origen,
                 "Prueba3" to otraPrueba
             )
-        )
+        )*/
+                // Hasta aquí termina lo que si funciona
+
 
         /*db.collection("SiembraDatosSprint").add(
             hashMapOf("Cama" to cama,
@@ -706,7 +749,7 @@ class Registro : AppCompatActivity() {
     fun verificar_id() {
         var contadorSecundario1 = 0
         var numeros = arrayListOf<Int>()
-        /*db.collection("Prueba").get().addOnSuccessListener { resultado ->
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
             for (documento in resultado){
                 numeros.add(documento.id.toInt())
                 numeros.sort()
@@ -720,9 +763,9 @@ class Registro : AppCompatActivity() {
             }
             contador = contadorSecundario1
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
-        }*/
+        }
 
-        db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
+        /*db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
             if (e != null) {
             Log.i("error", "Listen error", e)
             return@addSnapshotListener
@@ -770,9 +813,113 @@ class Registro : AppCompatActivity() {
             }
 
 
+        }*/
+
+
+    }
+
+    fun exportarCSV() {
+        val carpeta = File(
+            Environment.getExternalStorageDirectory().toString() + "/ExportarDatosCSV"
+        )
+        val archivoAgenda = "${carpeta}/DatosSiembra.csv"
+        var isCreate = false
+        if (!carpeta.exists()) {
+            isCreate = carpeta.mkdir()
         }
+        try {
+            val fileWriter = FileWriter(archivoAgenda)
+            for (registro in listaDatosSiembra){
+                fileWriter.append(registro.fechaGeneral1)
+                fileWriter.append(",")
+                fileWriter.append("${registro.cama}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.prueba1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.prueba2}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.origen}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.variedad}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.tipoSiembra}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.fincaGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bloqueGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.tipoSiembra}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.procedimiento}")
+                fileWriter.append(",")
+                //val regis = "\"${registro.calibre}\""
+                fileWriter.append("${registro.calibre}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.semanaGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.metros}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bulbos}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.semanaCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bloqueCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.fincaCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.tamanioCama}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.brote}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.otraPrueba}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.valvulaGeneral}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.ladoGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.etiquetaGeneral1}")
+                fileWriter.append("\n")
 
+            }
 
+            /*val admin = AdminSQLiteOpenHelper(this@MainActivity, "dbSistema", null, 1)
+            val db: SQLiteDatabase = admin.getWritableDatabase()
+            val fila = db.rawQuery("select * from usuarios", null)
+            if (fila != null && fila.count != 0) {
+                fila.moveToFirst()
+                do {
+                    fileWriter.append(fila.getString(0))
+                    fileWriter.append(",")
+                    fileWriter.append(fila.getString(1))
+                    fileWriter.append(",")
+                    fileWriter.append(fila.getString(2))
+                    fileWriter.append("\n")
+                } while (fila.moveToNext())
+            } else {
+                Toast.makeText(this@MainActivity, "No hay registros.", Toast.LENGTH_LONG).show()
+            }
+            db.close()*/
+            fileWriter.close()
+            Toast.makeText(
+                this,
+                "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+                Toast.LENGTH_LONG
+            ).show()
+        } catch (e: Exception) {
+        }
+    }
+
+    fun isConnected() : Boolean {
+        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivity != null){
+            info = connectivity!!.activeNetworkInfo
+            if (info != null){
+                if(info!!.state == NetworkInfo.State.CONNECTED){
+                    return true
+                }
+            }
+        }
+        return false
     }
 
 
