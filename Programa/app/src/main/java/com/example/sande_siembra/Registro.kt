@@ -72,7 +72,7 @@ class Registro : AppCompatActivity() {
         db.firestoreSettings = settings
 
 
-        
+
 
         /*val fecha = fechaGeneral
         val semana = semanaGeneral
@@ -527,7 +527,46 @@ class Registro : AppCompatActivity() {
             calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
             bloqueGeneral,ladoGeneral,etiquetaGeneral)
 
-        exportarCSV()
+        //exportarCSV()
+
+        if (isConnected()){
+
+            verificar_id()
+            val numeroID = contador
+
+            Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+            db.collection("Prueba").document("${numeroID}").set(
+                hashMapOf("Fecha" to fechaGeneral,
+                    "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
+                    "Bloque" to bloqueGeneral,
+                    "Lado" to ladoGeneral,
+                    "Etiqueta" to etiquetaGeneral,
+                    "Cama" to cama,
+                    "Variedad" to variedad,
+                    "tipoSiembra" to tipoSiembra,
+                    "Procedimiento" to procedimiento,
+                    "Prueba1" to prueba1,
+                    "Prueba2" to prueba2,
+                    "FincaCabe" to  fincaCabe,
+                    "SemanaCabe" to semanaCabe,
+                    "BloqueCabe" to  bloqueCabe,
+                    "Metros" to metros,
+                    "Calibre" to calibre,
+                    "Bulbos" to bulbos,
+                    "TamanioCama" to tamanioCama,
+                    "Brote" to brote,
+                    "Origen" to origen,
+                    "Prueba3" to otraPrueba
+                )
+            )
+
+        } else {
+
+            exportarCSV()
+
+        //  Log.i("error", "No se tiene conexion a internet")
+        }
 
         /*val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
@@ -663,7 +702,7 @@ class Registro : AppCompatActivity() {
     fun verificar_id() {
         var contadorSecundario1 = 0
         var numeros = arrayListOf<Int>()
-        /*db.collection("Prueba").get().addOnSuccessListener { resultado ->
+        db.collection("Prueba").get().addOnSuccessListener { resultado ->
             for (documento in resultado){
                 numeros.add(documento.id.toInt())
                 numeros.sort()
@@ -677,9 +716,9 @@ class Registro : AppCompatActivity() {
             }
             contador = contadorSecundario1
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
-        }*/
+        }
 
-        db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
+        /*db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
             if (e != null) {
             Log.i("error", "Listen error", e)
             return@addSnapshotListener
@@ -727,7 +766,7 @@ class Registro : AppCompatActivity() {
             }
 
 
-        }
+        }*/
 
 
     }
