@@ -90,7 +90,7 @@ class Registro : AppCompatActivity() {
 
         fechaGeneral = intent.getStringExtra("Fecha").toString()
         semanaGeneral = intent.getIntExtra("Semana",0)
-        especieGeneral = intent.getIntExtra("Especie",0).toString()
+        especieGeneral = intent.getStringExtra("Especie").toString()
         bloqueGeneral = intent.getIntExtra("Bloque",0)
         valvulaGeneral = intent.getIntExtra("Valvula",0)
         fincaGeneral = intent.getStringExtra("Finca").toString()
@@ -733,11 +733,23 @@ class Registro : AppCompatActivity() {
         val otraPrueba = editTextPersonName.text.toString()
         val especiePRUEBA= "CALLAS"
 
-        val siembra = RegistroSiembra(fechaGeneral,semanaGeneral, especiePRUEBA,fincaGeneral,bloqueGeneral,valvulaGeneral,ladoGeneral,etiquetaGeneral,cama,
+        val siembra = RegistroSiembra(fechaGeneral,semanaGeneral, especieGeneral,fincaGeneral,bloqueGeneral,valvulaGeneral,ladoGeneral,etiquetaGeneral,cama,
             procedimiento,tamanioCama,brote,tipoSiembra,origen,variedad,prueba1,prueba2,otraPrueba,semanaCabe,bloqueCabe,fincaCabe,metros,calibre,bulbos)
 
         admin.addSiembra(siembra)
         Toast.makeText(context, "Se guardo en SQL Lite", Toast.LENGTH_SHORT).show()
+
+
+        val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCorrect))
+        with(builder)
+        {
+            setTitle("CORRECTO")
+            setMessage("El dato se guardó exitosamente")
+            builder.setPositiveButton("OK") { dialogInterface, i ->
+                Log.i("Pantalla", "aceptar")
+            }
+            show()
+        }
 
     }
 
