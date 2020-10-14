@@ -19,6 +19,7 @@ class RecyclerAdapter (
 
     interface OnDatosSiembraClickListener{
         fun onItemClick(
+            position: Int,
             valvulaGeneral: Int,
             semanaGeneral1: Int,
             semanaCabe: Int
@@ -42,7 +43,7 @@ class RecyclerAdapter (
 
     inner class DatosSiembraViewHolder(itemView: View): BaseViewHolder<DatosSiembra>(itemView){
         override fun bind(item: DatosSiembra, position: Int) {
-            itemView.setOnClickListener{ itemClickListener.onItemClick(item.valvulaGeneral, item.semanaGeneral1, item.semanaCabe)}
+            itemView.setOnClickListener{ itemClickListener.onItemClick(position, item.valvulaGeneral, item.semanaGeneral1, item.semanaCabe)}
             itemView.txt_val.text = item.fechaGeneral1
             itemView.txt_blo.text = item.cama.toString()
         }
