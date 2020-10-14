@@ -72,10 +72,20 @@ class MainEspecie : AppCompatActivity() {
 
 
 
-        val intentExplicito = Intent(this, MenuInicio::class.java)
+
+        //val intentExplicito = Intent(this, MenuInicio::class.java)
+
+        //exportarCSV()
+        /*val intentExplicito = Intent(this, MenuInicio::class.java)
+
         val datolirio = "LIRIOS"
         intentExplicito.putExtra("especie", datolirio )
-        startActivity(intentExplicito)
+        startActivity(intentExplicito)*/
+        val intent = Intent(
+            this,
+            Datos::class.java
+        )
+        startActivity(intent)
 
     }
 
@@ -122,6 +132,77 @@ class MainEspecie : AppCompatActivity() {
     }
 
 
+
+    /*fun exportarCSV() {
+        val calendar = Calendar.getInstance()
+        val currentDate: String =
+            DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+        val currentDate1: String =
+            DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.time)
+        Log.i("fecha", currentDate1)
+        val fecha= currentDate
+        val carpeta = File(
+            Environment.getExternalStorageDirectory().toString() + "/ExportarSQLiteCSV"
+        )
+        val archivoAgenda = "$carpeta/Usuarios"+"$fecha"+".csv"
+
+        var isCreate = false
+        if (!carpeta.exists()) {
+            isCreate = carpeta.mkdir()
+        }
+        try {
+            val fileWriter = FileWriter(archivoAgenda)
+            fileWriter.append("prueba1")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+            fileWriter.append(",")
+            fileWriter.append("prueba2")
+
+            fileWriter.close()
+            Toast.makeText(
+                this@MainEspecie,
+                "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+                Toast.LENGTH_LONG
+            ).show()
+        } catch (e: Exception) {
+        }
+    }*/
 
 
 
