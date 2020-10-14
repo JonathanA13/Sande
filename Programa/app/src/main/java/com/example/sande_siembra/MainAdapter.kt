@@ -34,6 +34,7 @@ class MainAdapter (private val context:Context): RecyclerView.Adapter<MainAdapte
         } else{
             0
         }
+
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
