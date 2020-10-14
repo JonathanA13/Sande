@@ -74,10 +74,15 @@ class MainEspecie : AppCompatActivity() {
 
 
         //exportarCSV()
-        val intentExplicito = Intent(this, MenuInicio::class.java)
+        /*val intentExplicito = Intent(this, MenuInicio::class.java)
         val datolirio = "LIRIOS"
         intentExplicito.putExtra("especie", datolirio )
-        startActivity(intentExplicito)
+        startActivity(intentExplicito)*/
+        val intent = Intent(
+            this,
+            Datos::class.java
+        )
+        startActivity(intent)
 
     }
 
