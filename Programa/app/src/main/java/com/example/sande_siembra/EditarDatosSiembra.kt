@@ -38,14 +38,13 @@ class EditarDatosSiembra : AppCompatActivity() {
         val origenRecepcion = intent.getStringExtra("Origen")
         val prueba1Recepcion = intent.getStringExtra("Prueba1")
         val prueba2Recepcion = intent.getStringExtra("Prueba2")
-        val pruebaAdicionalRecepcion = intent.getStringExtra("OtraPrueba")
         val fincaCabeRecepcion = intent.getStringExtra("FincaCabe")
         val calibreRecepcion = intent.getStringExtra("Calibre")
+        val etiqueta = intent.getStringExtra("Etiqueta")
 
         if (tamanioCamaRecepcion != null && siembraRecepcion != null && variedadRecepcion != null && procedimientoRecepcion != null && broteRecepcion != null &&
-            origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && pruebaAdicionalRecepcion != null && fincaCabeRecepcion != null &&
-            calibreRecepcion != null
-        ) {
+            origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && fincaCabeRecepcion != null &&
+            calibreRecepcion != null && etiqueta != null) {
             llenarSpinners(
                 tamanioCamaRecepcion,
                 siembraRecepcion,
@@ -55,11 +54,13 @@ class EditarDatosSiembra : AppCompatActivity() {
                 origenRecepcion,
                 prueba1Recepcion,
                 prueba2Recepcion,
-                pruebaAdicionalRecepcion,
                 fincaCabeRecepcion,
-                calibreRecepcion
+                calibreRecepcion,
+                etiqueta
             )
         }
+
+        btnEditar.setOnClickListener{ camposEditar() }
 
     }
 
@@ -72,9 +73,9 @@ class EditarDatosSiembra : AppCompatActivity() {
         RorigenRecepcion: String,
         Rprueba1Recepcion: String,
         Rprueba2Recepcion: String,
-        RpruebaAdicionalRecepcion: String,
         RfincaCabeRecepcion: String,
-        RcalibreRecepcion: String
+        RcalibreRecepcion: String,
+        etiqueta: String
     ) {
 
         val tamanioCama = arrayOf("0.9 mts", "1.20 mts")
@@ -110,10 +111,78 @@ class EditarDatosSiembra : AppCompatActivity() {
         spinnerVariedad.setSelection(spinnerPosicion3)
 
 
+        val pl_proce = arrayOf("AF","AF-AF","af-af","HOLANDA","PL")
+        val spinnerProcedimiento: Spinner = findViewById(R.id.spinnerProce)
+        val adaptador4 = ArrayAdapter<Any?>(this, R.layout.size2, pl_proce)
+        spinnerProcedimiento.setAdapter(adaptador4)
+        val spinnerPosicion4 = adaptador4.getPosition(RprocedimientoRecepcion)
+        spinnerProcedimiento.setSelection(spinnerPosicion4)
 
-        
+
+        val Brote = arrayOf("Entero con brote","Brote grande","Brote pequeño")
+        val spinnerBrote: Spinner = findViewById(R.id.spinnerBrote)
+        val adaptador5 = ArrayAdapter<Any?>(this, R.layout.size2, Brote)
+        spinnerBrote.setAdapter(adaptador5)
+        val spinnerPosicion5 = adaptador5.getPosition(RbroteRecepcion)
+        spinnerBrote.setSelection(spinnerPosicion5)
 
 
+        val Origen = arrayOf("NACIONAL","HOL-19","HOL-20", "HOLANDA")
+        val spinnerOrigen: Spinner = findViewById(R.id.spinnerOrigen)
+        val adaptador6 = ArrayAdapter<Any?>(this, R.layout.size2, Origen)
+        spinnerOrigen.setAdapter(adaptador6)
+        val spinnerPosicion6 = adaptador6.getPosition(RorigenRecepcion)
+        spinnerOrigen.setSelection(spinnerPosicion6)
+
+
+        val prueba1 = arrayOf("NINGUNA", "PRUEBA A", "PRUEBA B", "PRUEBA C", "PRUEBA D",
+            "PRUEBA E", "PRUEBA FERTILIZACION VALVULA 4", "PRUEBA FERTILIZACION VALVULA 5", "TINAS")
+        val spinnerPrueba1: Spinner = findViewById(R.id.spinnerPruebas1)
+        val adaptador7 = ArrayAdapter<Any?>(this, R.layout.size2, prueba1)
+        spinnerPrueba1.setAdapter(adaptador7)
+        val spinnerPosicion7 = adaptador7.getPosition(Rprueba1Recepcion)
+        spinnerPrueba1.setSelection(spinnerPosicion7)
+
+
+        val prueba2 = arrayOf("NINGUNA", "ABIERTOS CON LA MANO", "BACTERIAS PLUS ORGANIC", "CRUZAMIENTOS",
+            "MARCADOR 56", "MARCADOR 68", "PRUEBA DESINFECCION", "PRUEBA DOBLE AG3", "PRUEBA ONTSMET",
+            "PRUEBA PRESIEMBRA ACTUAL", "PRUEBA PRESIEMBRA ACTUAL VAPORIZADA", "PRUEBA PRESIEMBRA ANTERIOR",
+            "PRUEBA PRESIEMBRA ANTERIOR SIN VAPORIZAR", "SIN REVISAR ASIENTOS", "SIN VAPORIZAR", "TESTIGO",
+            "TESTIGO DESINFECCION", "VAPORIZADA")
+        val spinnerPrueba2: Spinner = findViewById(R.id.spinnerPruebas2)
+        val adaptador8 = ArrayAdapter<Any?>(this, R.layout.size2, prueba2)
+        spinnerPrueba2.setAdapter(adaptador8)
+        val spinnerPosicion8 = adaptador8.getPosition(Rprueba2Recepcion)
+        spinnerPrueba2.setSelection(spinnerPosicion8)
+
+
+        val finca = arrayOf("S2", "S4")
+        val spinnerFincaCabe: Spinner = findViewById(R.id.spinnerFincaCabe)
+        val adapter9 = ArrayAdapter<Any?>(this, R.layout.size2, finca)
+        spinnerFincaCabe.setAdapter(adapter9)
+        val spinnerPosicion9 = adapter9.getPosition(RfincaCabeRecepcion)
+        spinnerFincaCabe.setSelection(spinnerPosicion9)
+
+
+        if(etiqueta.equals("Flores")){
+            val calibre = arrayOf("9/12","12/15","15/18","18/20","20/26","26+")
+            val spinnerCalibre: Spinner = findViewById(R.id.spinnerCalibre)
+            val adaptador10 = ArrayAdapter<Any?>(this, R.layout.size2, calibre)
+            spinnerCalibre.setAdapter(adaptador10)
+            val spinnerPosicion10 = adaptador10.getPosition(RcalibreRecepcion)
+            spinnerCalibre.setSelection(spinnerPosicion10)
+        } else {
+            val calibreBulbos = arrayOf("0/4","4/6","6/9","9/12")
+            val spinnerCalibre: Spinner = findViewById(R.id.spinnerCalibre)
+            val adaptador10 = ArrayAdapter<Any?>(this, R.layout.size2, calibreBulbos)
+            spinnerCalibre.setAdapter(adaptador10)
+            val spinnerPosicion10 = adaptador10.getPosition(RcalibreRecepcion)
+            spinnerCalibre.setSelection(spinnerPosicion10)
+        }
+
+    }
+
+    fun camposEditar(){
 
     }
 
