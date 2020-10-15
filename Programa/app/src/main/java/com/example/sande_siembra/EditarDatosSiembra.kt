@@ -2,11 +2,20 @@ package com.example.sande_siembra
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.android.synthetic.main.activity_editar_datos_siembra.*
 
-class EditarDatosSiembra : AppCompatActivity() {
+class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_datos_siembra)
@@ -41,6 +50,7 @@ class EditarDatosSiembra : AppCompatActivity() {
         val fincaCabeRecepcion = intent.getStringExtra("FincaCabe")
         val calibreRecepcion = intent.getStringExtra("Calibre")
         val etiqueta = intent.getStringExtra("Etiqueta")
+        tv_BulbosCalcular.text = intent.getIntExtra("Bulbos",0).toString()
 
         if (tamanioCamaRecepcion != null && siembraRecepcion != null && variedadRecepcion != null && procedimientoRecepcion != null && broteRecepcion != null &&
             origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && fincaCabeRecepcion != null &&
@@ -61,6 +71,103 @@ class EditarDatosSiembra : AppCompatActivity() {
         }
 
         btnEditar.setOnClickListener{ camposEditar() }
+        btnCalcularBulbos.isEnabled = false
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        et_Metros.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                Log.i("Estado", "El valor editado antes es: ${et_Metros.hint}")
+            }
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+                if (!s.toString().trim().isEmpty())
+                {
+                    btnCalcularBulbos.isEnabled= true
+                    Log.i("Estado", "Entra aquí 1")
+                    Log.i("Estado", "El valor editado es: ${et_Metros.text}")
+                }
+                else
+                {
+                    btnCalcularBulbos.isEnabled=false
+                    Log.i("Estado", "Entra aquí 2")
+                    Log.i("Estado", "El valor oculto es: ${et_Metros.hint}")
+                }
+            }
+        })
+
+
+        spinnerCalibre.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                
+            }
+
+        })
+
+
+
+
+
+        /*cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
+override fun onItemSelected(
+parentView: AdapterView<*>?,
+selectedItemView: View,
+position: Int,
+id: Long
+) {
+
+posicion = cmbCalibre.getItemAtPosition(position).toString()
+Log.i("Probar", posicion)
+
+if( posicion.equals("0/4") ){
+txtViewBulbos.setText("no hay mts")
+if(editTxtMetros.text.toString()==""){
+txtViewBulbos.setText("cmb-vacios")
+}
+else{
+txtViewBulbos.setText("cmb-hay metros")
+}
+
+
+} else if (posicion.equals("4/6")){
+txtViewBulbos.setText("imprim 4/6")
+}
+
+
+
+
+/*if( posicion.equals("0/4") ){
+txtViewBulbos.setText("Prueba de 0/4")
+} else if (posicion.equals("4/6")){
+txtViewBulbos.setText("Prueba de 4/6")
+} else if (posicion.equals("6/9")){
+txtViewBulbos.setText(" ")
+}*/
+txtViewBulbos.setText(posicion)
+}
+
+override fun onNothingSelected(parentView: AdapterView<*>?) {
+if(editTxtMetros.text.toString()==""){
+txtViewBulbos.text="verificar"
+
+
+}
+// your code here
+}
+})*/
 
     }
 
@@ -183,8 +290,65 @@ class EditarDatosSiembra : AppCompatActivity() {
     }
 
     fun camposEditar(){
+        val camaEditar: Int
+        if( et_Cama.length() == 0){
+            camaEditar = et_Cama.hint.toString().toInt()
+            Log.i("editar","La edicion es: ${camaEditar}")
+        } else {
+            camaEditar = et_Cama.text.toString().toInt()
+            Log.i("editar","La edicion es: ${camaEditar}")
+        }
+
+        val tamanioCamaEditar = spinnerTamanioCama.selectedItem.toString()
+        Log.i("editar","La edicion es: ${tamanioCamaEditar}")
+        val tipoSiembraEditar = spinnerTipoSiembra.selectedItem.toString()
+        val variedadEditar = spinnerVariedad.selectedItem.toString()
+        val procedimientoEditar = spinnerProce.selectedItem.toString()
+        val broteEditar = spinnerBrote.selectedItem.toString()
+        val origenEditar = spinnerOrigen.selectedItem.toString()
+        Log.i("editar","La edicion es: ${origenEditar}")
+        val prueba1Editar = spinnerPruebas1.selectedItem.toString()
+        val prueba2Editar = spinnerPruebas2.selectedItem.toString()
+
+        val otraPruebaEditar: String
+        if( et_OtraPrueba.length() == 0){
+            otraPruebaEditar = et_OtraPrueba.hint.toString()
+        } else {
+            otraPruebaEditar = et_OtraPrueba.text.toString()
+        }
+
+        val semanaCabeEditar: Int
+        if( et_SemanaCabe.length() == 0){
+            semanaCabeEditar = et_SemanaCabe.hint.toString().toInt()
+        } else {
+            semanaCabeEditar = et_SemanaCabe.text.toString().toInt()
+        }
+
+        val bloqueCabe: Int
+        if( et_BloqueCabe.length() == 0){
+            bloqueCabe = et_BloqueCabe.hint.toString().toInt()
+        } else {
+            bloqueCabe = et_BloqueCabe.text.toString().toInt()
+        }
+
+        val fincaCabeEditar = spinnerFincaCabe.selectedItem.toString()
+
+        val metrosEditar: Int
+        if (et_Metros.length() == 0){
+            metrosEditar = et_Metros.hint.toString().toInt()
+            Log.i("editar","La edicion es: ${metrosEditar}")
+        } else {
+            metrosEditar = et_Metros.text.toString().toInt()
+            Log.i("editar","La edicion es: ${metrosEditar}")
+        }
+
+        val calibreEditar = spinnerCalibre.selectedItem.toString()
+
+
 
     }
+
+
 
 }
 
@@ -196,3 +360,72 @@ class EditarDatosSiembra : AppCompatActivity() {
     contadorTamanioCama = contadorTamanioCama + 1
 }*/
 //tamanioCama.
+
+/*if (!spinnerTamanioCama.selectedItem.toString().equals("1.20 mts")){
+            tamanioCamaEditar = spinnerTamanioCama.selectedItem.toString()
+            Log.i("editar","La edicion es: ${tamanioCamaEditar}")
+        } else {
+            tamanioCamaEditar = spinnerTamanioCama.selectedItem.toString()
+            Log.i("editar","La edicion es: ${tamanioCamaEditar}")
+        }*/
+
+
+
+
+/*override fun onResume() {
+        super.onResume()
+        Log.i("Activity","OnResume")
+
+        verificar()
+
+        /*btnCalcularBulbos.isEnabled = false
+        val metrosAntiguo = intent.getIntExtra("Metros",0).toString()
+        val metrosEditar: Int
+        if (et_Metros.length() > 0 ){
+
+            metrosEditar = et_Metros.text.toString().toInt()
+            if (metrosEditar.equals(metrosAntiguo)){
+                Log.i("cambio", "El valor es el mismo")
+            } else {
+                btnCalcularBulbos.isEnabled = true
+                Log.i("cambio","La edicion con editar es: ${metrosEditar}")
+            }
+
+            /*metrosEditar = et_Metros.hint.toString().toInt()
+            Log.i("cambio","La edicion sin editar es: ${metrosEditar}")*/
+        }*/ /*else {
+            metrosEditar = et_Metros.text.toString().toInt()
+            if (metrosEditar.equals(metrosAntiguo)){
+                Log.i("cambio", "El valor es el mismo")
+            } else {
+                btnCalcularBulbos.isEnabled = true
+                Log.i("cambio","La edicion con editar es: ${metrosEditar}")
+            }
+        }*/
+        //onResume()
+
+    }*/
+
+/*@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+fun verificar(){
+    btnCalcularBulbos.isEnabled = false
+    val metrosAntiguo = intent.getIntExtra("Metros",0).toString()
+    val metrosEditar: Int
+    if (et_Metros.length() > 0 ){
+
+        metrosEditar = et_Metros.text.toString().toInt()
+        if (metrosEditar.equals(metrosAntiguo)){
+            Log.i("cambio", "El valor es el mismo")
+        } else {
+            btnCalcularBulbos.isEnabled = true
+            Log.i("cambio","La edicion con editar es: ${metrosEditar}")
+        }
+
+        /*metrosEditar = et_Metros.hint.toString().toInt()
+        Log.i("cambio","La edicion sin editar es: ${metrosEditar}")*/
+    }
+}*/
+
+/*fun verificar(){
+
+}*/
