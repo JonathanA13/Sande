@@ -128,7 +128,7 @@ class MenuInicio : AppCompatActivity() {
         val intent = Intent(
             this,
             //Datos::class.java
-            activity_sql_recycler::class.java
+            SQL_activity_sql_recycler::class.java
 
         )
         startActivity(intent)

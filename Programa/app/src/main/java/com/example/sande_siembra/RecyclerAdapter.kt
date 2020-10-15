@@ -70,7 +70,7 @@ class RecyclerAdapter(
     inner class DatosSiembraViewHolder(itemView: View) : BaseViewHolder<DatosSiembra>(itemView) {
         override fun bind(item: DatosSiembra, position: Int) {
 
-        
+
             //solo los que presenta en la pantalla
 
             itemView.setOnClickListener {
