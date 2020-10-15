@@ -2,18 +2,14 @@ package com.example.sande_siembra
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class activity_sql_recycler : AppCompatActivity() {
+class SQL_activity_sql_recycler : AppCompatActivity() {
     //private lateinit var dataBase: SqliteDatabase
     val context = this
     //val dataBase = SqliteDatabase(context)
@@ -35,7 +31,7 @@ class activity_sql_recycler : AppCompatActivity() {
          autoTextView.setAdapter(adapter)*/
 
 
-        val admin = AdminSQLiteOpenHelper(this@activity_sql_recycler, "SIEMBRA_BDD", null, 5)
+        val admin = AdminSQLiteOpenHelper(this@SQL_activity_sql_recycler, "SIEMBRA_BDD", null, 5)
         val contactView: RecyclerView = findViewById(R.id.myContactList)
         val linearLayoutManager = LinearLayoutManager(this)
         contactView.layoutManager = linearLayoutManager
