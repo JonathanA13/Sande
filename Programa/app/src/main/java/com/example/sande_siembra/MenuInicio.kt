@@ -1,7 +1,6 @@
 package com.example.sande_siembra
 
 import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -15,12 +14,8 @@ import com.example.sande_siembra.modelo.SincronizacionDatosSiembra
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_menu_inicio.*
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStreamWriter
 
 
 class MenuInicio : AppCompatActivity() {
@@ -71,7 +66,7 @@ class MenuInicio : AppCompatActivity() {
         btnNuevo.setOnClickListener { botonNuevo() }
         //btn_sincro.setOnClickListener{ createXlsx(fout, "guardar") }
         //button2.setOnClickListener{ mostrarDialogoBasico() }
-        button2.setOnClickListener{ irLista() }
+        btnMostrar.setOnClickListener{ irLista() }
 
         /*if (!isConnected()){
             btn_sincro.isEnabled = false
@@ -132,7 +127,9 @@ class MenuInicio : AppCompatActivity() {
     fun irLista(){
         val intent = Intent(
             this,
-            Datos::class.java
+            //Datos::class.java
+            activity_sql_recycler::class.java
+
         )
         startActivity(intent)
     }
