@@ -9,7 +9,7 @@ import com.example.sande_siembra.base.BaseViewHolder
 import com.example.sande_siembra.modelo.DatosSiembra
 import kotlinx.android.synthetic.main.item_row.view.*
 
-class RecyclerAdapter (
+class RecyclerAdapter(
     private val context: Context,
     private val listaDatosSiembra: List<DatosSiembra>,
     private val itemClickListener: OnDatosSiembraClickListener
@@ -17,16 +17,39 @@ class RecyclerAdapter (
     //private val itemClickListener: OnComprasClickListener
 ) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
-    interface OnDatosSiembraClickListener{
+    interface OnDatosSiembraClickListener {
         fun onItemClick(
-            valvulaGeneral: Int,
+            position: Int,
+            cama: Int,
+            variedad: String,
+            tipoSiembra: String,
+            procedimiento: String,
+            prueba1: String,
+            prueba2: String,
+            fincaCabe: String,
+            semanaCabe: Int,
+            bloqueCabe: Int,
+            metros: Int,
+            calibre: String,
+            bulbos: Int,
+            tamanioCama: String,
+            brote: String,
+            origen: String,
+            otraPrueba: String,
+            fechaGeneral1: String,
             semanaGeneral1: Int,
-            semanaCabe: Int
+            fincaGeneral1: String,
+            valvulaGeneral: Int,
+            bloqueGeneral1: Int,
+            ladoGeneral1: String,
+            etiquetaGeneral1: String
         )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
-        return DatosSiembraViewHolder(LayoutInflater.from(context).inflate(R.layout.item_row,parent,false))
+        return DatosSiembraViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_row, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -34,17 +57,43 @@ class RecyclerAdapter (
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        when(holder){
-            is DatosSiembraViewHolder -> holder.bind(listaDatosSiembra[position],position)
+        when (holder) {
+            is DatosSiembraViewHolder -> holder.bind(listaDatosSiembra[position], position)
             else -> throw IllegalArgumentException("El path es equivocado")
         }
     }
 
-    inner class DatosSiembraViewHolder(itemView: View): BaseViewHolder<DatosSiembra>(itemView){
+    inner class DatosSiembraViewHolder(itemView: View) : BaseViewHolder<DatosSiembra>(itemView) {
         override fun bind(item: DatosSiembra, position: Int) {
-            itemView.setOnClickListener{ itemClickListener.onItemClick(item.valvulaGeneral, item.semanaGeneral1, item.semanaCabe)}
+            itemView.setOnClickListener {
+                itemClickListener.onItemClick(
+                    position, item.cama, item.variedad,
+                    item.tipoSiembra,
+                    item.procedimiento,
+                    item.prueba1,
+                    item.prueba2,
+                    item.fincaCabe,
+                    item.semanaCabe,
+                    item.bloqueCabe,
+                    item.metros,
+                    item.calibre,
+                    item.bulbos,
+                    item.tamanioCama,
+                    item.brote,
+                    item.origen,
+                    item.otraPrueba,
+                    item.fechaGeneral1,
+                    item.semanaGeneral1,
+                    item.fincaGeneral1,
+                    item.valvulaGeneral,
+                    item.bloqueGeneral1,
+                    item.ladoGeneral1,
+                    item.etiquetaGeneral1
+                )
+            }
             itemView.txt_val.text = item.fechaGeneral1
             itemView.txt_blo.text = item.cama.toString()
+
         }
     }
 }
