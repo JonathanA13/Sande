@@ -1,7 +1,6 @@
 package com.example.sande_siembra
 
 import android.Manifest
-import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
@@ -9,7 +8,6 @@ import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -73,8 +71,13 @@ class MainEspecie : AppCompatActivity() {
     fun Lirios(){
 
 
+
+
+        //val intentExplicito = Intent(this, MenuInicio::class.java)
+
         //exportarCSV()
         /*val intentExplicito = Intent(this, MenuInicio::class.java)
+
         val datolirio = "LIRIOS"
         intentExplicito.putExtra("especie", datolirio )
         startActivity(intentExplicito)*/
@@ -127,6 +130,7 @@ class MainEspecie : AppCompatActivity() {
             )
         }
     }
+
 
 
     /*fun exportarCSV() {
@@ -201,21 +205,33 @@ class MainEspecie : AppCompatActivity() {
     }*/
 
 
+
     fun exportarCSVBDD() {
+
+        val cal = Calendar.getInstance()
+        val year=cal[Calendar.YEAR]
+        val month= cal[Calendar.MONTH]+1
+        val day=cal[Calendar.DATE]
+        Log.i("month", month.toString())
+
+        val calendar = Calendar.getInstance()
+        val currentDate: String = DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+
         val carpeta = File(
             Environment.getExternalStorageDirectory().toString() + "/ExportarSiembraSQLiteCSV"
         )
-        val archivoAgenda = "$carpeta/SiembraRegistros.csv"
+        val archivoAgenda = "$carpeta/SiembraRegistros"+year+month+day+".csv"
         var isCreate = false
         if (!carpeta.exists()) {
             isCreate = carpeta.mkdir()
         }
         try {
+
             val fileWriter = FileWriter(archivoAgenda)
             val admin =
                 AdminSQLiteOpenHelper(this@MainEspecie, "SIEMBRA_BDD", null, 5)
             val db = admin.writableDatabase
-            val fila = db.rawQuery("select * from SIEMBRA_TABLE", null)
+            val fila = db.rawQuery("select * from SIEMBRA_TABLE where DATE"+"='"+currentDate+"'", null)
             if (fila != null && fila.count != 0) {
                 fila.moveToFirst()
                 do {
