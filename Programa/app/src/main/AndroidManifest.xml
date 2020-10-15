@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditarDatosSiembra"></activity>
+        <activity android:name=".activity_sql_recycler"></activity>
+        <activity android:name=".EditarDatosSiembra" />
         <activity android:name=".MainEspecie">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Datos" />
-        <activity android:name=".MenuInicio"></activity>
+        <activity android:name=".MenuInicio" />
         <activity android:name=".Registro" />
         <activity android:name=".MainActivity" />
     </application>

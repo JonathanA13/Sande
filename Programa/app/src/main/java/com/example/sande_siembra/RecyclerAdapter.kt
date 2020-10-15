@@ -17,6 +17,7 @@ class RecyclerAdapter (
     //private val itemClickListener: OnComprasClickListener
 ) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
+    //todos los parametros asi no se presenten
     interface OnDatosSiembraClickListener{
         fun onItemClick(
             valvulaGeneral: Int,
@@ -43,6 +44,7 @@ class RecyclerAdapter (
     inner class DatosSiembraViewHolder(itemView: View): BaseViewHolder<DatosSiembra>(itemView){
         override fun bind(item: DatosSiembra, position: Int) {
             itemView.setOnClickListener{ itemClickListener.onItemClick(item.valvulaGeneral, item.semanaGeneral1, item.semanaCabe)}
+            //solo los que presenta en la pantalla
             itemView.txt_val.text = item.fechaGeneral1
             itemView.txt_blo.text = item.cama.toString()
         }
