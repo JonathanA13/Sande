@@ -80,27 +80,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_FechaRegistro"
+                    android:id="@+id/tv_FechaGeneral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="29/09/2020"
-                    android:text="29/09/2020"
                     android:textColor="#000"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/tv_SemanaRegistro"
+                    android:id="@+id/tv_SemanaGeneral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="38"
                     android:textColor="#000"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/tv_ViewFincaSiembra"
+                    android:id="@+id/tv_FincaGeneral"
                     android:layout_width="116dp"
                     android:layout_height="wrap_content"
-                    android:text="FINCA"
                     android:textColor="#000"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -143,21 +139,19 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_BloqueRegistro"
+                    android:id="@+id/tv_BloqueGeneral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFEB3B"
-                    android:text="108"
                     android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_valvula"
+                    android:id="@+id/tv_ValvulaGeneral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFEB3B"
-                    android:text="5"
                     android:textColor="#000"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -282,6 +276,7 @@
                 android:layout_width="139dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number"
                 android:textColor="#000"
                 android:textSize="22sp" />
@@ -481,9 +476,8 @@
             android:layout_width="430dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textAlignment="center"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Ninguna"
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>
@@ -544,6 +538,7 @@
                     android:layout_width="96dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:textAlignment="center"
                     android:inputType="number"
                     android:textColor="#000"
                     android:textSize="22sp" />
@@ -570,6 +565,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number"
+                    android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="22sp" />
 
@@ -633,6 +629,7 @@
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textAlignment="center"
                 android:inputType="number|numberDecimal"
                 android:textColor="#000"
                 android:textSize="25sp" />

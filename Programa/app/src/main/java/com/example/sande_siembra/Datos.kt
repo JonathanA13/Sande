@@ -4,10 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sande_siembra.modelo.DatosSiembra
@@ -111,7 +107,11 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
         recyclerView.adapter = RecyclerAdapter(this, listaDatosSiembra, this)
     }
 
-    override fun onItemClick(position: Int, valvulaGeneral: Int, semanaGeneral1: Int, semanaCabe: Int) {
+    override fun onItemClick(position: Int, cama: Int, variedad: String, tipoSiembra: String, procedimiento: String, prueba1: String,
+                             prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
+                             bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
+                             semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
+                             etiquetaGeneral1: String) {
         Log.i("click", "La posicion que eligió es: ${position}")
         Log.i("click", "Lo que eligio es: ${valvulaGeneral}, ${semanaGeneral1}, ${semanaCabe}")
 
@@ -119,9 +119,31 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             this,
             EditarDatosSiembra::class.java
         )
+        intent.putExtra("posicion",position)
+        intent.putExtra("Fecha", fechaGeneral1 )
+        intent.putExtra("Semana", semanaGeneral1)
+        intent.putExtra("Bloque", bloqueGeneral1)
+        intent.putExtra("Valvula", valvulaGeneral)
+        intent.putExtra("Finca", fincaGeneral1)
+        intent.putExtra("Lado", ladoGeneral1)
+        intent.putExtra("Etiqueta", etiquetaGeneral1)
+        intent.putExtra("Cama", cama)
+        intent.putExtra("Variedad", variedad)
+        intent.putExtra("TipoSiembra",tipoSiembra)
+        intent.putExtra("Procedimiento", procedimiento)
+        intent.putExtra("Prueba1", prueba1)
+        intent.putExtra("Prueba2", prueba2)
+        intent.putExtra("FincaCabe", fincaCabe)
+        intent.putExtra("SemanaCabe", semanaCabe)
+        intent.putExtra("BloqueCabe", bloqueCabe)
+        intent.putExtra("Metros", metros)
+        intent.putExtra("Calibre", calibre)
+        intent.putExtra("Bulbos", bulbos)
+        intent.putExtra("TamanioCama", tamanioCama)
+        intent.putExtra("Brote", brote)
+        intent.putExtra("Origen", origen)
+        intent.putExtra("OtraPrueba", otraPrueba)
         startActivity(intent)
-
-
     }
 
 
