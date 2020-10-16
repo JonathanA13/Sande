@@ -131,13 +131,10 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             ) {
                 if (spinnerCalibre.selectedItem.equals(calibreAntiguo)){
                     btnCalcularBulbos.isEnabled= false
-                    if (et_Metros.length() == 0){
-                        metrosEditado = et_Metros.hint.toString().toInt()
-                    } else {
+                    if (et_Metros.length() > 0){
                         btnCalcularBulbos.isEnabled= true
-                        
                         metrosEditado = et_Metros.text.toString().toInt()
-                    }
+                    } 
                     Log.i("Estado","Entra aquí 4")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
                     calibreEditado = spinnerCalibre.selectedItem.toString()
