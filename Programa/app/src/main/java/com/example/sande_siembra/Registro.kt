@@ -139,9 +139,9 @@ class Registro : AppCompatActivity() {
         definir()
 
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
-        btnGuardar.setOnClickListener{ obtener() }
+        //btnGuardar.setOnClickListener{ obtener() }
         //para guardar en SQLLite
-        //btnGuardar.setOnClickListener{ guardarSQLite()}
+        btnGuardar.setOnClickListener{ guardarSQLite()}
         btnOtroBloque.setOnClickListener { botonNuevoBloque() }
 
         btnCalcularBulbo.setOnClickListener{
