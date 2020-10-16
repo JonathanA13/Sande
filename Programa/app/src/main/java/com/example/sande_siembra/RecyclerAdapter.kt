@@ -100,8 +100,12 @@ class RecyclerAdapter(
                 )
             }
 
-            itemView.txt_val.text = item.fechaGeneral1
-            itemView.txt_blo.text = item.cama.toString()
+            itemView.txt_blo.text = item.bloqueGeneral1.toString()
+            itemView.txt_cama.text = item.cama.toString()
+            itemView.txt_variedad.text = item.variedad
+            itemView.txt_tipo.text = item.tipoSiembra
+            itemView.txt_metro.text = item.metros.toString()
+            itemView.txt_calibre.text = item.calibre
 
         }
     }

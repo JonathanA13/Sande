@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_registro.*
 class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
     var calibreAntiguo = ""
+    var metrosAntiguos = 0
     var etiqueta = ""
     var finca = ""
 
@@ -44,6 +45,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         et_SemanaCabe.hint = intent.getIntExtra("SemanaCabe", 0).toString()
         et_BloqueCabe.hint = intent.getIntExtra("BloqueCabe", 0).toString()
         et_Metros.hint = intent.getIntExtra("Metros", 0).toString()
+        metrosAntiguos = intent.getIntExtra("Metros", 0)
         val tamanioCamaRecepcion = intent.getStringExtra("TamanioCama")
         val siembraRecepcion = intent.getStringExtra("TipoSiembra")
         val variedadRecepcion = intent.getStringExtra("Variedad")
@@ -86,6 +88,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
         var metrosEditado: Int = 0
         var calibreEditado: String = ""
+        var bandera = true
 
         et_Metros.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -129,29 +132,43 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                 position: Int,
                 id: Long
             ) {
-                if (spinnerCalibre.selectedItem.equals(calibreAntiguo)){
+                if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.hint.toString().toInt() == metrosAntiguos && bandera == true){
                     btnCalcularBulbos.isEnabled= false
-                    if (et_Metros.length() == 0){
-                        metrosEditado = et_Metros.hint.toString().toInt()
-                    } else {
-                        btnCalcularBulbos.isEnabled= true
-                        
-                        metrosEditado = et_Metros.text.toString().toInt()
-                    }
                     Log.i("Estado","Entra aquí 4")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
                     calibreEditado = spinnerCalibre.selectedItem.toString()
-                } else {
+                }  else if(spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.hint.toString().toInt() == metrosAntiguos && bandera == false){
+                    btnCalcularBulbos.isEnabled= true
+                    Log.i("Estado","Entra aquí 5")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    metrosEditado = et_Metros.hint.toString().toInt()
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() == 0 ){
+                    btnCalcularBulbos.isEnabled= true
+                    metrosEditado = et_Metros.hint.toString().toInt()
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                    Log.i("Estado","Entra aquí 6")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    bandera = false
+                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() > 0){
+                    btnCalcularBulbos.isEnabled= true
+                    metrosEditado = et_Metros.hint.toString().toInt()
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                    Log.i("Estado","Entra aquí 7")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    bandera = false
+                } else if(!spinnerCalibre.selectedItem.equals(calibreAntiguo)) {
                     btnCalcularBulbos.isEnabled= true
                     if (et_Metros.length() == 0){
                         metrosEditado = et_Metros.hint.toString().toInt()
                     } else {
                         metrosEditado = et_Metros.text.toString().toInt()
                     }
-                    Log.i("Estado","Entra aquí 5")
+                    Log.i("Estado","Entra aquí 8")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
-                    tv_BulbosCalcular.text = "Vacío"
+                    //tv_BulbosCalcular.text = "Vacío"
                     calibreEditado = spinnerCalibre.selectedItem.toString()
+                    bandera = false
                 }
 
             }
