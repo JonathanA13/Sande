@@ -55,7 +55,7 @@ class SQL_activity_sql_recycler : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
         }
-        val btnAdd: Button = findViewById(R.id.btnAdd)
+        //val btnAdd: Button = findViewById(R.id.btnAdd)
         //btnAdd.setOnClickListener { addTaskDialog() }
     }
 
