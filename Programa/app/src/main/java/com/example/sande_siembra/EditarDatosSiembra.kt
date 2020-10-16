@@ -13,8 +13,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.android.synthetic.main.activity_editar_datos_siembra.*
+import kotlinx.android.synthetic.main.activity_registro.*
 
 class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
+
+    var calibreAntiguo = ""
+    var etiqueta = ""
+    var finca = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +28,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         tv_FechaGeneral.text = intent.getStringExtra("Fecha")
         tv_SemanaGeneral.text = intent.getIntExtra("Semana", 0).toString()
         var fincaRecepcion = ""
-        val finca = intent.getStringExtra("Finca")
+        finca = intent.getStringExtra("Finca").toString()
         if (finca.equals("S2")) {
             fincaRecepcion = "Sande 2"
         } else {
@@ -49,8 +54,9 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         val prueba2Recepcion = intent.getStringExtra("Prueba2")
         val fincaCabeRecepcion = intent.getStringExtra("FincaCabe")
         val calibreRecepcion = intent.getStringExtra("Calibre")
-        val etiqueta = intent.getStringExtra("Etiqueta")
+        etiqueta = intent.getStringExtra("Etiqueta").toString()
         tv_BulbosCalcular.text = intent.getIntExtra("Bulbos",0).toString()
+        calibreAntiguo = intent.getStringExtra("Calibre").toString()
 
         if (tamanioCamaRecepcion != null && siembraRecepcion != null && variedadRecepcion != null && procedimientoRecepcion != null && broteRecepcion != null &&
             origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && fincaCabeRecepcion != null &&
@@ -78,8 +84,12 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
     override fun onResume() {
         super.onResume()
 
+        var metrosEditado: Int = 0
+        var calibreEditado: String = ""
+
         et_Metros.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                btnCalcularBulbos.isEnabled = true
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 Log.i("Estado", "El valor editado antes es: ${et_Metros.hint}")
@@ -90,12 +100,16 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                     btnCalcularBulbos.isEnabled= true
                     Log.i("Estado", "Entra aquí 1")
                     Log.i("Estado", "El valor editado es: ${et_Metros.text}")
+                    tv_BulbosCalcular.text = ""
+                    metrosEditado = et_Metros.text.toString().toInt()
+
                 }
                 else
                 {
                     btnCalcularBulbos.isEnabled=false
                     Log.i("Estado", "Entra aquí 2")
                     Log.i("Estado", "El valor oculto es: ${et_Metros.hint}")
+                    metrosEditado = et_Metros.hint.toString().toInt()
                 }
             }
         })
@@ -103,7 +117,10 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
         spinnerCalibre.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                btnCalcularBulbos.isEnabled= false
+                Log.i("Estado","Entra aquí 3")
+                Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                calibreEditado = spinnerCalibre.selectedItem.toString()
             }
 
             override fun onItemSelected(
@@ -112,62 +129,44 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                 position: Int,
                 id: Long
             ) {
-                
+                if (spinnerCalibre.selectedItem.equals(calibreAntiguo)){
+                    btnCalcularBulbos.isEnabled= false
+                    if (et_Metros.length() == 0){
+                        metrosEditado = et_Metros.hint.toString().toInt()
+                    } else {
+                        btnCalcularBulbos.isEnabled= true
+                        
+                        metrosEditado = et_Metros.text.toString().toInt()
+                    }
+                    Log.i("Estado","Entra aquí 4")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                } else {
+                    btnCalcularBulbos.isEnabled= true
+                    if (et_Metros.length() == 0){
+                        metrosEditado = et_Metros.hint.toString().toInt()
+                    } else {
+                        metrosEditado = et_Metros.text.toString().toInt()
+                    }
+                    Log.i("Estado","Entra aquí 5")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    tv_BulbosCalcular.text = "Vacío"
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                }
+
             }
 
         })
 
-
-
-
-
-        /*cmbCalibre.setOnItemSelectedListener(object : OnItemSelectedListener {
-override fun onItemSelected(
-parentView: AdapterView<*>?,
-selectedItemView: View,
-position: Int,
-id: Long
-) {
-
-posicion = cmbCalibre.getItemAtPosition(position).toString()
-Log.i("Probar", posicion)
-
-if( posicion.equals("0/4") ){
-txtViewBulbos.setText("no hay mts")
-if(editTxtMetros.text.toString()==""){
-txtViewBulbos.setText("cmb-vacios")
-}
-else{
-txtViewBulbos.setText("cmb-hay metros")
-}
-
-
-} else if (posicion.equals("4/6")){
-txtViewBulbos.setText("imprim 4/6")
-}
-
-
-
-
-/*if( posicion.equals("0/4") ){
-txtViewBulbos.setText("Prueba de 0/4")
-} else if (posicion.equals("4/6")){
-txtViewBulbos.setText("Prueba de 4/6")
-} else if (posicion.equals("6/9")){
-txtViewBulbos.setText(" ")
-}*/
-txtViewBulbos.setText(posicion)
-}
-
-override fun onNothingSelected(parentView: AdapterView<*>?) {
-if(editTxtMetros.text.toString()==""){
-txtViewBulbos.text="verificar"
-
-
-}
-// your code here
-}
-})*/
+        btnCalcularBulbos.setOnClickListener{
+            if(etiqueta.equals("Bulbos")){
+                calcularBulbosEdicion(metrosEditado, calibreEditado)
+            } else if (etiqueta.equals("Flores") && finca.equals("S2")) {
+                calcularFloresS2Edicion(metrosEditado, calibreEditado)
+            } else if (etiqueta.equals("Flores") && finca.equals("S4")) {
+                calcularFloresS4Edicion(metrosEditado, calibreEditado)
+            }
+        }
 
     }
 
@@ -344,7 +343,91 @@ txtViewBulbos.text="verificar"
 
         val calibreEditar = spinnerCalibre.selectedItem.toString()
 
+    }
 
+    fun calcularBulbosEdicion(metrosEditado: Int, calibreEditado: String){
+        var resultado = 0
+
+        if(calibreEditado.equals("0/4")){
+            resultado = metrosEditado * 200
+        } else if (calibreEditado.equals("4/6")){
+            resultado = metrosEditado * 140
+        } else if (calibreEditado.equals("6/9")){
+            resultado = metrosEditado * 60
+        } else if (calibreEditado.equals("9/12")){
+            resultado = metrosEditado * 48
+        }
+
+        tv_BulbosCalcular.text = resultado.toString()
+
+    }
+
+    fun calcularFloresS2Edicion(metrosEditado: Int, calibreEditado: String){
+        var resultado = 0
+        val tamanioCama = spinnerTamanioCama.selectedItem.toString()
+        //val tipoVariedad = cmbVariedad.selectedItem.toString()
+
+        if(calibreEditado.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 44
+        } else if (calibreEditado.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 35
+        } else if (calibreEditado.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 28
+        } else if (calibreEditado.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 22
+        } else if (calibreEditado.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 20
+        } else if (calibreEditado.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 16
+        } else if (calibreEditado.equals("18/20") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 16
+        } else if (calibreEditado.equals("18/20") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 13
+        } else if (calibreEditado.equals("20/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 9
+        } else if (calibreEditado.equals("20/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 7
+        } else if (calibreEditado.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 9
+        } else if (calibreEditado.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 5
+        }
+
+        tv_BulbosCalcular.text = resultado.toString()
+
+    }
+
+    fun calcularFloresS4Edicion(metrosEditado: Int, calibreEditado: String){
+        var resultado = 0
+        val tamanioCama = spinnerTamanioCama.selectedItem.toString()
+
+        if(calibreEditado.equals("9/12") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 28
+        } else if (calibreEditado.equals("9/12") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 22
+        } else if (calibreEditado.equals("12/15") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 20
+        } else if (calibreEditado.equals("12/15") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 16
+        } else if (calibreEditado.equals("15/18") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 16
+        } else if (calibreEditado.equals("15/18") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 13
+        } else if (calibreEditado.equals("18/20") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 12
+        } else if (calibreEditado.equals("18/20") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 10
+        } else if (calibreEditado.equals("20/26") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 9
+        } else if (calibreEditado.equals("20/26") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 7
+        } else if (calibreEditado.equals("26+") && tamanioCama.equals("1.20 mts")){
+            resultado = metrosEditado * 6
+        } else if (calibreEditado.equals("26+") && tamanioCama.equals("0.9 mts")){
+            resultado = metrosEditado * 5
+        }
+
+        tv_BulbosCalcular.text = resultado.toString()
 
     }
 
@@ -429,3 +512,9 @@ fun verificar(){
 /*fun verificar(){
 
 }*/
+
+/*fun calcularBulbosEdicion(metrosEditado: Int, calibreEditado: String){
+        Log.i("datosEdit","Los metros nuevos son: ${metrosEditado}")
+        Log.i("datosEdit","El calibre nuevo es: ${calibreEditado}")
+
+    }*/
