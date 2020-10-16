@@ -18,7 +18,7 @@ class MainAdapter (private val context:Context): RecyclerView.Adapter<MainAdapte
 
     inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bindView(siembra: Siembra){
-            itemView.txt_val.text = "Valvula: ${siembra.valvula.toString()}"
+            //itemView.txt_val.text = "Valvula: ${siembra.valvula.toString()}"
             itemView.txt_blo.text = "Bloque: ${siembra.bloque.toString()}"
         }
     }
