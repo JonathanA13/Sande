@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.sande_siembra.modelo.RegistroSiembra
+import java.text.DateFormat
 import java.util.*
 
 /*
@@ -25,9 +26,7 @@ class AdminSQLiteOpenHelper(
     version: Int
 ) :
 
-    SQLiteOpenHelper(context, name, factory, version)
-
-{
+    SQLiteOpenHelper(context, name, factory, version) {
     override fun onCreate(db: SQLiteDatabase) {
         val createContactTable = ("CREATE TABLE "
                 + TABLE_SIEMBRA + "(" + COLUMN_ID
@@ -58,6 +57,7 @@ class AdminSQLiteOpenHelper(
                 + COLUMN_BULBOS + " INTEGER" + ")")
         db.execSQL(createContactTable)
     }
+
     override fun onUpgrade(
         db: SQLiteDatabase,
         oldVersion: Int,
@@ -66,8 +66,15 @@ class AdminSQLiteOpenHelper(
         db.execSQL("DROP TABLE IF EXISTS $TABLE_SIEMBRA")
         onCreate(db)
     }
+
     fun listSiembra(): ArrayList<RegistroSiembra> {
-        val sql = "select * from $TABLE_SIEMBRA"
+
+        val calendar = Calendar.getInstance()
+        val currentDate: String =
+            DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
+
+        val sql =
+            "select * from $TABLE_SIEMBRA where " + "$COLUMN_DATE ='" + currentDate + "' order by $COLUMN_BLOQUE,$COLUMN_CAMA, $COLUMN_VARIEDAD"
         val db = this.readableDatabase
         val storeSiembra = ArrayList<RegistroSiembra>()
         val cursor = db.rawQuery(sql, null)
@@ -100,13 +107,41 @@ class AdminSQLiteOpenHelper(
                 val bulbos = cursor.getString(24).toInt()
 
 
-                storeSiembra.add(RegistroSiembra(id,fecha,semana,especie,finca,bloque,valvula,lado,etiqueta,cama,proce,tamaniocama,brote,tiposiembra,origen,variedad,pruebas1,pruebas2,otraspruebas,semanacabe,bloquecabe,fincacabe,metros,calibre,bulbos))
-            }
-            while (cursor.moveToNext())
+                storeSiembra.add(
+                    RegistroSiembra(
+                        id,
+                        fecha,
+                        semana,
+                        especie,
+                        finca,
+                        bloque,
+                        valvula,
+                        lado,
+                        etiqueta,
+                        cama,
+                        proce,
+                        tamaniocama,
+                        brote,
+                        tiposiembra,
+                        origen,
+                        variedad,
+                        pruebas1,
+                        pruebas2,
+                        otraspruebas,
+                        semanacabe,
+                        bloquecabe,
+                        fincacabe,
+                        metros,
+                        calibre,
+                        bulbos
+                    )
+                )
+            } while (cursor.moveToNext())
         }
         cursor.close()
         return storeSiembra
     }
+
     fun addSiembra(siembra: RegistroSiembra) {
         val values = ContentValues()
         values.put(COLUMN_DATE, siembra.fecha)
@@ -138,6 +173,7 @@ class AdminSQLiteOpenHelper(
         val db = this.writableDatabase
         db.insert(TABLE_SIEMBRA, null, values)
     }
+
     fun updateContacts(siembra: RegistroSiembra) {
         val values = ContentValues()
         values.put(COLUMN_DATE, siembra.fecha)
@@ -174,6 +210,7 @@ class AdminSQLiteOpenHelper(
         )
 
     }
+
     fun deleteContact(id: Int) {
         val db = this.writableDatabase
         db.delete(
@@ -182,6 +219,7 @@ class AdminSQLiteOpenHelper(
             arrayOf(id.toString())
         )
     }
+
     companion object {
         private const val DATABASE_VERSION = 5
         private const val DATABASE_NAME = "SIEMBRA_BDD"

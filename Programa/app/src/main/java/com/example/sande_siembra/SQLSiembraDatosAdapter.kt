@@ -39,6 +39,7 @@ internal class SQLSiembraDatosAdapter(private val context: Context, listSiembra:
         holder.txtViewTipoSiembra.text=contacts.tiposiembra
         holder.txtViewMetros.text=contacts.metros.toString()
         holder.txtViewCalibre.text=contacts.calibre
+        holder.txtViewProce.text=contacts.proce
 
         holder.imagenEditar.setOnClickListener{}
 

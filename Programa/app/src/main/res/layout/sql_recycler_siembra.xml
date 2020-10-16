@@ -8,150 +8,74 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="89dp"
         android:orientation="horizontal"
         android:padding="12dp">
 
         <RelativeLayout
-            android:layout_width="769dp"
-            android:layout_height="112dp">
+            android:layout_width="789dp"
+            android:layout_height="56dp">
 
             <LinearLayout
-                android:layout_width="726dp"
-                android:layout_height="101dp"
+                android:layout_width="774dp"
+                android:layout_height="45dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="328dp"
-                    android:layout_height="99dp"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtViewBloqueRecycler"
+                    android:layout_width="82dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bloque"
+                    android:textSize="23sp" />
 
-                    <LinearLayout
-                        android:layout_width="146dp"
-                        android:layout_height="87dp"
-                        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtViewCamaRecycler"
+                    android:layout_width="78dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cama"
+                    android:textSize="23sp" />
 
-                        <TextView
-                            android:id="@+id/textView28"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Bloque: "
-                            android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/txtViewVariedadRecycler"
+                    android:layout_width="195dp"
+                    android:layout_height="wrap_content"
+                    android:text="Variedad"
+                    android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/textView29"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Cama: "
-                            android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/txtViewProce"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Proce"
+                    android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Variedad: "
-                            android:textSize="18sp" />
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/txtViewTipoSIembraRecycler"
+                    android:layout_width="102dp"
+                    android:layout_height="wrap_content"
+                    android:text="tipo"
+                    android:textSize="21sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="87dp"
-                        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtViewMetrosRecycler"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:text="Metros"
+                    android:textSize="23sp" />
 
-                        <TextView
-                            android:id="@+id/txtViewBloqueRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/txtViewCalibreRecycler"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Calibre"
+                    android:textSize="23sp" />
 
-                        <TextView
-                            android:id="@+id/txtViewCamaRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/txtViewVariedadRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="322dp"
-                    android:layout_height="96dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="151dp"
-                        android:layout_height="85dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView31"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Tipo Siembra: "
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/textView32"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Metros: "
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/textView33"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Calibre: "
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="85dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtViewTipoSIembraRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/txtViewMetrosRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/txtViewCalibreRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagenEditar"
-                        android:layout_width="49dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/botoneditar" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/imagenEditar"
+                    android:layout_width="31dp"
+                    android:layout_height="45dp"
+                    app:srcCompat="@drawable/botoneditar" />
             </LinearLayout>
         </RelativeLayout>
 
