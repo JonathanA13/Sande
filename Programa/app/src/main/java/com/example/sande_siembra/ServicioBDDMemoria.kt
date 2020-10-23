@@ -31,9 +31,10 @@ class ServicioBDDMemoria {
             bloqueGeneral1: Int, ladoGeneral1: String, etiquetaGeneral1: String
         ) {
             this.listaDatosSiembra.add(
-                DatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
-                    calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral1,semanaGeneral1,fincaGeneral1, valvulaGeneral,
-                    bloqueGeneral1,ladoGeneral1,etiquetaGeneral1)
+                DatosSiembra(fechaGeneral1,cama,prueba1,prueba2,origen,variedad,fincaGeneral1,
+                    bloqueGeneral1,tipoSiembra,procedimiento,calibre,semanaGeneral1,
+                    metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
+                    otraPrueba, valvulaGeneral, ladoGeneral1,etiquetaGeneral1)
             )
         }
     }
