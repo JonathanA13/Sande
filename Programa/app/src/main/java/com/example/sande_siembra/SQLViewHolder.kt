@@ -14,7 +14,7 @@ class SQLViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var txtViewMetros: TextView = itemView.findViewById(R.id.txtViewMetrosRecycler)
     var txtViewCalibre: TextView = itemView.findViewById(R.id.txtViewCalibreRecycler)
     var txtViewProce: TextView=itemView.findViewById(R.id.txtViewProce)
-
+//btnEditar de imagen
     var imagenEditar: ImageView = itemView.findViewById(R.id.imagenEditar)
 
 
