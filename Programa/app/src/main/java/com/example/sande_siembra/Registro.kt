@@ -283,47 +283,23 @@ class Registro : AppCompatActivity() {
     fun definir(){
 
         val variedad = arrayOf("ACCENT", "ARANAL", "ASPEN", "AUCKLAND", "AVIGNON", "BLACK DIAMOND", "BLACK VELVET", "BUICK", "CAPTAIN ROMANCE", "CAVALESE",
-            "CONFETTI", "CORDOBA", "COUPLET", "DENVER", "DIAMANTE", "E-026", "E-1129", "E-1153", "Z-1180", "E-166", "E-175", "E-233", "E-270", "E-336", "E-343", "E-364",
-            "E-367", "E-369", "E-370", "E-371", "E-383", "E-434", "E-439", "E-494", "E-507", "E-512", "E-603", "E-605", "E-607", "E-613", "E-615",
-            "E-616", "E-618", "E-624", "E-625", "E-626", "E-630", "E-632", "E-635", "E-636", "E-637", "E-703", "E-740", "EL CAPO", "ESCAPE", "FANTASIA",
-            "GRAN PARADISO", "LA PAZ", "MANILA", "MEMORIES", "MOZART", "OLINA", "PAVIA", "PINK PANTHER", "RASPBERRY", "SAN REMO",
-            "SCHWARZWALDER", "SHARP", "STRAUSS", "SUMATRA", "SUNRAY", "SUNSET", "SUNSHADE", "VERMEER", "Z-004", "Z-103", "Z-3117", "Z-371",
-            "Z-199", "Z-957", "E-188", "E-353", "Z-947", "E-506", "E-632", "CAPT.3217", "CAPT.MORGAN", "CAPT.3421", "CAPT.ALMA"
+            "CONFETTI", "CORDOBA", "COUPLET", "DENVER", "DIAMANTE", "E-026", "E-1129", "E-1153", "Z-1180", "E-166",
+            "E-175", "E-233", "E-270", "E-336", "E-343", "E-364", "E-367", "E-369", "E-370", "E-371",
+            "E-383", "E-434", "E-439", "E-494", "E-507", "E-512", "E-603", "E-605", "E-607", "E-613",
+            "E-615", "E-616", "E-618", "E-624", "E-625", "E-626", "E-630", "E-632", "E-635", "E-636",
+            "E-637", "E-703", "E-740", "EL CAPO", "ESCAPE", "FANTASIA", "GRAN PARADISO", "LA PAZ", "MANILA", "MEMORIES",
+            "MOZART", "OLINA", "PAVIA", "PINK PANTHER", "RASPBERRY", "SAN REMO", "SCHWARZWALDER", "SHARP", "STRAUSS", "SUMATRA",
+            "SUNRAY", "SUNSET", "SUNSHADE", "VERMEER", "Z-004", "Z-103", "Z-3117", "Z-371", "Z-199", "Z-957",
+            "E-188", "E-353", "Z-947", "E-506", "E-632", "CAPT.3217", "CAPT.MORGAN", "CAPT.3421", "CAPT.ALMA"
         )
         val spinner1: Spinner = findViewById(R.id.cmbVariedad)
         val adapter1: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, variedad)
         spinner1.setAdapter(adapter1)
 
-        val tipoSiembra = arrayOf("M.P1", "M.P2", "M.V1", "M.Z1", "M1",
-            "M1.P1",
-            "M1.P2",
-            "M1.T1",
-            "M1.T2",
-            "M1.V1",
-            "M1.Z1",
-            "M1.Z2",
-            "M2",
-            "P1",
-            "P1.T2",
-            "P1.T3",
-            "P1.Z2",
-            "P2",
-            "P3",
-            "T1",
-            "T2",
-            "T3",
-            "V0",
-            "V0.T2",
-            "V0.T3",
-            "V1",
-            "V1.T2",
-            "V2",
-            "V3",
-            "Z",
-            "Z1",
-            "Z2",
-            "Z3"
-        )
+
+        val tipoSiembra = arrayOf("M.P1", "M.P2", "M.V1", "M.Z1", "M1", "M1.P1", "M1.P2", "M1.T1", "M1.T2", "M1.V1",
+            "M1.Z1", "M1.Z2", "M2", "P1", "P1.T2", "P1.T3", "P1.Z2", "P2", "P3", "T1", "T2", "T3", "V0", "V0.T2", "V0.T3",
+            "V1", "V1.T2", "V2", "V3", "Z", "Z1", "Z2", "Z3")
         val spinner2: Spinner = findViewById(R.id.cmbTipoSiembra)
         val adapter2: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, tipoSiembra)
         spinner2.setAdapter(adapter2)
@@ -335,38 +311,18 @@ class Registro : AppCompatActivity() {
         spinner3.setAdapter(adapter3)
 
 
-        val prueba1 = arrayOf("NINGUNA",
-            "PRUEBA A",
-            "PRUEBA B",
-            "PRUEBA C",
-            "PRUEBA D",
-            "PRUEBA E",
-            "PRUEBA FERTILIZACION VALVULA 4",
-            "PRUEBA FERTILIZACION VALVULA 5",
-            "TINAS")
+        val prueba1 = arrayOf("NINGUNA", "PRUEBA A", "PRUEBA B", "PRUEBA C", "PRUEBA D", "PRUEBA E",
+            "PRUEBA FERTILIZACION VALVULA 4", "PRUEBA FERTILIZACION VALVULA 5", "TINAS")
         val spinner4: Spinner = findViewById(R.id.cmbPruebas1)
         val adapter4: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba1)
         spinner4.setAdapter(adapter4)
 
 
-        val prueba2 = arrayOf("NINGUNA",
-            "ABIERTOS CON LA MANO",
-            "BACTERIAS PLUS ORGANIC",
-            "CRUZAMIENTOS",
-            "MARCADOR 56",
-            "MARCADOR 68",
-            "PRUEBA DESINFECCION",
-            "PRUEBA DOBLE AG3",
-            "PRUEBA ONTSMET",
-            "PRUEBA PRESIEMBRA ACTUAL",
-            "PRUEBA PRESIEMBRA ACTUAL VAPORIZADA",
-            "PRUEBA PRESIEMBRA ANTERIOR",
-            "PRUEBA PRESIEMBRA ANTERIOR SIN VAPORIZAR",
-            "SIN REVISAR ASIENTOS",
-            "SIN VAPORIZAR",
-            "TESTIGO",
-            "TESTIGO DESINFECCION",
-            "VAPORIZADA")
+        val prueba2 = arrayOf("NINGUNA", "ABIERTOS CON LA MANO", "BACTERIAS PLUS ORGANIC", "CRUZAMIENTOS",
+            "MARCADOR 56", "MARCADOR 68", "PRUEBA DESINFECCION", "PRUEBA DOBLE AG3", "PRUEBA ONTSMET",
+            "PRUEBA PRESIEMBRA ACTUAL", "PRUEBA PRESIEMBRA ACTUAL VAPORIZADA", "PRUEBA PRESIEMBRA ANTERIOR",
+            "PRUEBA PRESIEMBRA ANTERIOR SIN VAPORIZAR", "SIN REVISAR ASIENTOS", "SIN VAPORIZAR", "TESTIGO",
+            "TESTIGO DESINFECCION", "VAPORIZADA")
         val spinner5: Spinner = findViewById(R.id.cmbPruebas2)
         val adapter5: ArrayAdapter<Any?> =  ArrayAdapter<Any?>(this, R.layout.size2, prueba2)
         spinner5.setAdapter(adapter5)
@@ -397,58 +353,13 @@ class Registro : AppCompatActivity() {
 
     }
 
-    /*fun leerRegistrosCSV(){
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
-        val lines: List<String> = file.readLines()
-        //Log.i("Fechita", "El tamaño es: ${lines.size}")
-        lines.forEachIndexed { index, s ->
-            val line = lines[index]
-            //Log.i("Fechita", "La fecha es: ${line}")
-            val tokens = line.split(",")
-            val fecha = tokens[0]
-            val cama = tokens[1]
-            val prueba1 = tokens[2]
-            val prueba2 = tokens[3]
-            val origen = tokens[4]
-            val variedad = tokens[5]
-            val tipoSiembra = tokens[6]
-            val fincaGeneral1 = tokens[7]
-            val bloqueGeneral1 = tokens[8]
-            val tipoSiembra1 = tokens[9]
-            val procedimiento = tokens[10]
-            val calibre = tokens[11]
-            val semanaGeneral1 = tokens[12]
-            val metros = tokens[13]
-            val bulbos = tokens[14]
-            val semanaCabe = tokens[15]
-            val bloqueCabe = tokens[16]
-            val fincaCabe = tokens[17]
-            val tamanioCama = tokens[18]
-            val brote = tokens[19]
-            val otraPrueba = tokens[20]
-            val valvulaGeneral = tokens[21]
-            val ladoGeneral1 = tokens[22]
-            val etiquetaGeneral1 = tokens[23]
-
-            Log.i("Fechita", "La fecha en registro es: ${fecha}")
-            Log.i("Fechita", "La semana en registro es: ${prueba1}")
-
-            ServicioBDDMemoria.agregarListaDatosSiembra(
-                cama.toInt(), variedad, tipoSiembra, procedimiento, prueba1, prueba2,
-                fincaCabe, semanaCabe.toInt(), bloqueCabe.toInt(), metros.toInt(), calibre, bulbos.toInt(),
-                tamanioCama, brote, origen, otraPrueba, fecha, semanaGeneral1.toInt(),
-                fincaGeneral1, valvulaGeneral.toInt(), bloqueGeneral1.toInt(), ladoGeneral1, etiquetaGeneral1
-            )
-        }
-
-
-    }*/
-
     //fecha: String, semana: Int, bloque: Int, valvula: Int, finca: String, lado: String, etiqueta: String
     fun obtener(){
 
         val cama = editTxtCama.text.toString().toInt()
         val variedad = cmbVariedad.selectedItem.toString()
+        val color = Transformacion_Variedad_Color(variedad)
+        Log.i("color", "El color es: ${color}")
         val tipoSiembra = cmbTipoSiembra.selectedItem.toString()
         val procedimiento = cmbProce.selectedItem.toString()
         val prueba1 = cmbPruebas1.selectedItem.toString()
@@ -464,7 +375,7 @@ class Registro : AppCompatActivity() {
         val origen = cmbOrigen.selectedItem.toString()
         val otraPrueba = editTextPersonName.text.toString()
 
-        ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
+        /*ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
             calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
             bloqueGeneral,ladoGeneral,etiquetaGeneral)
 
@@ -507,142 +418,201 @@ class Registro : AppCompatActivity() {
             exportarCSV(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
                 bloqueGeneral,ladoGeneral,etiquetaGeneral)
-            //
-            // guardarSQLite()
 
-        //  Log.i("error", "No se tiene conexion a internet")
         }
-
-        /*val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-
-        if (networkInfo != null && networkInfo.isConnected) {
-            Log.d("MIAPP", "Estás online")
-            Log.d("MIAPP", " Estado actual: " + networkInfo.state)
-            if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
-                // Estas conectado a un Wi-Fi
-                Log.i("MIAPP", " Nombre red Wi-Fi: " + networkInfo.extraInfo)
-            }
-        } else {
-            Log.i("MIAPP", "Estás offline")
-        }*/
-
-        /*val cm = Context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true*/
-
-
-    // AQUI COMIENZA LO QUE SI FUNCIONA *********************************************************************
-        /*verificar_id()
-        val numeroID = contador
-
-        Log.i("rece", "El id que se recibe es: ${numeroID}")
-
-        db.collection("Prueba").document("${numeroID}").set(
-            hashMapOf("Fecha" to fechaGeneral,
-                "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
-                "Bloque" to bloqueGeneral,
-                "Lado" to ladoGeneral,
-                "Etiqueta" to etiquetaGeneral,
-                "Cama" to cama,
-                "Variedad" to variedad,
-                "tipoSiembra" to tipoSiembra,
-                "Procedimiento" to procedimiento,
-                "Prueba1" to prueba1,
-                "Prueba2" to prueba2,
-                "FincaCabe" to  fincaCabe,
-                "SemanaCabe" to semanaCabe,
-                "BloqueCabe" to  bloqueCabe,
-                "Metros" to metros,
-                "Calibre" to calibre,
-                "Bulbos" to bulbos,
-                "TamanioCama" to tamanioCama,
-                "Brote" to brote,
-                "Origen" to origen,
-                "Prueba3" to otraPrueba
-            )
-        )*/
-                // Hasta aquí termina lo que si funciona
-
-
-        /*db.collection("SiembraDatosSprint").add(
-            hashMapOf("Cama" to cama,
-                "Variedad" to variedad,
-                "tipoSiembra" to tipoSiembra,
-                "Procedimiento" to procedimiento,
-                "Prueba1" to prueba1,
-                "Prueba2" to prueba2,
-                "FincaCabe" to  fincaCabe,
-                "SemanaCabe" to semanaCabe,
-                "BloqueCabe" to  bloqueCabe,
-                "Metros" to metros,
-                "Calibre" to calibre,
-                "Bulbos" to bulbos,
-                "TamanioCama" to tamanioCama,
-                "Brote" to brote,
-                "Origen" to origen,
-                "Prueba3" to otraPrueba)
-        )*/
-
-        /*db.collection("SiembraDatos").add(
-            hashMapOf("Cama" to cama,
-            "Variedad" to variedad,
-            "tipoSiembra" to tipoSiembra,
-            "Procedimiento" to procedimiento,
-            "Prueba1" to prueba1,
-            "Prueba2" to prueba2,
-            "FincaCabe" to  fincaCabe,
-            "SemanaCabe" to semanaCabe,
-            "BloqueCabe" to  bloqueCabe,
-            "Metros" to metros,
-            "Calibre" to calibre,
-            "Bulbos" to bulbos)
-        )*/
-
-
-
-        /*db.collection("SiembraCompleta").add(
-            hashMapOf("Fecha" to fecha,
-                "Semana" to semana, "Finca" to finca, "Valvula" to valvula,
-                "Bloque" to bloque,
-                "Lado" to lado,
-                "Etiqueta" to etiqueta,
-                "Cama" to cama,
-                "Variedad" to variedad,
-                "tipoSiembra" to tipoSiembra,
-                "Procedimiento" to procedimiento,
-                "Prueba1" to prueba1,
-                "Prueba2" to prueba2,
-                "FincaCabe" to  finca,
-                "SemanaCabe" to semana,
-                "BloqueCabe" to  bloque,
-                "Metros" to metros,
-                "Calibre" to calibre,
-                "Bulbos" to bulbos
-            )
-        )*/
 
         val toast = Toast.makeText(this, "DATO GUARDADO CORRECTAMENTE", Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
-        toast.show()
-        //limpiarCampos()
-
-        //mostrarDialogoBasico()
-
-        /*val builder = AlertDialog.Builder(this)
-        builder.setMessage("Datos guardado correctamente")
-            .setPositiveButton("Continuar",
-                DialogInterface.OnClickListener { dialog, id ->
-                    // FIRE ZE MISSILES!
-                })
-            .setNegativeButton("Cancelar",
-                DialogInterface.OnClickListener { dialog, id ->
-                    // User cancelled the dialog
-                })
-        // Create the AlertDialog object and return it
-        builder.create()*/
+        toast.show()*/
 
     }//fin obtener
+
+
+    fun Transformacion_Variedad_Color(variedadRecepcion: String): String {
+
+        if (variedadRecepcion.equals("ACCENT")){
+             return "PURPLE"
+         } else if (variedadRecepcion.equals("ARANAL")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("ASPEN")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("AUCKLAND")){
+            return  "PEACH"
+        } else if (variedadRecepcion.equals("AVIGNON")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("BLACK DIAMOND")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("BLACK VELVET")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("BUICK")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("CAPTAIN ROMANCE")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAVALESE")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("CONFETTI")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("CORDOBA")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("COUPLET")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("DENVER")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("DIAMANTE")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-026")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("E-1129")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-1153")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-1180")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-166")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-175")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("E-233")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-270")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-336")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-343")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-364")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-367")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-369")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-370")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-371")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-383")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-434")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-439")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-494")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-507")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-512")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("E-603")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-605")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-607")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-613")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-615")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-616")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-618")){
+            return  "PINK"
+        } else if (variedadRecepcion.equals("E-624")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-625")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-626")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-630")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-632")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-635")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("E-636")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-637")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-703")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("E-740")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("EL CAPO")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("ESCAPE")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("FANTASIA")){
+            return  "PINK"
+        } else if (variedadRecepcion.equals("GRAN PARADISO")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("LA PAZ")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("MANILA")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("MEMORIES")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("MOZART")){
+            return  "PEACH"
+        } else if (variedadRecepcion.equals("OLINA")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("PAVIA")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("PINK PANTHER")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("RASPBERRY")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("SAN REMO")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("SCHWARZWALDER")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("SHARP")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("STRAUSS")){
+            return  "BICOLOR"
+        } else if (variedadRecepcion.equals("SUMATRA")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("SUNRAY")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("SUNSET")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("SUNSHADE")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("VERMEER")){
+            return  "BICOLOR"
+        } else if (variedadRecepcion.equals("Z-004")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("Z-103")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("Z-3117")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-371")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-199")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("Z-957")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("E-188")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-353")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("Z-947")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-506")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-632")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("CAPT.3217")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.MORGAN")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.3421")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.ALMA")){
+            return  "PINK CAP"
+        } else {
+            return "No se encontró el valor"
+        }
+
+    }
 
 
 
@@ -690,11 +660,6 @@ class Registro : AppCompatActivity() {
     }
 
 
-
-
-
-
-
     fun verificar_id() {
         var contadorSecundario1 = 0
         var numeros = arrayListOf<Int>()
@@ -714,65 +679,15 @@ class Registro : AppCompatActivity() {
             Log.i("recibir", "El ID que se va a guardar es: ${contador}")
         }
 
-        /*db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
-            if (e != null) {
-            Log.i("error", "Listen error", e)
-            return@addSnapshotListener
-            }
-
-            for (change in resultado!!.documentChanges) {
-                if (change.type == DocumentChange.Type.ADDED) {
-                    Log.i("error", "New city: ${change.document.data}")
-                }
-
-                val source = if (resultado.metadata.isFromCache){
-                    Log.i("almacenamiento", "Se almacena en la caché")
-                    for (documento in resultado){
-                        numeros.add(documento.id.toInt())
-                        numeros.sort()
-                        Log.i("recibir", "La lista es: ${numeros}")
-                        val ultimo = numeros.last()
-                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
-                        //val idBase = documento.id.toInt()
-                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
-                        contadorSecundario1 = ultimo + 1
-                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
-                    }
-                    contador = contadorSecundario1
-                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
-                }
-
-                else {
-                    Log.i("almacenamiento", "Se almacena en la caché")
-                    for (documento in resultado){
-                        numeros.add(documento.id.toInt())
-                        numeros.sort()
-                        Log.i("recibir", "La lista es: ${numeros}")
-                        val ultimo = numeros.last()
-                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
-                        //val idBase = documento.id.toInt()
-                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
-                        contadorSecundario1 = ultimo + 1
-                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
-                    }
-                    contador = contadorSecundario1
-                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
-                }
-                Log.i("error", "Data fetched from $source")
-            }
-
-
-        }*/
-
-
     }
+
 
     fun exportarCSV(cama: Int, variedad: String, tipoSiembra: String, procedimiento: String, prueba1: String,
                     prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                     bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                     semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
                     etiquetaGeneral1: String) {
-        // ****************************************************PRUEBA *********************************
+
         val datosRecibidos = DatosSiembra(fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
             bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
             metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
@@ -793,7 +708,324 @@ class Registro : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
 
-        /*val carpeta = File(
+    }
+
+
+    fun isConnected() : Boolean {
+        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivity != null){
+            info = connectivity!!.activeNetworkInfo
+            if (info != null){
+                if(info!!.state == NetworkInfo.State.CONNECTED){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+}
+
+
+//*********************************************************** FUNCIONES COMENTADAS ************************************************
+
+
+
+
+
+
+
+/*fun guardarGeneral(){
+
+}*/
+
+/*fun limpiarCampos(){
+    editTxtCama.setText(" ")
+    editTxtSemanaCabe.setText(" ")
+    editTxtBloqueCabe.setText(" ")
+    editTxtMetros.setText(" ")
+    editTextNumber7.setText(" ")
+    definir()
+}*/
+
+/*private fun mostrarDialogoBasico() {
+    val builder =
+        AlertDialog.Builder(
+            this
+        )
+    builder.setTitle("Titulo")
+    builder.setMessage("¿Quieres eliminar todos los datos?")
+        .setPositiveButton("Sí") { dialog, which ->
+            Toast.makeText(
+                applicationContext,
+                "Eliminamos datos...",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        .setNegativeButton(
+            R.string.cancel
+        ) { dialog, which ->
+            Toast.makeText(applicationContext, "Cancel...", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        .setCancelable(false)
+        .show()
+}*/
+
+
+/*fun calcularBulbos(){
+    editTxtMetros.addTextChangedListener(object: TextWatcher {
+        override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+
+            if (s.toString().trim().isEmpty())
+            {
+                txtViewBulbos.text="no mts"
+                btnGuardar.isEnabled=false
+            }
+            else
+            {
+                if(cmbEtiqueta.selectedItem.toString()=="Flores")
+                {
+                    if(txtViewFincaSiembra.toString()=="S4"){
+                        if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
+                            if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                val calcular=editTxtMetros.text.toString().toDouble()*28
+                                txtViewBulbos.text=calcular.toString()
+                            }
+                            else {
+                                if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                    val calcular=editTxtMetros.text.toString().toDouble()*20
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else{
+                                    if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*16
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else{
+                                        if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*12
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*6
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else{
+//si es de 1.90 la cama
+                            if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
+                                if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                    val calcular=editTxtMetros.text.toString().toDouble()*22
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else {
+                                    if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*16
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else{
+                                        if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*13
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*10
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*7
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*5
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+//si no hay calibre
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }// fin de cama 1.90
+                            else{}
+                        }
+
+//sande 4 fin
+                    }
+                    else{
+//sande 2
+                        if(txtViewFincaSiembra.toString()=="S2"){
+                            if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
+                                if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                    val calcular=editTxtMetros.text.toString().toDouble()*44
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else {
+                                    if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*28
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else{
+                                        if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*20
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*16
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*9
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+//si es de 1.90 la cama
+                                if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
+                                    if (cmbCalibre.selectedItem.toString()=="9/12"){
+                                        val calcular=editTxtMetros.text.toString().toDouble()*35
+                                        txtViewBulbos.text=calcular.toString()
+                                    }
+                                    else {
+                                        if(cmbCalibre.selectedItem.toString()=="12/15"){
+                                            val calcular=editTxtMetros.text.toString().toDouble()*22
+                                            txtViewBulbos.text=calcular.toString()
+                                        }
+                                        else{
+                                            if(cmbCalibre.selectedItem.toString()=="15/18"){
+                                                val calcular=editTxtMetros.text.toString().toDouble()*16
+                                                txtViewBulbos.text=calcular.toString()
+                                            }
+                                            else{
+                                                if(cmbCalibre.selectedItem.toString()=="18/20"){
+                                                    val calcular=editTxtMetros.text.toString().toDouble()*13
+                                                    txtViewBulbos.text=calcular.toString()
+                                                }
+                                                else{
+                                                    if(cmbCalibre.selectedItem.toString()=="22/26"){
+                                                        val calcular=editTxtMetros.text.toString().toDouble()*7
+                                                        txtViewBulbos.text=calcular.toString()
+                                                    }
+                                                    else{
+                                                        if(cmbCalibre.selectedItem.toString()=="26+"){
+                                                            val calcular=editTxtMetros.text.toString().toDouble()*5
+                                                            txtViewBulbos.text=calcular.toString()
+                                                        }
+                                                        else{
+//si no hay calibre
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }// fin de cama 1.90
+                                else{}
+                            }
+                        }
+                        else{}
+
+                    }// fin si sande 2
+                }//fin si es Etiqueta Flores
+
+
+
+                else{ //si es bulbos
+
+                    if(cmbCalibre.selectedItem.toString()=="0/4")
+                    {
+                        val calcular=editTxtMetros.text.toString().toDouble()*200
+                        txtViewBulbos.text=calcular.toString()
+                    }
+                    else{
+                        if(cmbCalibre.selectedItem.toString()=="4/6"){
+                            val calcular=editTxtMetros.text.toString().toDouble()*140
+                            txtViewBulbos.text=calcular.toString()
+                        }
+                        else{
+                            if(cmbCalibre.selectedItem.toString()=="6/9")
+                            {
+                                val calcular=editTxtMetros.text.toString().toDouble()*60
+                                txtViewBulbos.text=calcular.toString()
+                            }
+                            else
+                                if(cmbCalibre.selectedItem.toString()=="6/9")
+                                {
+                                    val calcular=editTxtMetros.text.toString().toDouble()*48
+                                    txtViewBulbos.text=calcular.toString()
+                                }
+                                else{}
+                        }
+                    }
+                } // fin si es bulbos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }//fin si mts no es vacio
+        }
+        override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                       after:Int) {
+// TODO Auto-generated method stub
+        }
+        override fun afterTextChanged(s: Editable) {
+// TODO Auto-generated method stub
+        }
+    })
+
+}*/
+
+//************************************ METODO PARA GUARDAR DENTRO DE LA FUNCION EXPORTAR CSV  ****************************
+
+/*val carpeta = File(
             Environment.getExternalStorageDirectory().toString() + "/ExportarDatosCSV"
         )
         val archivoAgenda = "${carpeta}/DatosSiembra.csv"
@@ -850,390 +1082,322 @@ class Registro : AppCompatActivity() {
             fileWriter.append("${etiquetaGeneral1}")
             fileWriter.append("\n")*/
 
-            /*for (registro in listaDatosSiembraBDD){
-                fileWriter.append(registro.fechaGeneral1)
-                fileWriter.append(",")
-                fileWriter.append("${registro.cama}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.prueba1}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.prueba2}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.origen}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.variedad}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.tipoSiembra}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.fincaGeneral1}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.bloqueGeneral1}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.tipoSiembra}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.procedimiento}")
-                fileWriter.append(",")
-                //val regis = "\"${registro.calibre}\""
-                fileWriter.append("${registro.calibre}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.semanaGeneral1}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.metros}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.bulbos}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.semanaCabe}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.bloqueCabe}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.fincaCabe}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.tamanioCama}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.brote}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.otraPrueba}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.valvulaGeneral}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.ladoGeneral1}")
-                fileWriter.append(",")
-                fileWriter.append("${registro.etiquetaGeneral1}")
-                fileWriter.append("\n")
+/*for (registro in listaDatosSiembraBDD){
+    fileWriter.append(registro.fechaGeneral1)
+    fileWriter.append(",")
+    fileWriter.append("${registro.cama}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.prueba1}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.prueba2}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.origen}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.variedad}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.tipoSiembra}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.fincaGeneral1}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.bloqueGeneral1}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.tipoSiembra}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.procedimiento}")
+    fileWriter.append(",")
+    //val regis = "\"${registro.calibre}\""
+    fileWriter.append("${registro.calibre}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.semanaGeneral1}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.metros}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.bulbos}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.semanaCabe}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.bloqueCabe}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.fincaCabe}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.tamanioCama}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.brote}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.otraPrueba}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.valvulaGeneral}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.ladoGeneral1}")
+    fileWriter.append(",")
+    fileWriter.append("${registro.etiquetaGeneral1}")
+    fileWriter.append("\n")
 
-            }*/
+}*/
 
-            /*val admin = AdminSQLiteOpenHelper(this@MainActivity, "dbSistema", null, 1)
-            val db: SQLiteDatabase = admin.getWritableDatabase()
-            val fila = db.rawQuery("select * from usuarios", null)
-            if (fila != null && fila.count != 0) {
-                fila.moveToFirst()
-                do {
-                    fileWriter.append(fila.getString(0))
-                    fileWriter.append(",")
-                    fileWriter.append(fila.getString(1))
-                    fileWriter.append(",")
-                    fileWriter.append(fila.getString(2))
-                    fileWriter.append("\n")
-                } while (fila.moveToNext())
-            } else {
-                Toast.makeText(this@MainActivity, "No hay registros.", Toast.LENGTH_LONG).show()
+/*val admin = AdminSQLiteOpenHelper(this@MainActivity, "dbSistema", null, 1)
+val db: SQLiteDatabase = admin.getWritableDatabase()
+val fila = db.rawQuery("select * from usuarios", null)
+if (fila != null && fila.count != 0) {
+    fila.moveToFirst()
+    do {
+        fileWriter.append(fila.getString(0))
+        fileWriter.append(",")
+        fileWriter.append(fila.getString(1))
+        fileWriter.append(",")
+        fileWriter.append(fila.getString(2))
+        fileWriter.append("\n")
+    } while (fila.moveToNext())
+} else {
+    Toast.makeText(this@MainActivity, "No hay registros.", Toast.LENGTH_LONG).show()
+}
+db.close()*/
+/*fileWriter.close()
+/*Toast.makeText(
+    this,
+    "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+    //Toast.LENGTH_LONG
+).show()*/
+} catch (e: Exception) {
+
+}*/
+
+
+// *********************************************** CODIGO DENTRO DE LA FUNCION VERIFICAR ID *************************
+
+/*db.collection("Prueba").addSnapshotListener(MetadataChanges.INCLUDE){ resultado, e ->
+            if (e != null) {
+            Log.i("error", "Listen error", e)
+            return@addSnapshotListener
             }
-            db.close()*/
-            /*fileWriter.close()
-            /*Toast.makeText(
-                this,
-                "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
-                //Toast.LENGTH_LONG
-            ).show()*/
-        } catch (e: Exception) {
+
+            for (change in resultado!!.documentChanges) {
+                if (change.type == DocumentChange.Type.ADDED) {
+                    Log.i("error", "New city: ${change.document.data}")
+                }
+
+                val source = if (resultado.metadata.isFromCache){
+                    Log.i("almacenamiento", "Se almacena en la caché")
+                    for (documento in resultado){
+                        numeros.add(documento.id.toInt())
+                        numeros.sort()
+                        Log.i("recibir", "La lista es: ${numeros}")
+                        val ultimo = numeros.last()
+                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                        //val idBase = documento.id.toInt()
+                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                        contadorSecundario1 = ultimo + 1
+                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                    }
+                    contador = contadorSecundario1
+                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+                }
+
+                else {
+                    Log.i("almacenamiento", "Se almacena en la caché")
+                    for (documento in resultado){
+                        numeros.add(documento.id.toInt())
+                        numeros.sort()
+                        Log.i("recibir", "La lista es: ${numeros}")
+                        val ultimo = numeros.last()
+                        Log.i("recibir", "Este es el ultimo número: ${ultimo}")
+                        //val idBase = documento.id.toInt()
+                        //Log.i("recibir","El ******************* id de la base es: ${idBase}")
+                        contadorSecundario1 = ultimo + 1
+                        //Log.i("recibir", "El ID es: ${contadorSecundario1}")
+                    }
+                    contador = contadorSecundario1
+                    Log.i("recibir", "El ID que se va a guardar es: ${contador}")
+                }
+                Log.i("error", "Data fetched from $source")
+            }
+
 
         }*/
-    }
-
-    fun isConnected() : Boolean {
-        connectivity = context.getSystemService(Service.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivity != null){
-            info = connectivity!!.activeNetworkInfo
-            if (info != null){
-                if(info!!.state == NetworkInfo.State.CONNECTED){
-                    return true
-                }
-            }
-        }
-        return false
-    }
 
 
 
 
-    /*fun guardarGeneral(){
 
-    }*/
 
-    /*fun limpiarCampos(){
-        editTxtCama.setText(" ")
-        editTxtSemanaCabe.setText(" ")
-        editTxtBloqueCabe.setText(" ")
-        editTxtMetros.setText(" ")
-        editTextNumber7.setText(" ")
-        definir()
-    }*/
 
-    /*private fun mostrarDialogoBasico() {
-        val builder =
-            AlertDialog.Builder(
-                this
+
+
+/*fun leerRegistrosCSV(){
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val lines: List<String> = file.readLines()
+        //Log.i("Fechita", "El tamaño es: ${lines.size}")
+        lines.forEachIndexed { index, s ->
+            val line = lines[index]
+            //Log.i("Fechita", "La fecha es: ${line}")
+            val tokens = line.split(",")
+            val fecha = tokens[0]
+            val cama = tokens[1]
+            val prueba1 = tokens[2]
+            val prueba2 = tokens[3]
+            val origen = tokens[4]
+            val variedad = tokens[5]
+            val tipoSiembra = tokens[6]
+            val fincaGeneral1 = tokens[7]
+            val bloqueGeneral1 = tokens[8]
+            val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[10]
+            val calibre = tokens[11]
+            val semanaGeneral1 = tokens[12]
+            val metros = tokens[13]
+            val bulbos = tokens[14]
+            val semanaCabe = tokens[15]
+            val bloqueCabe = tokens[16]
+            val fincaCabe = tokens[17]
+            val tamanioCama = tokens[18]
+            val brote = tokens[19]
+            val otraPrueba = tokens[20]
+            val valvulaGeneral = tokens[21]
+            val ladoGeneral1 = tokens[22]
+            val etiquetaGeneral1 = tokens[23]
+
+            Log.i("Fechita", "La fecha en registro es: ${fecha}")
+            Log.i("Fechita", "La semana en registro es: ${prueba1}")
+
+            ServicioBDDMemoria.agregarListaDatosSiembra(
+                cama.toInt(), variedad, tipoSiembra, procedimiento, prueba1, prueba2,
+                fincaCabe, semanaCabe.toInt(), bloqueCabe.toInt(), metros.toInt(), calibre, bulbos.toInt(),
+                tamanioCama, brote, origen, otraPrueba, fecha, semanaGeneral1.toInt(),
+                fincaGeneral1, valvulaGeneral.toInt(), bloqueGeneral1.toInt(), ladoGeneral1, etiquetaGeneral1
             )
-        builder.setTitle("Titulo")
-        builder.setMessage("¿Quieres eliminar todos los datos?")
-            .setPositiveButton("Sí") { dialog, which ->
-                Toast.makeText(
-                    applicationContext,
-                    "Eliminamos datos...",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            .setNegativeButton(
-                R.string.cancel
-            ) { dialog, which ->
-                Toast.makeText(applicationContext, "Cancel...", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
-            .setCancelable(false)
-            .show()
+        }
+
+
     }*/
 
 
-    /*fun calcularBulbos(){
-        editTxtMetros.addTextChangedListener(object: TextWatcher {
-            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
 
-                if (s.toString().trim().isEmpty())
-                {
-                    txtViewBulbos.text="no mts"
-                    btnGuardar.isEnabled=false
-                }
-                else
-                {
-                    if(cmbEtiqueta.selectedItem.toString()=="Flores")
-                    {
-                        if(txtViewFincaSiembra.toString()=="S4"){
-                            if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
-                                if (cmbCalibre.selectedItem.toString()=="9/12"){
-                                    val calcular=editTxtMetros.text.toString().toDouble()*28
-                                    txtViewBulbos.text=calcular.toString()
-                                }
-                                else {
-                                    if(cmbCalibre.selectedItem.toString()=="12/15"){
-                                        val calcular=editTxtMetros.text.toString().toDouble()*20
-                                        txtViewBulbos.text=calcular.toString()
-                                    }
-                                    else{
-                                        if(cmbCalibre.selectedItem.toString()=="15/18"){
-                                            val calcular=editTxtMetros.text.toString().toDouble()*16
-                                            txtViewBulbos.text=calcular.toString()
-                                        }
-                                        else{
-                                            if(cmbCalibre.selectedItem.toString()=="18/20"){
-                                                val calcular=editTxtMetros.text.toString().toDouble()*12
-                                                txtViewBulbos.text=calcular.toString()
-                                            }
-                                            else{
-                                                if(cmbCalibre.selectedItem.toString()=="22/26"){
-                                                    val calcular=editTxtMetros.text.toString().toDouble()*9
-                                                    txtViewBulbos.text=calcular.toString()
-                                                }
-                                                else{
-                                                    if(cmbCalibre.selectedItem.toString()=="26+"){
-                                                        val calcular=editTxtMetros.text.toString().toDouble()*6
-                                                        txtViewBulbos.text=calcular.toString()
-                                                    }
-                                                    else{
-
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            else{
-//si es de 1.90 la cama
-                                if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
-                                    if (cmbCalibre.selectedItem.toString()=="9/12"){
-                                        val calcular=editTxtMetros.text.toString().toDouble()*22
-                                        txtViewBulbos.text=calcular.toString()
-                                    }
-                                    else {
-                                        if(cmbCalibre.selectedItem.toString()=="12/15"){
-                                            val calcular=editTxtMetros.text.toString().toDouble()*16
-                                            txtViewBulbos.text=calcular.toString()
-                                        }
-                                        else{
-                                            if(cmbCalibre.selectedItem.toString()=="15/18"){
-                                                val calcular=editTxtMetros.text.toString().toDouble()*13
-                                                txtViewBulbos.text=calcular.toString()
-                                            }
-                                            else{
-                                                if(cmbCalibre.selectedItem.toString()=="18/20"){
-                                                    val calcular=editTxtMetros.text.toString().toDouble()*10
-                                                    txtViewBulbos.text=calcular.toString()
-                                                }
-                                                else{
-                                                    if(cmbCalibre.selectedItem.toString()=="22/26"){
-                                                        val calcular=editTxtMetros.text.toString().toDouble()*7
-                                                        txtViewBulbos.text=calcular.toString()
-                                                    }
-                                                    else{
-                                                        if(cmbCalibre.selectedItem.toString()=="26+"){
-                                                            val calcular=editTxtMetros.text.toString().toDouble()*5
-                                                            txtViewBulbos.text=calcular.toString()
-                                                        }
-                                                        else{
-//si no hay calibre
-
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }// fin de cama 1.90
-                                else{}
-                            }
-
-//sande 4 fin
-                        }
-                        else{
-//sande 2
-                            if(txtViewFincaSiembra.toString()=="S2"){
-                                if(cmbTamanioCama.selectedItem.toString()=="1.20 mts"){
-                                    if (cmbCalibre.selectedItem.toString()=="9/12"){
-                                        val calcular=editTxtMetros.text.toString().toDouble()*44
-                                        txtViewBulbos.text=calcular.toString()
-                                    }
-                                    else {
-                                        if(cmbCalibre.selectedItem.toString()=="12/15"){
-                                            val calcular=editTxtMetros.text.toString().toDouble()*28
-                                            txtViewBulbos.text=calcular.toString()
-                                        }
-                                        else{
-                                            if(cmbCalibre.selectedItem.toString()=="15/18"){
-                                                val calcular=editTxtMetros.text.toString().toDouble()*20
-                                                txtViewBulbos.text=calcular.toString()
-                                            }
-                                            else{
-                                                if(cmbCalibre.selectedItem.toString()=="18/20"){
-                                                    val calcular=editTxtMetros.text.toString().toDouble()*16
-                                                    txtViewBulbos.text=calcular.toString()
-                                                }
-                                                else{
-                                                    if(cmbCalibre.selectedItem.toString()=="22/26"){
-                                                        val calcular=editTxtMetros.text.toString().toDouble()*9
-                                                        txtViewBulbos.text=calcular.toString()
-                                                    }
-                                                    else{
-                                                        if(cmbCalibre.selectedItem.toString()=="26+"){
-                                                            val calcular=editTxtMetros.text.toString().toDouble()*9
-                                                            txtViewBulbos.text=calcular.toString()
-                                                        }
-                                                        else{
-
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else{
-//si es de 1.90 la cama
-                                    if(cmbTamanioCama.selectedItem.toString()=="0.9 mts"){
-                                        if (cmbCalibre.selectedItem.toString()=="9/12"){
-                                            val calcular=editTxtMetros.text.toString().toDouble()*35
-                                            txtViewBulbos.text=calcular.toString()
-                                        }
-                                        else {
-                                            if(cmbCalibre.selectedItem.toString()=="12/15"){
-                                                val calcular=editTxtMetros.text.toString().toDouble()*22
-                                                txtViewBulbos.text=calcular.toString()
-                                            }
-                                            else{
-                                                if(cmbCalibre.selectedItem.toString()=="15/18"){
-                                                    val calcular=editTxtMetros.text.toString().toDouble()*16
-                                                    txtViewBulbos.text=calcular.toString()
-                                                }
-                                                else{
-                                                    if(cmbCalibre.selectedItem.toString()=="18/20"){
-                                                        val calcular=editTxtMetros.text.toString().toDouble()*13
-                                                        txtViewBulbos.text=calcular.toString()
-                                                    }
-                                                    else{
-                                                        if(cmbCalibre.selectedItem.toString()=="22/26"){
-                                                            val calcular=editTxtMetros.text.toString().toDouble()*7
-                                                            txtViewBulbos.text=calcular.toString()
-                                                        }
-                                                        else{
-                                                            if(cmbCalibre.selectedItem.toString()=="26+"){
-                                                                val calcular=editTxtMetros.text.toString().toDouble()*5
-                                                                txtViewBulbos.text=calcular.toString()
-                                                            }
-                                                            else{
-//si no hay calibre
-
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }// fin de cama 1.90
-                                    else{}
-                                }
-                            }
-                            else{}
-
-                        }// fin si sande 2
-                    }//fin si es Etiqueta Flores
+// ****************************************** METODOS DE LA FUNCION OBTENER *****************************************
 
 
+/*val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
 
-                    else{ //si es bulbos
-
-                        if(cmbCalibre.selectedItem.toString()=="0/4")
-                        {
-                            val calcular=editTxtMetros.text.toString().toDouble()*200
-                            txtViewBulbos.text=calcular.toString()
-                        }
-                        else{
-                            if(cmbCalibre.selectedItem.toString()=="4/6"){
-                                val calcular=editTxtMetros.text.toString().toDouble()*140
-                                txtViewBulbos.text=calcular.toString()
-                            }
-                            else{
-                                if(cmbCalibre.selectedItem.toString()=="6/9")
-                                {
-                                    val calcular=editTxtMetros.text.toString().toDouble()*60
-                                    txtViewBulbos.text=calcular.toString()
-                                }
-                                else
-                                    if(cmbCalibre.selectedItem.toString()=="6/9")
-                                    {
-                                        val calcular=editTxtMetros.text.toString().toDouble()*48
-                                        txtViewBulbos.text=calcular.toString()
-                                    }
-                                    else{}
-                            }
-                        }
-                    } // fin si es bulbos
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                }//fin si mts no es vacio
+        if (networkInfo != null && networkInfo.isConnected) {
+            Log.d("MIAPP", "Estás online")
+            Log.d("MIAPP", " Estado actual: " + networkInfo.state)
+            if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                // Estas conectado a un Wi-Fi
+                Log.i("MIAPP", " Nombre red Wi-Fi: " + networkInfo.extraInfo)
             }
-            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
-                                           after:Int) {
-// TODO Auto-generated method stub
-            }
-            override fun afterTextChanged(s: Editable) {
-// TODO Auto-generated method stub
-            }
+        } else {
+            Log.i("MIAPP", "Estás offline")
+        }*/
+
+/*val cm = Context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true*/
+
+
+// AQUI COMIENZA LO QUE SI FUNCIONA *********************************************************************
+/*verificar_id()
+val numeroID = contador
+
+Log.i("rece", "El id que se recibe es: ${numeroID}")
+
+db.collection("Prueba").document("${numeroID}").set(
+    hashMapOf("Fecha" to fechaGeneral,
+        "Semana" to semanaGeneral, "Finca" to fincaGeneral, "Valvula" to valvulaGeneral,
+        "Bloque" to bloqueGeneral,
+        "Lado" to ladoGeneral,
+        "Etiqueta" to etiquetaGeneral,
+        "Cama" to cama,
+        "Variedad" to variedad,
+        "tipoSiembra" to tipoSiembra,
+        "Procedimiento" to procedimiento,
+        "Prueba1" to prueba1,
+        "Prueba2" to prueba2,
+        "FincaCabe" to  fincaCabe,
+        "SemanaCabe" to semanaCabe,
+        "BloqueCabe" to  bloqueCabe,
+        "Metros" to metros,
+        "Calibre" to calibre,
+        "Bulbos" to bulbos,
+        "TamanioCama" to tamanioCama,
+        "Brote" to brote,
+        "Origen" to origen,
+        "Prueba3" to otraPrueba
+    )
+)*/
+// Hasta aquí termina lo que si funciona
+
+
+/*db.collection("SiembraDatosSprint").add(
+    hashMapOf("Cama" to cama,
+        "Variedad" to variedad,
+        "tipoSiembra" to tipoSiembra,
+        "Procedimiento" to procedimiento,
+        "Prueba1" to prueba1,
+        "Prueba2" to prueba2,
+        "FincaCabe" to  fincaCabe,
+        "SemanaCabe" to semanaCabe,
+        "BloqueCabe" to  bloqueCabe,
+        "Metros" to metros,
+        "Calibre" to calibre,
+        "Bulbos" to bulbos,
+        "TamanioCama" to tamanioCama,
+        "Brote" to brote,
+        "Origen" to origen,
+        "Prueba3" to otraPrueba)
+)*/
+
+/*db.collection("SiembraDatos").add(
+    hashMapOf("Cama" to cama,
+    "Variedad" to variedad,
+    "tipoSiembra" to tipoSiembra,
+    "Procedimiento" to procedimiento,
+    "Prueba1" to prueba1,
+    "Prueba2" to prueba2,
+    "FincaCabe" to  fincaCabe,
+    "SemanaCabe" to semanaCabe,
+    "BloqueCabe" to  bloqueCabe,
+    "Metros" to metros,
+    "Calibre" to calibre,
+    "Bulbos" to bulbos)
+)*/
+
+
+
+/*db.collection("SiembraCompleta").add(
+    hashMapOf("Fecha" to fecha,
+        "Semana" to semana, "Finca" to finca, "Valvula" to valvula,
+        "Bloque" to bloque,
+        "Lado" to lado,
+        "Etiqueta" to etiqueta,
+        "Cama" to cama,
+        "Variedad" to variedad,
+        "tipoSiembra" to tipoSiembra,
+        "Procedimiento" to procedimiento,
+        "Prueba1" to prueba1,
+        "Prueba2" to prueba2,
+        "FincaCabe" to  finca,
+        "SemanaCabe" to semana,
+        "BloqueCabe" to  bloque,
+        "Metros" to metros,
+        "Calibre" to calibre,
+        "Bulbos" to bulbos
+    )
+)*/
+
+
+//limpiarCampos()
+
+//mostrarDialogoBasico()
+
+/*val builder = AlertDialog.Builder(this)
+builder.setMessage("Datos guardado correctamente")
+    .setPositiveButton("Continuar",
+        DialogInterface.OnClickListener { dialog, id ->
+            // FIRE ZE MISSILES!
         })
-
-    }*/
-
-
-}
+    .setNegativeButton("Cancelar",
+        DialogInterface.OnClickListener { dialog, id ->
+            // User cancelled the dialog
+        })
+// Create the AlertDialog object and return it
+builder.create()*/
