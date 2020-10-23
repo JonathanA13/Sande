@@ -26,6 +26,7 @@ import com.google.firebase.firestore.MetadataChanges
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 import java.io.File
+import java.io.FileOutputStream
 import java.io.FileWriter
 
 
@@ -66,8 +67,9 @@ class Registro : AppCompatActivity() {
     var fincaGeneral = ""
     var ladoGeneral = ""
     var etiquetaGeneral = ""
-    var listaDatosSiembra = arrayListOf<DatosSiembra>()
-
+    var listaDatosSiembraBDD = arrayListOf<DatosSiembra>()
+    var tamanioListaBDD = 0
+    //var listaDatosSiembraLecturaCSV = arrayListOf<DatosSiembra>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +99,11 @@ class Registro : AppCompatActivity() {
         ladoGeneral = intent.getStringExtra("Lado").toString()
         etiquetaGeneral = intent.getStringExtra("Etiqueta").toString()
 
-        listaDatosSiembra = ServicioBDDMemoria.listaDatosSiembra
+        //listaDatosSiembra = ServicioBDDMemoria.listaDatosSiembra
+        //leerRegistrosCSV()
+        listaDatosSiembraBDD = ServicioBDDMemoria.listaDatosSiembra
+        tamanioListaBDD = listaDatosSiembraBDD.size
+        Log.i("Completa","La lista completa es: ${listaDatosSiembraBDD.size}")
 
         txtFechaRegistro.text = fechaGeneral.toString()
         txtSemanaRegistro.text = semanaGeneral.toString()
@@ -138,10 +144,12 @@ class Registro : AppCompatActivity() {
 
         definir()
 
+        //leerRegistrosCSV()
+
         //btnGuardar.setOnClickListener{ obtener(fecha, semana, bloque, valvula, finca, lado, etiqueta) }
-        //btnGuardar.setOnClickListener{ obtener() }
+        btnGuardar.setOnClickListener{ obtener() }
         //para guardar en SQLLite
-        btnGuardar.setOnClickListener{ guardarSQLite()}
+        //btnGuardar.setOnClickListener{ guardarSQLite()}
         btnOtroBloque.setOnClickListener { botonNuevoBloque() }
 
         btnCalcularBulbo.setOnClickListener{
@@ -388,6 +396,54 @@ class Registro : AppCompatActivity() {
         spinner10.setAdapter(adapter10)
 
     }
+
+    /*fun leerRegistrosCSV(){
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val lines: List<String> = file.readLines()
+        //Log.i("Fechita", "El tamaño es: ${lines.size}")
+        lines.forEachIndexed { index, s ->
+            val line = lines[index]
+            //Log.i("Fechita", "La fecha es: ${line}")
+            val tokens = line.split(",")
+            val fecha = tokens[0]
+            val cama = tokens[1]
+            val prueba1 = tokens[2]
+            val prueba2 = tokens[3]
+            val origen = tokens[4]
+            val variedad = tokens[5]
+            val tipoSiembra = tokens[6]
+            val fincaGeneral1 = tokens[7]
+            val bloqueGeneral1 = tokens[8]
+            val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[10]
+            val calibre = tokens[11]
+            val semanaGeneral1 = tokens[12]
+            val metros = tokens[13]
+            val bulbos = tokens[14]
+            val semanaCabe = tokens[15]
+            val bloqueCabe = tokens[16]
+            val fincaCabe = tokens[17]
+            val tamanioCama = tokens[18]
+            val brote = tokens[19]
+            val otraPrueba = tokens[20]
+            val valvulaGeneral = tokens[21]
+            val ladoGeneral1 = tokens[22]
+            val etiquetaGeneral1 = tokens[23]
+
+            Log.i("Fechita", "La fecha en registro es: ${fecha}")
+            Log.i("Fechita", "La semana en registro es: ${prueba1}")
+
+            ServicioBDDMemoria.agregarListaDatosSiembra(
+                cama.toInt(), variedad, tipoSiembra, procedimiento, prueba1, prueba2,
+                fincaCabe, semanaCabe.toInt(), bloqueCabe.toInt(), metros.toInt(), calibre, bulbos.toInt(),
+                tamanioCama, brote, origen, otraPrueba, fecha, semanaGeneral1.toInt(),
+                fincaGeneral1, valvulaGeneral.toInt(), bloqueGeneral1.toInt(), ladoGeneral1, etiquetaGeneral1
+            )
+        }
+
+
+    }*/
+
     //fecha: String, semana: Int, bloque: Int, valvula: Int, finca: String, lado: String, etiqueta: String
     fun obtener(){
 
@@ -448,7 +504,9 @@ class Registro : AppCompatActivity() {
 
         } else {
 
-            exportarCSV()
+            exportarCSV(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
+                calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
+                bloqueGeneral,ladoGeneral,etiquetaGeneral)
             //
             // guardarSQLite()
 
@@ -709,8 +767,33 @@ class Registro : AppCompatActivity() {
 
     }
 
-    fun exportarCSV() {
-        val carpeta = File(
+    fun exportarCSV(cama: Int, variedad: String, tipoSiembra: String, procedimiento: String, prueba1: String,
+                    prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
+                    bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
+                    semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
+                    etiquetaGeneral1: String) {
+        // ****************************************************PRUEBA *********************************
+        val datosRecibidos = DatosSiembra(fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
+            bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
+            metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
+            otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral)
+
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val ingreso = FileOutputStream(file,true)
+        ingreso.bufferedWriter().use { out ->
+            out.write("${datosRecibidos}")
+        }
+
+        ingreso.flush()
+        ingreso.close()
+
+        Toast.makeText(
+            this,
+            "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+            Toast.LENGTH_LONG
+        ).show()
+
+        /*val carpeta = File(
             Environment.getExternalStorageDirectory().toString() + "/ExportarDatosCSV"
         )
         val archivoAgenda = "${carpeta}/DatosSiembra.csv"
@@ -720,7 +803,54 @@ class Registro : AppCompatActivity() {
         }
         try {
             val fileWriter = FileWriter(archivoAgenda)
-            for (registro in listaDatosSiembra){
+            fileWriter.append(fechaGeneral1)
+            fileWriter.append(",")
+            fileWriter.append("${cama}")
+            fileWriter.append(",")
+            fileWriter.append("${prueba1}")
+            fileWriter.append(",")
+            fileWriter.append("${prueba2}")
+            fileWriter.append(",")
+            fileWriter.append("${origen}")
+            fileWriter.append(",")
+            fileWriter.append("${variedad}")
+            fileWriter.append(",")
+            fileWriter.append("${fincaGeneral1}")
+            fileWriter.append(",")
+            fileWriter.append("${bloqueGeneral1}")
+            fileWriter.append(",")
+            fileWriter.append("${tipoSiembra}")
+            fileWriter.append(",")
+            fileWriter.append("${procedimiento}")
+            fileWriter.append(",")
+            fileWriter.append("${calibre}")
+            fileWriter.append(",")
+            fileWriter.append("${semanaGeneral1}")
+            fileWriter.append(",")
+            fileWriter.append("${metros}")
+            fileWriter.append(",")
+            fileWriter.append("${bulbos}")
+            fileWriter.append(",")
+            fileWriter.append("${semanaCabe}")
+            fileWriter.append(",")
+            fileWriter.append("${bloqueCabe}")
+            fileWriter.append(",")
+            fileWriter.append("${fincaCabe}")
+            fileWriter.append(",")
+            fileWriter.append("${tamanioCama}")
+            fileWriter.append(",")
+            fileWriter.append("${brote}")
+            fileWriter.append(",")
+            fileWriter.append("${otraPrueba}")
+            fileWriter.append(",")
+            fileWriter.append("${valvulaGeneral}")
+            fileWriter.append(",")
+            fileWriter.append("${ladoGeneral1}")
+            fileWriter.append(",")
+            fileWriter.append("${etiquetaGeneral1}")
+            fileWriter.append("\n")*/
+
+            /*for (registro in listaDatosSiembraBDD){
                 fileWriter.append(registro.fechaGeneral1)
                 fileWriter.append(",")
                 fileWriter.append("${registro.cama}")
@@ -771,7 +901,7 @@ class Registro : AppCompatActivity() {
                 fileWriter.append("${registro.etiquetaGeneral1}")
                 fileWriter.append("\n")
 
-            }
+            }*/
 
             /*val admin = AdminSQLiteOpenHelper(this@MainActivity, "dbSistema", null, 1)
             val db: SQLiteDatabase = admin.getWritableDatabase()
@@ -790,14 +920,15 @@ class Registro : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "No hay registros.", Toast.LENGTH_LONG).show()
             }
             db.close()*/
-            fileWriter.close()
-            Toast.makeText(
+            /*fileWriter.close()
+            /*Toast.makeText(
                 this,
                 "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
-                Toast.LENGTH_LONG
-            ).show()
+                //Toast.LENGTH_LONG
+            ).show()*/
         } catch (e: Exception) {
-        }
+
+        }*/
     }
 
     fun isConnected() : Boolean {

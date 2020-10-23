@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
+import java.io.File
 import java.text.DateFormat
 import java.util.*
 
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         val especie = intent.getStringExtra("especie")
         tvEspecie.text= especie
+        //leerRegistrosCSV()
 
        /* var bunble=intent.extras
 
@@ -389,6 +391,53 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    /*fun leerRegistrosCSV(){
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val lines: List<String> = file.readLines()
+        //Log.i("Fechita", "El tamaño es: ${lines.size}")
+        lines.forEachIndexed { index, s ->
+            val line = lines[index]
+            //Log.i("Fechita", "La fecha es: ${line}")
+            val tokens = line.split(",")
+            val fecha = tokens[0]
+            val cama = tokens[1]
+            val prueba1 = tokens[2]
+            val prueba2 = tokens[3]
+            val origen = tokens[4]
+            val variedad = tokens[5]
+            val tipoSiembra = tokens[6]
+            val fincaGeneral1 = tokens[7]
+            val bloqueGeneral1 = tokens[8]
+            val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[10]
+            val calibre = tokens[11]
+            val semanaGeneral1 = tokens[12]
+            val metros = tokens[13]
+            val bulbos = tokens[14]
+            val semanaCabe = tokens[15]
+            val bloqueCabe = tokens[16]
+            val fincaCabe = tokens[17]
+            val tamanioCama = tokens[18]
+            val brote = tokens[19]
+            val otraPrueba = tokens[20]
+            val valvulaGeneral = tokens[21]
+            val ladoGeneral1 = tokens[22]
+            val etiquetaGeneral1 = tokens[23]
+
+            Log.i("Fechita", "La fecha en registro es: ${fecha}")
+            Log.i("Fechita", "La semana en registro es: ${prueba1}")
+
+            ServicioBDDMemoria.agregarListaDatosSiembra(
+                cama.toInt(), variedad, tipoSiembra, procedimiento, prueba1, prueba2,
+                fincaCabe, semanaCabe.toInt(), bloqueCabe.toInt(), metros.toInt(), calibre, bulbos.toInt(),
+                tamanioCama, brote, origen, otraPrueba, fecha, semanaGeneral1.toInt(),
+                fincaGeneral1, valvulaGeneral.toInt(), bloqueGeneral1.toInt(), ladoGeneral1, etiquetaGeneral1
+            )
+        }
+
+
+    }*/
 
 
     /*fun verificar_id() {
