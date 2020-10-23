@@ -1,5 +1,6 @@
 package com.example.sande_siembra
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,11 +10,15 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.example.sande_siembra.modelo.DatosSiembra
 import kotlinx.android.synthetic.main.activity_editar_datos_siembra.*
 import kotlinx.android.synthetic.main.activity_registro.*
+import java.io.File
+import java.io.FileWriter
 
 class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
@@ -21,10 +26,13 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
     var metrosAntiguos = 0
     var etiqueta = ""
     var finca = ""
-
+    var listaDatosSiembra = arrayListOf<DatosSiembra>()
+    var elementoSeleccionado = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_datos_siembra)
+
+        cargarEnLista()
 
         tv_FechaGeneral.text = intent.getStringExtra("Fecha")
         tv_SemanaGeneral.text = intent.getIntExtra("Semana", 0).toString()
@@ -59,6 +67,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         etiqueta = intent.getStringExtra("Etiqueta").toString()
         tv_BulbosCalcular.text = intent.getIntExtra("Bulbos",0).toString()
         calibreAntiguo = intent.getStringExtra("Calibre").toString()
+        elementoSeleccionado = intent.getIntExtra("posicion",0)
 
         if (tamanioCamaRecepcion != null && siembraRecepcion != null && variedadRecepcion != null && procedimientoRecepcion != null && broteRecepcion != null &&
             origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && fincaCabeRecepcion != null &&
@@ -78,8 +87,9 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             )
         }
 
-        btnEditar.setOnClickListener{ camposEditar() }
+        btnEditar.setOnClickListener{ camposEditar(elementoSeleccionado) }
         btnCalcularBulbos.isEnabled = false
+
 
     }
 
@@ -139,32 +149,50 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                     calibreEditado = spinnerCalibre.selectedItem.toString()
                 }  else if(spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.hint.toString().toInt() == metrosAntiguos && bandera == false){
                     btnCalcularBulbos.isEnabled= true
+                    tv_BulbosCalcular.text = ""
                     Log.i("Estado","Entra aquí 5")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
-                    metrosEditado = et_Metros.hint.toString().toInt()
+                    if (et_Metros.length() == 0){
+                        metrosEditado = et_Metros.hint.toString().toInt()
+                        Log.i("Estado","El valor seleccionado es: ${metrosEditado}")
+                    } else {
+                        metrosEditado = et_Metros.text.toString().toInt()
+                        Log.i("Estado","El valor seleccionado es: ${metrosEditado}")
+                    }
+                    //metrosEditado = et_Metros.text.toString().toInt()
                     calibreEditado = spinnerCalibre.selectedItem.toString()
-                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() == 0 ){
+
+                } else if(spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.text.toString().toInt() != metrosAntiguos && bandera == false){
                     btnCalcularBulbos.isEnabled= true
-                    metrosEditado = et_Metros.hint.toString().toInt()
-                    calibreEditado = spinnerCalibre.selectedItem.toString()
                     Log.i("Estado","Entra aquí 6")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
-                    bandera = false
-                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() > 0){
+
+                    metrosEditado = et_Metros.text.toString().toInt()
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+
+                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() == 0 ){
                     btnCalcularBulbos.isEnabled= true
                     metrosEditado = et_Metros.hint.toString().toInt()
                     calibreEditado = spinnerCalibre.selectedItem.toString()
                     Log.i("Estado","Entra aquí 7")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
                     bandera = false
+                } else if (spinnerCalibre.selectedItem.equals(calibreAntiguo) && et_Metros.length() > 0){
+                    btnCalcularBulbos.isEnabled= true
+                    metrosEditado = et_Metros.hint.toString().toInt()
+                    calibreEditado = spinnerCalibre.selectedItem.toString()
+                    Log.i("Estado","Entra aquí 8")
+                    Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
+                    bandera = false
                 } else if(!spinnerCalibre.selectedItem.equals(calibreAntiguo)) {
                     btnCalcularBulbos.isEnabled= true
+                    tv_BulbosCalcular.text = ""
                     if (et_Metros.length() == 0){
                         metrosEditado = et_Metros.hint.toString().toInt()
                     } else {
                         metrosEditado = et_Metros.text.toString().toInt()
                     }
-                    Log.i("Estado","Entra aquí 8")
+                    Log.i("Estado","Entra aquí 9")
                     Log.i("Estado","El valor seleccionado es: ${spinnerCalibre.selectedItem}")
                     //tv_BulbosCalcular.text = "Vacío"
                     calibreEditado = spinnerCalibre.selectedItem.toString()
@@ -174,6 +202,9 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             }
 
         })
+
+        Log.i("datillos", "Los datos son: ${metrosEditado}")
+        Log.i("datillos", "Los datos son: ${calibreEditado}")
 
         btnCalcularBulbos.setOnClickListener{
             if(etiqueta.equals("Bulbos")){
@@ -305,24 +336,25 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
     }
 
-    fun camposEditar(){
+    fun camposEditar(posicion: Int){
+
+        Log.i("posicion", "La posicion de la lista es: ${posicion}")
         val camaEditar: Int
         if( et_Cama.length() == 0){
             camaEditar = et_Cama.hint.toString().toInt()
-            Log.i("editar","La edicion es: ${camaEditar}")
+            //Log.i("editar","La edicion es: ${camaEditar}")
         } else {
             camaEditar = et_Cama.text.toString().toInt()
-            Log.i("editar","La edicion es: ${camaEditar}")
+            //Log.i("editar","La edicion es: ${camaEditar}")
         }
 
         val tamanioCamaEditar = spinnerTamanioCama.selectedItem.toString()
-        Log.i("editar","La edicion es: ${tamanioCamaEditar}")
         val tipoSiembraEditar = spinnerTipoSiembra.selectedItem.toString()
         val variedadEditar = spinnerVariedad.selectedItem.toString()
         val procedimientoEditar = spinnerProce.selectedItem.toString()
         val broteEditar = spinnerBrote.selectedItem.toString()
         val origenEditar = spinnerOrigen.selectedItem.toString()
-        Log.i("editar","La edicion es: ${origenEditar}")
+        //Log.i("editar","La edicion es: ${origenEditar}")
         val prueba1Editar = spinnerPruebas1.selectedItem.toString()
         val prueba2Editar = spinnerPruebas2.selectedItem.toString()
 
@@ -352,17 +384,193 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         val metrosEditar: Int
         if (et_Metros.length() == 0){
             metrosEditar = et_Metros.hint.toString().toInt()
-            Log.i("editar","La edicion es: ${metrosEditar}")
+            //Log.i("editar","La edicion es: ${metrosEditar}")
         } else {
             metrosEditar = et_Metros.text.toString().toInt()
-            Log.i("editar","La edicion es: ${metrosEditar}")
+            //Log.i("editar","La edicion es: ${metrosEditar}")
         }
 
         val calibreEditar = spinnerCalibre.selectedItem.toString()
 
+        val bulbosEditar = tv_BulbosCalcular.text.toString().toInt()
+        /*if(tv_BulbosCalcular.length() == 0){
+            bulbosEditar = tv_BulbosCalcular.hint.toString().toInt()
+        } else {
+            bulbosEditar = tv_BulbosCalcular.text.toString().toInt()
+        }*/
+
+        listaDatosSiembra[posicion].cama = camaEditar
+        listaDatosSiembra[posicion]. tamanioCama = tamanioCamaEditar
+        listaDatosSiembra[posicion]. tipoSiembra = tipoSiembraEditar
+        listaDatosSiembra[posicion]. variedad = variedadEditar
+
+        listaDatosSiembra[posicion]. procedimiento = procedimientoEditar
+        listaDatosSiembra[posicion]. brote = broteEditar
+        listaDatosSiembra[posicion].origen = origenEditar
+
+        listaDatosSiembra[posicion].prueba1 = prueba1Editar
+        listaDatosSiembra[posicion].prueba2 = prueba2Editar
+        listaDatosSiembra[posicion].otraPrueba = otraPruebaEditar
+
+        listaDatosSiembra[posicion]. semanaCabe = semanaCabeEditar
+        listaDatosSiembra[posicion]. bloqueCabe = bloqueCabe
+        listaDatosSiembra[posicion]. fincaCabe = fincaCabeEditar
+
+        listaDatosSiembra[posicion]. metros = metrosEditar
+        listaDatosSiembra[posicion]. calibre = calibreEditar
+        listaDatosSiembra[posicion]. bulbos = bulbosEditar
+        guardarArchivo()
+
     }
 
+    fun cargarEnLista(){
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val lines: List<String> = file.readLines()
+        Log.i("Fechita", "El tamaño es: ${lines.size}")
+        lines.forEachIndexed { index, s ->
+            val line = lines[index]
+            Log.i("Fechita", "La fecha es: ${line}")
+            val tokens = line.split(",")
+            val fecha = tokens[0]
+            val cama = tokens[1]
+            val prueba1 = tokens[2]
+            val prueba2 = tokens[3]
+            val origen = tokens[4]
+            val variedad = tokens[5]
+            val fincaGeneral1 = tokens[6]
+            val bloqueGeneral1 = tokens[7]
+            val tipoSiembra = tokens[8]
+            //val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[9]
+            val calibre = tokens[10]
+            val semanaGeneral1 = tokens[11]
+            val metros = tokens[12]
+            val bulbos = tokens[13]
+            val semanaCabe = tokens[14]
+            val bloqueCabe = tokens[15]
+            val fincaCabe = tokens[16]
+            val tamanioCama = tokens[17]
+            val brote = tokens[18]
+            val otraPrueba = tokens[19]
+            val valvulaGeneral = tokens[20]
+            val ladoGeneral1 = tokens[21]
+            val etiquetaGeneral1 = tokens[22]
+
+            Log.i("Fechita", "La fecha es: ${fecha}")
+            Log.i("Fechita", "La semana es: ${prueba1}")
+            Log.i("Fechita", "La semana es: ${origen}")
+            Log.i("Fechita", "La semana es: ${variedad}")
+            Log.i("Fechita", "La semana es: ${tipoSiembra}")
+            Log.i("Fechita", "La semana es: ${valvulaGeneral}")
+            Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+
+            listaDatosSiembra.add(
+                DatosSiembra(
+                    fecha,
+                    cama.toInt(),
+                    prueba1,
+                    prueba2,
+                    origen,
+                    variedad,
+                    fincaGeneral1,
+                    bloqueGeneral1.toInt(),
+                    tipoSiembra,
+                    procedimiento,
+                    calibre,
+                    semanaGeneral1.toInt(),
+                    metros.toInt(),
+                    bulbos.toInt(),
+                    semanaCabe.toInt(),
+                    bloqueCabe.toInt(),
+                    fincaCabe,
+                    tamanioCama,
+                    brote,
+                    otraPrueba,
+                    valvulaGeneral.toInt(),
+                    ladoGeneral1,
+                    etiquetaGeneral1
+                )
+            )
+        }
+        Log.i("lista", "La lista es: ${listaDatosSiembra}")
+
+    }
+
+    fun guardarArchivo(){
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        try {
+            val fileWriter = FileWriter(file)
+            for (registro in listaDatosSiembra) {
+                fileWriter.append(registro.fechaGeneral1)
+                fileWriter.append(",")
+                fileWriter.append("${registro.cama}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.prueba1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.prueba2}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.origen}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.variedad}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.fincaGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bloqueGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.tipoSiembra}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.procedimiento}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.calibre}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.semanaGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.metros}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bulbos}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.semanaCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.bloqueCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.fincaCabe}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.tamanioCama}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.brote}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.otraPrueba}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.valvulaGeneral}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.ladoGeneral1}")
+                fileWriter.append(",")
+                fileWriter.append("${registro.etiquetaGeneral1}")
+                fileWriter.append("\n")
+
+            }
+            fileWriter.close()
+            Toast.makeText(
+                this,
+                "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+                Toast.LENGTH_LONG
+            ).show()
+        } catch (e: Exception) {
+        }
+
+        val intentExplicito = Intent(
+            this,
+            Datos::class.java
+        )
+        startActivity(intentExplicito)
+
+    }
+
+
     fun calcularBulbosEdicion(metrosEditado: Int, calibreEditado: String){
+        Log.i("datillos", "Estos son los datos en la funcion: ${metrosEditado}")
+        Log.i("datillos", "Estos son los datos en la funcion: ${calibreEditado}")
+
         var resultado = 0
 
         if(calibreEditado.equals("0/4")){
@@ -378,6 +586,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         tv_BulbosCalcular.text = resultado.toString()
 
     }
+
 
     fun calcularFloresS2Edicion(metrosEditado: Int, calibreEditado: String){
         var resultado = 0
@@ -445,10 +654,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         }
 
         tv_BulbosCalcular.text = resultado.toString()
-
     }
-
-
 
 }
 

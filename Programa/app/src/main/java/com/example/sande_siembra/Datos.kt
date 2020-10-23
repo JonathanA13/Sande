@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sande_siembra.modelo.DatosSiembra
@@ -34,13 +35,19 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
                 "Vermer", 12, 5, "Vermer", "Vermer"
             )
         )*/
+        leerRegistrosCSV()
+        Log.i("listita", "la lista es: ${listaDatosSiembra}")
+        Log.i("listita", "la cantidad de registros de lista es: ${listaDatosSiembra.size}")
+        recyclerView.adapter = RecyclerAdapter(this, listaDatosSiembra, this)
+    }
 
+    fun leerRegistrosCSV(){
         val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
         val lines: List<String> = file.readLines()
-        Log.i("Fechita", "El tamaño es: ${lines.size}")
+        //Log.i("Fechita", "El tamaño es: ${lines.size}")
         lines.forEachIndexed { index, s ->
             val line = lines[index]
-            Log.i("Fechita", "La fecha es: ${line}")
+            //Log.i("Fechita", "La fecha es: ${line}")
             val tokens = line.split(",")
             val fecha = tokens[0]
             val cama = tokens[1]
@@ -48,24 +55,24 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             val prueba2 = tokens[3]
             val origen = tokens[4]
             val variedad = tokens[5]
-            val tipoSiembra = tokens[6]
-            val fincaGeneral1 = tokens[7]
-            val bloqueGeneral1 = tokens[8]
-            val tipoSiembra1 = tokens[9]
-            val procedimiento = tokens[10]
-            val calibre = tokens[11]
-            val semanaGeneral1 = tokens[12]
-            val metros = tokens[13]
-            val bulbos = tokens[14]
-            val semanaCabe = tokens[15]
-            val bloqueCabe = tokens[16]
-            val fincaCabe = tokens[17]
-            val tamanioCama = tokens[18]
-            val brote = tokens[19]
-            val otraPrueba = tokens[20]
-            val valvulaGeneral = tokens[21]
-            val ladoGeneral1 = tokens[22]
-            val etiquetaGeneral1 = tokens[23]
+            val fincaGeneral1 = tokens[6]
+            val bloqueGeneral1 = tokens[7]
+            val tipoSiembra = tokens[8]
+            //val tipoSiembra1 = tokens[9]
+            val procedimiento = tokens[9]
+            val calibre = tokens[10]
+            val semanaGeneral1 = tokens[11]
+            val metros = tokens[12]
+            val bulbos = tokens[13]
+            val semanaCabe = tokens[14]
+            val bloqueCabe = tokens[15]
+            val fincaCabe = tokens[16]
+            val tamanioCama = tokens[17]
+            val brote = tokens[18]
+            val otraPrueba = tokens[19]
+            val valvulaGeneral = tokens[20]
+            val ladoGeneral1 = tokens[21]
+            val etiquetaGeneral1 = tokens[22]
 
             Log.i("Fechita", "La fecha es: ${fecha}")
             Log.i("Fechita", "La semana es: ${prueba1}")
@@ -74,37 +81,41 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             Log.i("Fechita", "La semana es: ${tipoSiembra}")
             Log.i("Fechita", "La semana es: ${valvulaGeneral}")
             Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+            /*
+fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
+            bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
+            metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
+            otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral
+ */
 
             listaDatosSiembra.add(
                 DatosSiembra(
+                    fecha,
                     cama.toInt(),
-                    variedad,
-                    tipoSiembra,
-                    procedimiento,
                     prueba1,
                     prueba2,
-                    fincaCabe,
+                    origen,
+                    variedad,
+                    fincaGeneral1,
+                    bloqueGeneral1.toInt(),
+                    tipoSiembra,
+                    procedimiento,
+                    calibre,
+                    semanaGeneral1.toInt(),
+                    metros.toInt(),
+                    bulbos.toInt(),
                     semanaCabe.toInt(),
                     bloqueCabe.toInt(),
-                    metros.toInt(),
-                    calibre,
-                    bulbos.toInt(),
+                    fincaCabe,
                     tamanioCama,
                     brote,
-                    origen,
                     otraPrueba,
-                    fecha,
-                    semanaGeneral1.toInt(),
-                    fincaGeneral1,
                     valvulaGeneral.toInt(),
-                    bloqueGeneral1.toInt(),
                     ladoGeneral1,
                     etiquetaGeneral1
                 )
             )
         }
-
-        recyclerView.adapter = RecyclerAdapter(this, listaDatosSiembra, this)
     }
 
     override fun onItemClick(position: Int, cama: Int, variedad: String, tipoSiembra: String, procedimiento: String, prueba1: String,
