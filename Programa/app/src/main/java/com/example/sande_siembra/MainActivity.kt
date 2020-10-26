@@ -94,7 +94,6 @@ class MainActivity : AppCompatActivity() {
                 validaciones_Campos_Vacíos("ETIQUETA")
             }
 
-
         } else {
 
             val especie = tvEspecie.text.toString()
