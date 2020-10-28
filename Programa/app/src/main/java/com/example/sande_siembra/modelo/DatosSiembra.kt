@@ -7,6 +7,7 @@ class DatosSiembra (
      var prueba2: String,
      var origen: String,
      var variedad: String,
+     //var color: String,
      var fincaGeneral1: String,
      var bloqueGeneral1: Int,
      var tipoSiembra: String,
@@ -34,4 +35,12 @@ class DatosSiembra (
                 ",${tamanioCama},${brote},${otraPrueba}" +
                 ",${valvulaGeneral},${ladoGeneral1},${etiquetaGeneral1}\n"
     }
+
+     /*override fun toString ():String{
+          return "${fechaGeneral1};${cama};${prueba1};${prueba2};${origen};${variedad};${fincaGeneral1}" +
+                  ";${bloqueGeneral1};${tipoSiembra};${procedimiento};${calibre};${semanaGeneral1}" +
+                  ";${metros};${bulbos};${semanaCabe};${bloqueCabe};${fincaCabe}" +
+                  ";${tamanioCama};${brote};${otraPrueba}" +
+                  ";${valvulaGeneral};${ladoGeneral1};${etiquetaGeneral1}\n"
+     }*/
 }

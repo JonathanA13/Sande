@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
     fun obtener_Datos() {
 
         if (cmbFinca.selectedItem.equals("Seleccionar") || editTxtValvula.text.length == 0 ||
-            editTxtBloque.text.length == 0|| cmbEtiqueta.selectedItem.equals("Seleccionar") ){
+            editTxtBloque.text.length == 0 || cmbEtiqueta.selectedItem.equals("Seleccionar") ){
             if (cmbFinca.selectedItem.equals("Seleccionar")){
                 validaciones_Campos_Vacíos("FINCA")
             } else if (editTxtValvula.text.length == 0){
