@@ -42,12 +42,15 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
     }
 
     fun leerRegistrosCSV(){
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        //val file = File("/sdcard/Download/DatosSiembra2.csv")
+        // /sdcard/Download/DatosSiembra2.csv
         val lines: List<String> = file.readLines()
         //Log.i("Fechita", "El tamaño es: ${lines.size}")
         lines.forEachIndexed { index, s ->
             val line = lines[index]
-            //Log.i("Fechita", "La fecha es: ${line}")
+            Log.i("Fechita", "El índice es: ${index}")
+            Log.i("Fechita", "La fecha es: ${line}")
             val tokens = line.split(",")
             val fecha = tokens[0]
             val cama = tokens[1]
@@ -81,40 +84,43 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             Log.i("Fechita", "La semana es: ${tipoSiembra}")
             Log.i("Fechita", "La semana es: ${valvulaGeneral}")
             Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+
             /*
-fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
+            fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
             bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
             metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
             otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral
- */
-
-            listaDatosSiembra.add(
-                DatosSiembra(
-                    fecha,
-                    cama.toInt(),
-                    prueba1,
-                    prueba2,
-                    origen,
-                    variedad,
-                    fincaGeneral1,
-                    bloqueGeneral1.toInt(),
-                    tipoSiembra,
-                    procedimiento,
-                    calibre,
-                    semanaGeneral1.toInt(),
-                    metros.toInt(),
-                    bulbos.toInt(),
-                    semanaCabe.toInt(),
-                    bloqueCabe.toInt(),
-                    fincaCabe,
-                    tamanioCama,
-                    brote,
-                    otraPrueba,
-                    valvulaGeneral.toInt(),
-                    ladoGeneral1,
-                    etiquetaGeneral1
+            */
+            if ( index != 0) {
+                listaDatosSiembra.add(
+                    DatosSiembra(
+                        fecha,
+                        cama.toInt(),
+                        prueba1,
+                        prueba2,
+                        origen,
+                        variedad,
+                        fincaGeneral1,
+                        bloqueGeneral1.toInt(),
+                        tipoSiembra,
+                        procedimiento,
+                        calibre,
+                        semanaGeneral1.toInt(),
+                        metros.toInt(),
+                        bulbos.toInt(),
+                        semanaCabe.toInt(),
+                        bloqueCabe.toInt(),
+                        fincaCabe,
+                        tamanioCama,
+                        brote,
+                        otraPrueba,
+                        valvulaGeneral.toInt(),
+                        ladoGeneral1,
+                        etiquetaGeneral1
+                    )
                 )
-            )
+            }
+
         }
     }
 

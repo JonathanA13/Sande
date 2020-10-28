@@ -5,11 +5,13 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.ContextThemeWrapper
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.view.Gravity
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sande_siembra.modelo.RegistroSiembra
@@ -31,6 +33,7 @@ class Registro : AppCompatActivity() {
     var valvulaGeneral = 0
     var ladoGeneral = ""
     var etiquetaGeneral = ""
+
 
     private val db = FirebaseFirestore.getInstance()
     val settings = FirebaseFirestoreSettings.Builder()
@@ -101,6 +104,56 @@ class Registro : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        editTxtMetros.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                btnCalcularBulbo.isEnabled = true
+                txtViewBulbos.text = ""
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                txtViewBulbos.text = ""
+            }
+
+        } )
+
+        cmbCalibre.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                txtViewBulbos.text = ""
+                btnCalcularBulbo.isEnabled = !cmbCalibre.selectedItem.equals("Elegir")
+            }
+
+        } )
+
+        cmbTamanioCama.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                txtViewBulbos.text = ""
+            }
+
+        } )
+
         btnCalcularBulbo.setOnClickListener{
             if(etiquetaGeneral.equals("Bulbos")){
                 calcularBulbos()
@@ -110,6 +163,7 @@ class Registro : AppCompatActivity() {
                 calcularFloresS4()
             }
         }
+
     }
 
 
@@ -197,13 +251,29 @@ class Registro : AppCompatActivity() {
             this,
             MainActivity::class.java
         )
+        intentExplicito.putExtra("especie",especieGeneral)
         startActivity(intentExplicito)
     }
 
 
     fun calcularBulbos(){
-        val metros = editTxtMetros.text.toString().toInt()
+        var metros: Int = 0
+        if (editTxtMetros.text.isEmpty()){
+            btnCalcularBulbo.isEnabled = false
+            validaciones_Campos_Vacíos("Metros")
+        } else{
+            btnCalcularBulbo.isEnabled = true
+            metros = editTxtMetros.text.toString().toInt()
+            if ( metros == 0){
+                //btnCalcularBulbo.isEnabled = false
+                validaciones_Campos_Vacíos("Metros")
+            }
+        }
+
         val calibre = cmbCalibre.selectedItem.toString()
+        //btnCalcularBulbo.isEnabled = !calibre.equals("Elegir")
+        //btnCalcularBulbo.isEnabled = !cmbCalibre.selectedItem.equals("Elegir")
+
         var resultado = 0
 
         if(calibre.equals("0/4")){
@@ -222,8 +292,21 @@ class Registro : AppCompatActivity() {
 
     fun calcularFloresS2(){
         var resultado = 0
-        val metros = editTxtMetros.text.toString().toInt()
+        var metros: Int = 0
+        if (editTxtMetros.text.isEmpty()){
+            btnCalcularBulbo.isEnabled = false
+            validaciones_Campos_Vacíos("Metros")
+        } else{
+            btnCalcularBulbo.isEnabled = true
+            metros = editTxtMetros.text.toString().toInt()
+            if ( metros == 0){
+                //btnCalcularBulbo.isEnabled = false
+                validaciones_Campos_Vacíos("Metros")
+            }
+        }
         val calibre = cmbCalibre.selectedItem.toString()
+        //btnCalcularBulbo.isEnabled = !cmbCalibre.selectedItem.equals("Elegir")
+
         val tamanioCama = cmbTamanioCama.selectedItem.toString()
         val tipoVariedad = cmbVariedad.selectedItem.toString()
 
@@ -260,8 +343,21 @@ class Registro : AppCompatActivity() {
 
     fun calcularFloresS4(){
         var resultado = 0
-        val metros = editTxtMetros.text.toString().toInt()
+        var metros: Int = 0
+        if (editTxtMetros.text.isEmpty()){
+            btnCalcularBulbo.isEnabled = false
+            validaciones_Campos_Vacíos("Metros")
+        } else{
+            btnCalcularBulbo.isEnabled = true
+            metros = editTxtMetros.text.toString().toInt()
+            if ( metros == 0){
+                //btnCalcularBulbo.isEnabled = false
+                validaciones_Campos_Vacíos("Metros")
+            }
+        }
         val calibre = cmbCalibre.selectedItem.toString()
+        //btnCalcularBulbo.isEnabled = !cmbCalibre.selectedItem.equals("Elegir")
+
         val tamanioCama = cmbTamanioCama.selectedItem.toString()
 
         if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
@@ -304,7 +400,9 @@ class Registro : AppCompatActivity() {
                 cmbOrigen.selectedItem.equals("Seleccionar") || editTxtSemanaCabe.text.length == 0 ||
                 editTxtBloqueCabe.text.length == 0 || cmbFincaCabe.selectedItem.equals("Elegir") ||
                 editTxtMetros.text.length == 0 || cmbCalibre.selectedItem.equals("Elegir") ||
-                txtViewBulbos.text.length == 0 || editTxtOtraPrueba.text.length == 0 ){
+                txtViewBulbos.text.length == 0 || editTxtOtraPrueba.text.length == 0 ||
+                editTxtMetros.text.toString().toInt() == 0 || txtViewBulbos.text.toString().toInt() == 0 ){
+
             if (editTxtCama.text.length == 0)
                 validaciones_Campos_Vacíos("Cama")
             else if (cmbTamanioCama.selectedItem.equals("Seleccionar"))
@@ -333,6 +431,10 @@ class Registro : AppCompatActivity() {
                 validaciones_Campos_Vacíos("Calibre")
             else if (txtViewBulbos.text.length == 0)
                 validaciones_Campos_Vacíos("Bulbos")
+            else if (editTxtMetros.text.toString().toInt() == 0)
+                validaciones_Campos_Vacíos("Metros")
+            else if (txtViewBulbos.text.toString().toInt() == 0)
+                validaciones_Campos_Vacíos("Bulbos")
 
         } else {
 
@@ -341,7 +443,6 @@ class Registro : AppCompatActivity() {
             val tipoSiembra = cmbTipoSiembra.selectedItem.toString()
             val variedad = cmbVariedad.selectedItem.toString()
             val color = Transformacion_Variedad_Color(variedad)
-            Log.i("color", "El color es: ${color}")
             val procedimiento = cmbProce.selectedItem.toString()
             val brote = cmbBrote.selectedItem.toString()
             val origen = cmbOrigen.selectedItem.toString()
@@ -357,13 +458,16 @@ class Registro : AppCompatActivity() {
             val calibre = cmbCalibre.selectedItem.toString()
             val bulbos = txtViewBulbos.text.toString().toInt()
 
-            /*ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
+            ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
                 bloqueGeneral,ladoGeneral,etiquetaGeneral)
 
             //exportarCSV()
+            exportarCSV(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
+                calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
+                bloqueGeneral,ladoGeneral,etiquetaGeneral)
 
-            if (isConnected()){
+            /*if (isConnected()){
 
                 verificar_id()
                 val numeroID = contador
@@ -401,11 +505,7 @@ class Registro : AppCompatActivity() {
                     calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
                     bloqueGeneral,ladoGeneral,etiquetaGeneral)
 
-            }
-
-            val toast = Toast.makeText(this, "DATO GUARDADO CORRECTAMENTE", Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
-            toast.show()*/
+            }*/
 
         }
 
@@ -702,25 +802,45 @@ class Registro : AppCompatActivity() {
             metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
             otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral)
 
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra.csv")
-        val ingreso = FileOutputStream(file,true)
-        ingreso.bufferedWriter().use { out ->
-            out.write("${datosRecibidos}")
+        try {
+            val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+            //val file = File("/sdcard/Download/Libro2.csv.xlsx")
+            //val file = File("/sdcard/Download/DatosSiembra2.csv")
+            // /sdcard/Download/DatosSiembra2.csv
+            // /sdcard/Download/DatosSiembra1.xlsx
+            val ingreso = FileOutputStream(file,true)
+            ingreso.bufferedWriter().use { out ->
+                out.write("${datosRecibidos}")
+            }
+
+            ingreso.flush()
+            ingreso.close()
+
+            /*Toast.makeText(
+                this,
+                "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
+                Toast.LENGTH_LONG
+            ).show()*/
+            /*val toast = Toast.makeText(this, "DATO GUARDADO CORRECTAMENTE", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            toast.show()*/
+
+            val builder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCorrect))
+            with(builder)
+            {
+                setTitle("CORRECTO")
+                setMessage("El dato se guardó exitosamente")
+                builder.setPositiveButton("OK") { dialogInterface, i ->
+                    Log.i("Pantalla", "aceptar")
+                }
+                show()
+            }
+
+        } catch (e: Exception){
+            Log.i("error", "sucedio un error ${e}")
         }
 
-        ingreso.flush()
-        ingreso.close()
-
-        Toast.makeText(
-            this,
-            "SE CREO EL ARCHIVO CSV EXITOSAMENTE",
-            Toast.LENGTH_LONG
-        ).show()
-
     }
-
-
-
 
 }
 

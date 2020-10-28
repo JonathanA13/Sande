@@ -11,14 +11,13 @@
         android:id="@+id/btnOtroBloque"
         android:layout_width="156dp"
         android:layout_height="75dp"
+        android:layout_marginTop="40dp"
         android:text="OTRO BLOQUE/ VALVULA"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
+        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -545,14 +544,13 @@
         android:id="@+id/btnGuardar"
         android:layout_width="143dp"
         android:layout_height="73dp"
+        android:layout_marginStart="156dp"
         android:text="GUARDAR"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintBottom_toBottomOf="@+id/btnOtroBloque"
         app:layout_constraintStart_toEndOf="@+id/btnOtroBloque"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintTop_toTopOf="@+id/btnOtroBloque"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
 
