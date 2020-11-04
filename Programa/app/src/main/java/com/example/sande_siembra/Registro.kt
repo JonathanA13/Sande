@@ -155,13 +155,17 @@ class Registro : AppCompatActivity() {
         } )
 
         btnCalcularBulbo.setOnClickListener{
+            val tipoVariedadCalculo = cmbVariedad.selectedItem.toString()
             if(etiquetaGeneral.equals("Bulbos")){
                 calcularBulbos()
+            } else if ( (etiquetaGeneral.equals("Flores") && fincaGeneral.equals("S2") ) && ( tipoVariedadCalculo.equals("ASPEN") || tipoVariedadCalculo.equals("BUICK") || tipoVariedadCalculo.equals("CORDOBA") || tipoVariedadCalculo.equals("VERMEER") ) ) {
+                calcularFloresS4()
             } else if (etiquetaGeneral.equals("Flores") && fincaGeneral.equals("S2")) {
                 calcularFloresS2()
             } else if (etiquetaGeneral.equals("Flores") && fincaGeneral.equals("S4")) {
                 calcularFloresS4()
             }
+
         }
 
     }
@@ -291,6 +295,7 @@ class Registro : AppCompatActivity() {
     }
 
     fun calcularFloresS2(){
+        Log.i("variedad","Entra aquí 2")
         var resultado = 0
         var metros: Int = 0
         if (editTxtMetros.text.isEmpty()){
@@ -308,7 +313,7 @@ class Registro : AppCompatActivity() {
         //btnCalcularBulbo.isEnabled = !cmbCalibre.selectedItem.equals("Elegir")
 
         val tamanioCama = cmbTamanioCama.selectedItem.toString()
-        val tipoVariedad = cmbVariedad.selectedItem.toString()
+        val tipoVariedadCalculo = cmbVariedad.selectedItem.toString()
 
         if(calibre.equals("9/12") && tamanioCama.equals("1.20 mts")){
             resultado = metros * 44
@@ -337,6 +342,7 @@ class Registro : AppCompatActivity() {
         }
 
         txtViewBulbos.text = resultado.toString()
+        Log.i("variedad","Entra aquí 4 y el resultado es: ${resultado}")
 
     }
 
