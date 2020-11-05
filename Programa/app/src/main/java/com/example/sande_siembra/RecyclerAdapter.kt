@@ -90,7 +90,7 @@ class RecyclerAdapter(
                     item.brote,
                     item.origen,
                     item.otraPrueba,
-                    item.fechaGeneral1,
+                    item.fecha,
                     item.semanaGeneral1,
                     item.fincaGeneral1,
                     item.valvulaGeneral,
@@ -103,6 +103,7 @@ class RecyclerAdapter(
             itemView.txt_blo.text = item.bloqueGeneral1.toString()
             itemView.txt_cama.text = item.cama.toString()
             itemView.txt_variedad.text = item.variedad
+            itemView.txt_proce.text = item.procedimiento
             itemView.txt_tipo.text = item.tipoSiembra
             itemView.txt_metro.text = item.metros.toString()
             itemView.txt_calibre.text = item.calibre

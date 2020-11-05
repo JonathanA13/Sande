@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextThemeWrapper
@@ -16,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_main_menu_inicio.*
 import java.io.File
+import java.lang.Exception
 
 
 class MenuInicio : AppCompatActivity() {
@@ -66,7 +68,13 @@ class MenuInicio : AppCompatActivity() {
         btnNuevo.setOnClickListener { botonNuevo() }
         //btn_sincro.setOnClickListener{ createXlsx(fout, "guardar") }
         //button2.setOnClickListener{ mostrarDialogoBasico() }
-        btnMostrar.setOnClickListener{ irLista() }
+        btnMostrar.setOnClickListener{
+            val intent = Intent(
+                this,
+                Datos::class.java
+            )
+            startActivity(intent)
+        }
 
         /*if (!isConnected()){
             btn_sincro.isEnabled = false
@@ -74,7 +82,12 @@ class MenuInicio : AppCompatActivity() {
         }*/
 
         btn_sincro.setOnClickListener{
-            detectar()
+            //detectar()
+            val destinatario = "sandetablet@gmail.com,mestrella@sandeflowers.com"
+            val asunto = "Registros de Siembra"
+            val mensaje = "Adjunto los datos de siembra"
+
+            sendEmail(destinatario,asunto,mensaje)
         }
 
         /*val database = FirebaseDatabase.getInstance()
@@ -93,6 +106,22 @@ class MenuInicio : AppCompatActivity() {
         verificar_id()
 
 
+    }
+
+    fun sendEmail(destinatario: String, asunto: String, mensaje: String){
+        val miIntent = Intent(Intent.ACTION_SEND)
+        miIntent.data = Uri.parse("mailto:")
+        miIntent.type = "text/plain"
+
+        miIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(destinatario))
+        miIntent.putExtra(Intent.EXTRA_SUBJECT, asunto)
+        miIntent.putExtra(Intent.EXTRA_TEXT, mensaje)
+
+        try {
+            startActivity(Intent.createChooser(miIntent,"Escoger un destinatario... "))
+        } catch (e: Exception){
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+        }
     }
 
     fun detectar(){

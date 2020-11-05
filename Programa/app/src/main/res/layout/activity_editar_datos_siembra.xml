@@ -715,17 +715,20 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutEdicion5"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutEdicion5"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.105" />
 
-
-
-
-
-
-
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btnEditar"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

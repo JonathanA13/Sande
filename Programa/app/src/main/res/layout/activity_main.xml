@@ -270,17 +270,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.082" />
 
-    <Button
-        android:id="@+id/btn_buscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toBottomOf="@+id/btnListo"
-        app:layout_constraintStart_toEndOf="@+id/btnListo"
-        app:layout_constraintTop_toTopOf="@+id/btnListo"
-        app:layout_constraintVertical_bias="1.0" />
-
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="556dp"
@@ -295,9 +284,9 @@
 
         <TextView
             android:id="@+id/textView27"
-            android:layout_width="24dp"
+            android:layout_width="164dp"
             android:layout_height="59dp"
-            android:layout_weight="1"
+
             android:text="Especie:  "
             android:textAlignment="viewEnd"
             android:textColor="#020202"
@@ -308,16 +297,14 @@
 
             android:id="@+id/tvEspecie"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CALLA" />
+            android:fontFamily="cursive"
+            android:text="CALLA"
+            android:textAlignment="viewStart"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
-            android:id="@+id/txtViewEspecie"
-            android:layout_width="250dp"
-            android:layout_height="33dp"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textSize="24sp" />
 
 
     </LinearLayout>
