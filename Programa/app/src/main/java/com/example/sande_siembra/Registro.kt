@@ -466,12 +466,12 @@ class Registro : AppCompatActivity() {
 
             ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
-                bloqueGeneral,ladoGeneral,etiquetaGeneral)
+                bloqueGeneral,ladoGeneral,etiquetaGeneral, color)
 
             //exportarCSV()
             exportarCSV(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
-                bloqueGeneral,ladoGeneral,etiquetaGeneral)
+                bloqueGeneral,ladoGeneral,etiquetaGeneral, color)
 
             /*if (isConnected()){
 
@@ -801,12 +801,13 @@ class Registro : AppCompatActivity() {
                     prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                     bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                     semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
-                    etiquetaGeneral1: String) {
+                    etiquetaGeneral1: String, color: String) {
 
-        val datosRecibidos = DatosSiembra(fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
-            bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
-            metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
-            otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral)
+        val datosRecibidos = DatosSiembra( fechaGeneral1,cama,prueba1,prueba2,origen,
+            variedad,tipoSiembra,color,fincaGeneral1,bloqueGeneral1,
+            etiquetaGeneral1,procedimiento,calibre,semanaGeneral1, metros,
+            bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama,
+            brote, otraPrueba, valvulaGeneral, ladoGeneral1 )
 
         try {
             val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")

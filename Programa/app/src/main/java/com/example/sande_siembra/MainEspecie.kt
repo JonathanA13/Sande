@@ -94,9 +94,10 @@ class MainEspecie : AppCompatActivity() {
             "Tamaño Cama","Brote","Prueba 3","Valvula","Lado","Etiqueta","\n")*/
 
         val datosRecibidos = Cabecera1("Fecha","Cama","Prueba 1","Prueba 2","Origen",
-            "Variedad","Finca","Bloque","Tipo Siembra","Procedimiento","Calibre",
-            "Semana","Metros","Bulbos","Semana Cabe","Bloque Cabe","Finca Cabe",
-            "Tamanio Cama","Brote","Prueba 3","Valvula","Lado","Etiqueta")
+            "Variedad","Tipo Siembra","Color","Finca General","Bloque General",
+            "Etiqueta", "Procedimiento","Calibre","Semana","Metros",
+            "Bulbos","Semana Cabe", "Bloque Cabe","Finca Cabe","Tamanio Cama",
+            "Brote","Otra Prueba","Valvula", "Lado")
 
 
         val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")

@@ -27,14 +27,6 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
     fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        /*val listaDatosSiembra = listOf(
-            DatosSiembra(
-                10, "Vermer", "Vermer", "Vermer",
-                "Vermer", "Vermer", "Vermer", 15, 20, 25, "Vermer",
-                15, "Vermer", "Vermer", "Vermer", "Vermer", "12 Oct 2020", 15,
-                "Vermer", 12, 5, "Vermer", "Vermer"
-            )
-        )*/
         leerRegistrosCSV()
         Log.i("listita", "la lista es: ${listaDatosSiembra}")
         Log.i("listita", "la cantidad de registros de lista es: ${listaDatosSiembra.size}")
@@ -57,40 +49,31 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             val prueba1 = tokens[2]
             val prueba2 = tokens[3]
             val origen = tokens[4]
+
             val variedad = tokens[5]
-            val fincaGeneral1 = tokens[6]
-            val bloqueGeneral1 = tokens[7]
-            val tipoSiembra = tokens[8]
-            //val tipoSiembra1 = tokens[9]
-            val procedimiento = tokens[9]
-            val calibre = tokens[10]
-            val semanaGeneral1 = tokens[11]
-            val metros = tokens[12]
-            val bulbos = tokens[13]
-            val semanaCabe = tokens[14]
-            val bloqueCabe = tokens[15]
-            val fincaCabe = tokens[16]
-            val tamanioCama = tokens[17]
-            val brote = tokens[18]
-            val otraPrueba = tokens[19]
-            val valvulaGeneral = tokens[20]
-            val ladoGeneral1 = tokens[21]
-            val etiquetaGeneral1 = tokens[22]
+            val tipoSiembra = tokens[6]
+            val color = tokens[7]
+            val fincaGeneral1 = tokens[8]
+            val bloqueGeneral1 = tokens[9]
 
-            Log.i("Fechita", "La fecha es: ${fecha}")
-            Log.i("Fechita", "La semana es: ${prueba1}")
-            Log.i("Fechita", "La semana es: ${origen}")
-            Log.i("Fechita", "La semana es: ${variedad}")
-            Log.i("Fechita", "La semana es: ${tipoSiembra}")
-            Log.i("Fechita", "La semana es: ${valvulaGeneral}")
-            Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+            val etiquetaGeneral1 = tokens[10]
+            val procedimiento = tokens[11]
+            val calibre = tokens[12]
+            val semanaGeneral1 = tokens[13]
+            val metros = tokens[14]
 
-            /*
-            fechaGeneral,cama,prueba1,prueba2,origen,variedad,fincaGeneral,
-            bloqueGeneral,tipoSiembra,procedimiento,calibre,semanaGeneral,
-            metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
-            otraPrueba, valvulaGeneral, ladoGeneral,etiquetaGeneral
-            */
+            val bulbos = tokens[15]
+            val semanaCabe = tokens[16]
+            val bloqueCabe = tokens[17]
+            val fincaCabe = tokens[18]
+            val tamanioCama = tokens[19]
+
+            val brote = tokens[20]
+            val otraPrueba = tokens[21]
+            val valvulaGeneral = tokens[22]
+            val ladoGeneral1 = tokens[23]
+
+
             if ( index != 0) {
                 listaDatosSiembra.add(
                     DatosSiembra(
@@ -100,9 +83,11 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
                         prueba2,
                         origen,
                         variedad,
+                        tipoSiembra,
+                        color,
                         fincaGeneral1,
                         bloqueGeneral1.toInt(),
-                        tipoSiembra,
+                        etiquetaGeneral1,
                         procedimiento,
                         calibre,
                         semanaGeneral1.toInt(),
@@ -115,8 +100,7 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
                         brote,
                         otraPrueba,
                         valvulaGeneral.toInt(),
-                        ladoGeneral1,
-                        etiquetaGeneral1
+                        ladoGeneral1
                     )
                 )
             }
@@ -165,3 +149,14 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
 
 
 }
+
+// *************************************************** FUNCIONES COMENTADAS ******************************************************************
+
+/*val listaDatosSiembra = listOf(
+            DatosSiembra(
+                10, "Vermer", "Vermer", "Vermer",
+                "Vermer", "Vermer", "Vermer", 15, 20, 25, "Vermer",
+                15, "Vermer", "Vermer", "Vermer", "Vermer", "12 Oct 2020", 15,
+                "Vermer", 12, 5, "Vermer", "Vermer"
+            )
+        )*/

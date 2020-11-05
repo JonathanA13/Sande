@@ -239,10 +239,13 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         } )
 
         btnCalcularBulbos.setOnClickListener{
+            val tipoVariedadCalculo = spinnerVariedad.selectedItem.toString()
             Log.i("datillos", "Los datos son: ${metrosEditado}")
             Log.i("datillos", "Los datos son: ${calibreEditado}")
             if(etiqueta.equals("Bulbos")){
                 calcularBulbosEdicion(metrosEditado, calibreEditado)
+            } else if ( (etiqueta.equals("Flores") && finca.equals("S2") ) && ( tipoVariedadCalculo.equals("ASPEN") || tipoVariedadCalculo.equals("BUICK") || tipoVariedadCalculo.equals("CORDOBA") || tipoVariedadCalculo.equals("VERMEER") ) ) {
+                calcularFloresS4Edicion(metrosEditado,calibreEditado)
             } else if (etiqueta.equals("Flores") && finca.equals("S2")) {
                 calcularFloresS2Edicion(metrosEditado, calibreEditado)
             } else if (etiqueta.equals("Flores") && finca.equals("S4")) {
@@ -396,6 +399,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             val tamanioCamaEditar = spinnerTamanioCama.selectedItem.toString()
             val tipoSiembraEditar = spinnerTipoSiembra.selectedItem.toString()
             val variedadEditar = spinnerVariedad.selectedItem.toString()
+            val color = Transformacion_Variedad_Color(variedadEditar)
             val procedimientoEditar = spinnerProce.selectedItem.toString()
             val broteEditar = spinnerBrote.selectedItem.toString()
             val origenEditar = spinnerOrigen.selectedItem.toString()
@@ -443,6 +447,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             listaDatosSiembra[posicion]. tamanioCama = tamanioCamaEditar
             listaDatosSiembra[posicion]. tipoSiembra = tipoSiembraEditar
             listaDatosSiembra[posicion]. variedad = variedadEditar
+            listaDatosSiembra[posicion].color = color
 
             listaDatosSiembra[posicion]. procedimiento = procedimientoEditar
             listaDatosSiembra[posicion]. brote = broteEditar
@@ -478,6 +483,192 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         }
     }
 
+    fun Transformacion_Variedad_Color(variedadRecepcion: String): String {
+
+        if (variedadRecepcion.equals("ACCENT")){
+            return "PURPLE"
+        } else if (variedadRecepcion.equals("ARANAL")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("ASPEN")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("AUCKLAND")){
+            return  "PEACH"
+        } else if (variedadRecepcion.equals("AVIGNON")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("BLACK DIAMOND")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("BLACK VELVET")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("BUICK")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("CAPTAIN ROMANCE")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAVALESE")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("CONFETTI")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("CORDOBA")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("COUPLET")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("DENVER")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("DIAMANTE")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-026")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("E-1129")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-1153")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-1180")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-166")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-175")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("E-233")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-270")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-336")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-343")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-364")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-367")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-369")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-370")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-371")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-383")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-434")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-439")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-494")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-507")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-512")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("E-603")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-605")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-607")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-613")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-615")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-616")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("E-618")){
+            return  "PINK"
+        } else if (variedadRecepcion.equals("E-624")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-625")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-626")){
+            return  "WHITE"
+        } else if (variedadRecepcion.equals("E-630")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("E-632")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-635")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("E-636")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("E-637")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("E-703")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("E-740")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("EL CAPO")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("ESCAPE")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("FANTASIA")){
+            return  "PINK"
+        } else if (variedadRecepcion.equals("GRAN PARADISO")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("LA PAZ")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("MANILA")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("MEMORIES")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("MOZART")){
+            return  "PEACH"
+        } else if (variedadRecepcion.equals("OLINA")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("PAVIA")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("PINK PANTHER")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("RASPBERRY")){
+            return  "RASPBERRY"
+        } else if (variedadRecepcion.equals("SAN REMO")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("SCHWARZWALDER")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("SHARP")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("STRAUSS")){
+            return  "BICOLOR"
+        } else if (variedadRecepcion.equals("SUMATRA")){
+            return  "BURGUNDY"
+        } else if (variedadRecepcion.equals("SUNRAY")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("SUNSET")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("SUNSHADE")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("VERMEER")){
+            return  "BICOLOR"
+        } else if (variedadRecepcion.equals("Z-004")){
+            return  "YELLOW"
+        } else if (variedadRecepcion.equals("Z-103")){
+            return  "PURPLE"
+        } else if (variedadRecepcion.equals("Z-3117")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-371")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("Z-199")){
+            return  "RED"
+        } else if (variedadRecepcion.equals("Z-957")){
+            return  "PASSIONFRUIT"
+        } else if (variedadRecepcion.equals("E-188")){
+            return  "BLACK"
+        } else if (variedadRecepcion.equals("E-353")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("Z-947")){
+            return  "PINK P"
+        } else if (variedadRecepcion.equals("E-506")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("E-632")){
+            return  "ORANGE"
+        } else if (variedadRecepcion.equals("CAPT.3217")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.MORGAN")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.3421")){
+            return  "PINK CAP"
+        } else if (variedadRecepcion.equals("CAPT.ALMA")){
+            return  "PINK CAP"
+        } else {
+            return "No se encontró el valor"
+        }
+
+    }
+
     fun cargarEnLista(){
         val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
         val lines: List<String> = file.readLines()
@@ -491,33 +682,31 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             val prueba1 = tokens[2]
             val prueba2 = tokens[3]
             val origen = tokens[4]
-            val variedad = tokens[5]
-            val fincaGeneral1 = tokens[6]
-            val bloqueGeneral1 = tokens[7]
-            val tipoSiembra = tokens[8]
-            //val tipoSiembra1 = tokens[9]
-            val procedimiento = tokens[9]
-            val calibre = tokens[10]
-            val semanaGeneral1 = tokens[11]
-            val metros = tokens[12]
-            val bulbos = tokens[13]
-            val semanaCabe = tokens[14]
-            val bloqueCabe = tokens[15]
-            val fincaCabe = tokens[16]
-            val tamanioCama = tokens[17]
-            val brote = tokens[18]
-            val otraPrueba = tokens[19]
-            val valvulaGeneral = tokens[20]
-            val ladoGeneral1 = tokens[21]
-            val etiquetaGeneral1 = tokens[22]
 
-            Log.i("Fechita", "La fecha es: ${fecha}")
-            Log.i("Fechita", "La semana es: ${prueba1}")
-            Log.i("Fechita", "La semana es: ${origen}")
-            Log.i("Fechita", "La semana es: ${variedad}")
-            Log.i("Fechita", "La semana es: ${tipoSiembra}")
-            Log.i("Fechita", "La semana es: ${valvulaGeneral}")
-            Log.i("Fechita", "La semana es: ${bloqueGeneral1}")
+            val variedad = tokens[5]
+            val tipoSiembra = tokens[6]
+            val color = tokens[7]
+            val fincaGeneral1 = tokens[8]
+            val bloqueGeneral1 = tokens[9]
+
+            val etiquetaGeneral1 = tokens[10]
+            val procedimiento = tokens[11]
+            val calibre = tokens[12]
+            val semanaGeneral1 = tokens[13]
+            val metros = tokens[14]
+
+            val bulbos = tokens[15]
+            val semanaCabe = tokens[16]
+            val bloqueCabe = tokens[17]
+            val fincaCabe = tokens[18]
+            val tamanioCama = tokens[19]
+
+            val brote = tokens[20]
+            val otraPrueba = tokens[21]
+            val valvulaGeneral = tokens[22]
+            val ladoGeneral1 = tokens[23]
+
+            Log.i("Fechita", "La fecha es: ${color}")
 
             if ( index != 0) {
                 listaDatosSiembra.add(
@@ -528,9 +717,11 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                         prueba2,
                         origen,
                         variedad,
+                        tipoSiembra,
+                        color,
                         fincaGeneral1,
                         bloqueGeneral1.toInt(),
-                        tipoSiembra,
+                        etiquetaGeneral1,
                         procedimiento,
                         calibre,
                         semanaGeneral1.toInt(),
@@ -543,8 +734,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                         brote,
                         otraPrueba,
                         valvulaGeneral.toInt(),
-                        ladoGeneral1,
-                        etiquetaGeneral1
+                        ladoGeneral1
                     )
                 )
             }
@@ -557,9 +747,10 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
 
         val datosRecibidos = Cabecera1("Fecha","Cama","Prueba 1","Prueba 2","Origen",
-            "Variedad","Finca","Bloque","Tipo Siembra","Procedimiento","Calibre",
-            "Semana","Metros","Bulbos","Semana Cabe","Bloque Cabe","Finca Cabe",
-            "Tamanio Cama","Brote","Prueba 3","Valvula","Lado","Etiqueta")
+            "Variedad","Tipo Siembra","Color","Finca General","Bloque General",
+            "Etiqueta", "Procedimiento","Calibre","Semana","Metros",
+            "Bulbos","Semana Cabe", "Bloque Cabe","Finca Cabe","Tamanio Cama",
+            "Brote","Otra Prueba","Valvula", "Lado")
 
 
         //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
@@ -575,13 +766,20 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
         try {
             //val fileWriter = FileWriter(file)
+            /*
+            ${fecha},${cama},${prueba1},${prueba2},${origen}" +
+                 ",${variedad},${tipoSiembra}, ${color},${fincaGeneral1},${bloqueGeneral1}" +
+                 ",${etiquetaGeneral1},${procedimiento},${calibre},${semanaGeneral1},${metros}" +
+                 ",${bulbos},${semanaCabe},${bloqueCabe},${fincaCabe},${tamanioCama}" +
+                 ",${brote},${otraPrueba},${valvulaGeneral},${ladoGeneral1}
+             */
 
             for (registro in listaDatosSiembra) {
                 exportarCSV(registro.cama,registro.variedad,registro.tipoSiembra,registro.procedimiento,
                 registro.prueba1,registro.prueba2,registro.fincaCabe,registro.semanaCabe,registro.bloqueCabe,
                 registro.metros,registro.calibre,registro.bulbos,registro.tamanioCama,registro.brote,registro.origen,
-                registro.otraPrueba,registro.fechaGeneral1,registro.semanaGeneral1,registro.fincaGeneral1,registro.valvulaGeneral,
-                registro.bloqueGeneral1,registro.ladoGeneral1,registro.etiquetaGeneral1)
+                registro.otraPrueba,registro.fecha,registro.semanaGeneral1,registro.fincaGeneral1,registro.valvulaGeneral,
+                registro.bloqueGeneral1,registro.ladoGeneral1,registro.etiquetaGeneral1,registro.color)
 
                 /*fileWriter.append(registro.fechaGeneral1)
                 fileWriter.append(",")
@@ -699,12 +897,13 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                     prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                     bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                     semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
-                    etiquetaGeneral1: String) {
+                    etiquetaGeneral1: String,color: String) {
 
-        val datosRecibidos = DatosSiembra(fechaGeneral1,cama,prueba1,prueba2,origen,variedad,fincaGeneral1,
-            bloqueGeneral1,tipoSiembra,procedimiento,calibre,semanaGeneral1,
-            metros, bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama, brote,
-            otraPrueba, valvulaGeneral, ladoGeneral1,etiquetaGeneral1)
+        val datosRecibidos = DatosSiembra(fechaGeneral1,cama,prueba1,prueba2,origen,
+            variedad,tipoSiembra,color,fincaGeneral1,bloqueGeneral1,
+            etiquetaGeneral1,procedimiento,calibre,semanaGeneral1, metros,
+            bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama,
+            brote, otraPrueba, valvulaGeneral, ladoGeneral1 )
 
         try {
             val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
@@ -829,6 +1028,9 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
     }
 
 }
+
+
+
 
 // ****************************************************** FUNCIONES COMENTADAS *******************************************
 
