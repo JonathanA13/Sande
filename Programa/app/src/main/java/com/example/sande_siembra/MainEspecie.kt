@@ -12,9 +12,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.sande_siembra.modelo.Cabecera1
 import com.example.sande_siembra.modelo.RegistroSiembra
 import kotlinx.android.synthetic.main.activity_main_especie.*
 import java.io.File
+import java.io.FileOutputStream
 import java.io.FileWriter
 import java.text.DateFormat
 import java.util.*
@@ -81,19 +83,42 @@ class MainEspecie : AppCompatActivity() {
         val datolirio = "LIRIOS"
         intentExplicito.putExtra("especie", datolirio )
         startActivity(intentExplicito)*/
-        val intent = Intent(
+        /*val intent = Intent(
             this,
             Datos::class.java
         )
-        startActivity(intent)
+        startActivity(intent)*/
+        /*val datosRecibidos = arrayOf("Fecha","Cama","Prueba 1","Prueba 2","Origen",
+            "Variedad","Finca","Bloque","Tipo Siembra","Procedimiento","Calibre",
+            "Semana","Metros","Bulbos","Semana Cabe","Bloque Cabe","Finca Cabe",
+            "Tamaño Cama","Brote","Prueba 3","Valvula","Lado","Etiqueta","\n")*/
+
+        val datosRecibidos = Cabecera1("Fecha","Cama","Prueba 1","Prueba 2","Origen",
+            "Variedad","Tipo Siembra","Color","Finca General","Bloque General",
+            "Etiqueta", "Procedimiento","Calibre","Semana","Metros",
+            "Bulbos","Semana Cabe", "Bloque Cabe","Finca Cabe","Tamanio Cama",
+            "Brote","Otra Prueba","Valvula", "Lado")
+
+
+        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        // /sdcard/Download/DatosSiembra2.csv
+        // /sdcard/Download/DatosSiembra1.xlsx
+        val ingreso = FileOutputStream(file,false)
+        ingreso.bufferedWriter().use { out ->
+            out.write("${datosRecibidos}")
+        }
+
+        ingreso.flush()
+        ingreso.close()
+
 
     }
 
     fun FlorVerano(){
 
 
-        exportarCSVBDD()
-        val intentExplicito = Intent(this, MenuInicio::class.java)
+        //exportarCSVBDD()
+        //val intentExplicito = Intent(this, MenuInicio::class.java)
 
         /*val intentExplicito = Intent(this, MenuInicio::class.java)
 // master
