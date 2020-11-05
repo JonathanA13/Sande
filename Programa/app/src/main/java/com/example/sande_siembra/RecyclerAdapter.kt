@@ -90,7 +90,7 @@ class RecyclerAdapter(
                     item.brote,
                     item.origen,
                     item.otraPrueba,
-                    item.fechaGeneral1,
+                    item.fecha,
                     item.semanaGeneral1,
                     item.fincaGeneral1,
                     item.valvulaGeneral,
