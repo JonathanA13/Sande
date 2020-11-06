@@ -24,16 +24,23 @@ import kotlinx.android.synthetic.main.activity_registro.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileWriter
+import java.util.*
 
 class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
+    val cal = Calendar.getInstance()
+    val day=cal[Calendar.DATE]
+
     var calibreAntiguo = ""
+
     var metrosAntiguos = 0
     var etiqueta = ""
     var finca = ""
     var listaDatosSiembra = arrayListOf<DatosSiembra>()
     var elementoSeleccionado = 0
     var tamanioCamaRecepcion = ""
+    private var especie = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_datos_siembra)
@@ -54,6 +61,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         tv_ValvulaGeneral.text = intent.getIntExtra("Valvula", 0).toString()
 
         et_Cama.hint = intent.getIntExtra("Cama", 0).toString()
+        et_Codigo.hint = intent.getStringExtra("Codigo")
         //spinnerProce.
         et_OtraPrueba.hint = intent.getStringExtra("OtraPrueba")
         et_SemanaCabe.hint = intent.getIntExtra("SemanaCabe", 0).toString()
@@ -70,6 +78,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
         val prueba2Recepcion = intent.getStringExtra("Prueba2")
         val fincaCabeRecepcion = intent.getStringExtra("FincaCabe")
         val calibreRecepcion = intent.getStringExtra("Calibre")
+
         etiqueta = intent.getStringExtra("Etiqueta").toString()
         tv_BulbosCalcular.text = intent.getIntExtra("Bulbos",0).toString()
         calibreAntiguo = intent.getStringExtra("Calibre").toString()
@@ -77,7 +86,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
         if (tamanioCamaRecepcion != null && siembraRecepcion != null && variedadRecepcion != null && procedimientoRecepcion != null && broteRecepcion != null &&
             origenRecepcion != null && prueba1Recepcion != null && prueba2Recepcion != null && fincaCabeRecepcion != null &&
-            calibreRecepcion != null && etiqueta != null) {
+            calibreRecepcion != null && etiqueta != null ) {
             llenarSpinners(
                 tamanioCamaRecepcion,
                 siembraRecepcion,
@@ -93,6 +102,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             )
         }
 
+        especie = intent.getStringExtra("especie").toString()
         btnEditar.setOnClickListener{ camposEditar(elementoSeleccionado) }
         btnCalcularBulbos.isEnabled = false
 
@@ -443,6 +453,13 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
 
             val bulbosEditar = tv_BulbosCalcular.text.toString().toInt()
 
+            val codigoEditar: String
+            if( et_Codigo.length() == 0){
+                codigoEditar = et_Codigo.hint.toString()
+            } else {
+                codigoEditar = et_Codigo.text.toString()
+            }
+
             listaDatosSiembra[posicion].cama = camaEditar
             listaDatosSiembra[posicion]. tamanioCama = tamanioCamaEditar
             listaDatosSiembra[posicion]. tipoSiembra = tipoSiembraEditar
@@ -464,6 +481,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             listaDatosSiembra[posicion].metros = metrosEditar
             listaDatosSiembra[posicion].calibre = calibreEditar
             listaDatosSiembra[posicion].bulbos = bulbosEditar
+            listaDatosSiembra[posicion].codigo = codigoEditar
             guardarArchivo()
 
         }
@@ -670,7 +688,8 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
     }
 
     fun cargarEnLista(){
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        val file = File("/sdcard/DatosSiembraCalla/Callas${day}-11-2020.csv")
         val lines: List<String> = file.readLines()
         Log.i("Fechita", "El tamaño es: ${lines.size}")
         lines.forEachIndexed { index, s ->
@@ -705,6 +724,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             val otraPrueba = tokens[21]
             val valvulaGeneral = tokens[22]
             val ladoGeneral1 = tokens[23]
+            val codigo = tokens[24]
 
             Log.i("Fechita", "La fecha es: ${color}")
 
@@ -734,7 +754,8 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                         brote,
                         otraPrueba,
                         valvulaGeneral.toInt(),
-                        ladoGeneral1
+                        ladoGeneral1,
+                        codigo
                     )
                 )
             }
@@ -744,13 +765,14 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
     }
 
     fun guardarArchivo(){
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        val file = File("/sdcard/DatosSiembraCalla/Callas${day}-11-2020.csv")
 
         val datosRecibidos = Cabecera1("Fecha","Cama","Prueba 1","Prueba 2","Origen",
             "Variedad","Tipo Siembra","Color","Finca General","Bloque General",
             "Etiqueta", "Procedimiento","Calibre","Semana","Metros",
             "Bulbos","Semana Cabe", "Bloque Cabe","Finca Cabe","Tamanio Cama",
-            "Brote","Otra Prueba","Valvula", "Lado")
+            "Brote","Otra Prueba","Valvula", "Lado","Codigo")
 
 
         //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
@@ -779,7 +801,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                 registro.prueba1,registro.prueba2,registro.fincaCabe,registro.semanaCabe,registro.bloqueCabe,
                 registro.metros,registro.calibre,registro.bulbos,registro.tamanioCama,registro.brote,registro.origen,
                 registro.otraPrueba,registro.fecha,registro.semanaGeneral1,registro.fincaGeneral1,registro.valvulaGeneral,
-                registro.bloqueGeneral1,registro.ladoGeneral1,registro.etiquetaGeneral1,registro.color)
+                registro.bloqueGeneral1,registro.ladoGeneral1,registro.etiquetaGeneral1,registro.color, registro.codigo)
 
                 /*fileWriter.append(registro.fechaGeneral1)
                 fileWriter.append(",")
@@ -889,6 +911,7 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
             this,
             Datos::class.java
         )
+        intentExplicito.putExtra("especie",especie)
         startActivity(intentExplicito)
 
     }
@@ -897,16 +920,17 @@ class EditarDatosSiembra : AppCompatActivity(), LifecycleObserver {
                     prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                     bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                     semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
-                    etiquetaGeneral1: String,color: String) {
+                    etiquetaGeneral1: String,color: String, codigo: String) {
 
         val datosRecibidos = DatosSiembra(fechaGeneral1,cama,prueba1,prueba2,origen,
             variedad,tipoSiembra,color,fincaGeneral1,bloqueGeneral1,
             etiquetaGeneral1,procedimiento,calibre,semanaGeneral1, metros,
             bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama,
-            brote, otraPrueba, valvulaGeneral, ladoGeneral1 )
+            brote, otraPrueba, valvulaGeneral, ladoGeneral1, codigo )
 
         try {
-            val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+            //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+            val file = File("/sdcard/DatosSiembraCalla/Callas${day}-11-2020.csv")
             //val file = File("/sdcard/Download/Libro2.csv.xlsx")
             //val file = File("/sdcard/Download/DatosSiembra2.csv")
             // /sdcard/Download/DatosSiembra2.csv

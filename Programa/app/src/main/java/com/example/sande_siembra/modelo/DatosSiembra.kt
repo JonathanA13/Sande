@@ -25,7 +25,8 @@ class DatosSiembra (
      var brote: String,
      var otraPrueba: String,
      var valvulaGeneral: Int,
-     var ladoGeneral1: String
+     var ladoGeneral1: String,
+     var codigo: String
 
 
     ) {
@@ -34,7 +35,7 @@ class DatosSiembra (
                  ",${variedad},${tipoSiembra}, ${color},${fincaGeneral1},${bloqueGeneral1}" +
                  ",${etiquetaGeneral1},${procedimiento},${calibre},${semanaGeneral1},${metros}" +
                  ",${bulbos},${semanaCabe},${bloqueCabe},${fincaCabe},${tamanioCama}" +
-                 ",${brote},${otraPrueba},${valvulaGeneral},${ladoGeneral1}\n"
+                 ",${brote},${otraPrueba},${valvulaGeneral},${ladoGeneral1},${codigo}\n"
     }
 
 }

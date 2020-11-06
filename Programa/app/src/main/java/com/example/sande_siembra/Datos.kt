@@ -11,16 +11,23 @@ import com.example.sande_siembra.modelo.DatosSiembra
 import com.example.sande_siembra.modelo.Siembra
 import kotlinx.android.synthetic.main.activity_datos.*
 import java.io.File
+import java.util.*
 import java.util.EnumSet.of
 import java.util.List.of
 
 class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
 
+    val cal = Calendar.getInstance()
+    val day=cal[Calendar.DATE]
+
     var listaDatosSiembra = arrayListOf<DatosSiembra>()
+    private var especie = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datos)
+        especie = intent.getStringExtra("especie").toString()
+        btn_atras.setOnClickListener{ irInicio() }
         setupRecyclerView()
     }
 
@@ -34,7 +41,8 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
     }
 
     fun leerRegistrosCSV(){
-        val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+        val file = File("/sdcard/DatosSiembraCalla/Callas${day}-11-2020.csv")
+        //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
         //val file = File("/sdcard/Download/DatosSiembra2.csv")
         // /sdcard/Download/DatosSiembra2.csv
         val lines: List<String> = file.readLines()
@@ -73,6 +81,7 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
             val valvulaGeneral = tokens[22]
             val ladoGeneral1 = tokens[23]
 
+            val codigo = tokens[24]
 
             if ( index != 0) {
                 listaDatosSiembra.add(
@@ -100,7 +109,8 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
                         brote,
                         otraPrueba,
                         valvulaGeneral.toInt(),
-                        ladoGeneral1
+                        ladoGeneral1,
+                        codigo
                     )
                 )
             }
@@ -112,7 +122,7 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
                              prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                              bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                              semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
-                             etiquetaGeneral1: String) {
+                             etiquetaGeneral1: String, codigo: String) {
         Log.i("click", "La posicion que eligió es: ${position}")
         Log.i("click", "Lo que eligio es: ${valvulaGeneral}, ${semanaGeneral1}, ${semanaCabe}")
 
@@ -144,6 +154,21 @@ class Datos : AppCompatActivity(), RecyclerAdapter.OnDatosSiembraClickListener {
         intent.putExtra("Brote", brote)
         intent.putExtra("Origen", origen)
         intent.putExtra("OtraPrueba", otraPrueba)
+        intent.putExtra("Codigo",codigo)
+        intent.putExtra("especie", especie)
+        startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
+
+    fun irInicio(){
+        val intent = Intent(
+            this,
+            MenuInicio::class.java
+        )
+        intent.putExtra("especie",especie)
         startActivity(intent)
     }
 

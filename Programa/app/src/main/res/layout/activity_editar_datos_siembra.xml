@@ -312,12 +312,12 @@
 
         <LinearLayout
             android:layout_width="117dp"
-            android:layout_height="221dp"
+            android:layout_height="248dp"
             android:orientation="vertical">
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="14dp" />
+                android:layout_height="10dp" />
 
             <TextView
                 android:id="@+id/tv_proce"
@@ -331,7 +331,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="33dp" />
+                android:layout_height="30dp" />
 
             <TextView
                 android:id="@+id/tv_brote"
@@ -345,7 +345,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="62dp" />
+                android:layout_height="57dp" />
 
             <TextView
                 android:id="@+id/tv_origen"
@@ -357,11 +357,26 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="33dp" />
+
+
+            <TextView
+                android:id="@+id/tv_codigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CODIGO:  "
+                android:textAlignment="viewEnd"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="174dp"
-            android:layout_height="220dp"
+            android:layout_height="250dp"
             android:orientation="vertical">
 
             <Spinner
@@ -376,7 +391,7 @@
             <Spinner
                 android:id="@+id/spinnerBrote"
                 android:layout_width="match_parent"
-                android:layout_height="71dp" />
+                android:layout_height="63dp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -386,6 +401,17 @@
                 android:id="@+id/spinnerOrigen"
                 android:layout_width="match_parent"
                 android:layout_height="44dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <EditText
+                android:id="@+id/et_Codigo"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:ems="10"
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

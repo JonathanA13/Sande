@@ -28,7 +28,8 @@ class Cabecera1 (
     var brote: String,
     var otraPrueba: String,
     var valvulaGeneral: String,
-    var ladoGeneral1: String
+    var ladoGeneral1: String,
+    var codigo: String
 
 ) {
     override fun toString ():String{
@@ -36,7 +37,7 @@ class Cabecera1 (
                 ",${variedad},${tipoSiembra}, ${color},${fincaGeneral1},${bloqueGeneral1}" +
                 ",${etiquetaGeneral1},${procedimiento},${calibre},${semanaGeneral1},${metros}" +
                 ",${bulbos},${semanaCabe},${bloqueCabe},${fincaCabe},${tamanioCama}" +
-                ",${brote},${otraPrueba},${valvulaGeneral},${ladoGeneral1}\n"
+                ",${brote},${otraPrueba},${valvulaGeneral},${ladoGeneral1},${codigo}\n"
     }
 
 }

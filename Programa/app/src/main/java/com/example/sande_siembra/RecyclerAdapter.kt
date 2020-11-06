@@ -46,7 +46,8 @@ class RecyclerAdapter(
             valvulaGeneral: Int,
             bloqueGeneral1: Int,
             ladoGeneral1: String,
-            etiquetaGeneral1: String
+            etiquetaGeneral1: String,
+            codigo: String
         )
     }
 
@@ -96,7 +97,8 @@ class RecyclerAdapter(
                     item.valvulaGeneral,
                     item.bloqueGeneral1,
                     item.ladoGeneral1,
-                    item.etiquetaGeneral1
+                    item.etiquetaGeneral1,
+                    item.codigo
                 )
             }
 

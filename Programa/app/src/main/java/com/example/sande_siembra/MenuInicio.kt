@@ -73,6 +73,7 @@ class MenuInicio : AppCompatActivity() {
                 this,
                 Datos::class.java
             )
+            intent.putExtra("especie",especie)
             startActivity(intent)
         }
 

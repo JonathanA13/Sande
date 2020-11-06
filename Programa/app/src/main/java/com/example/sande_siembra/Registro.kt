@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import kotlinx.android.synthetic.main.activity_registro.*
 import java.io.File
 import java.io.FileOutputStream
+import java.util.*
 
 
 class Registro : AppCompatActivity() {
@@ -33,6 +34,9 @@ class Registro : AppCompatActivity() {
     var valvulaGeneral = 0
     var ladoGeneral = ""
     var etiquetaGeneral = ""
+
+    val cal = Calendar.getInstance()
+    val day=cal[Calendar.DATE]
 
 
     private val db = FirebaseFirestore.getInstance()
@@ -407,7 +411,8 @@ class Registro : AppCompatActivity() {
                 editTxtBloqueCabe.text.length == 0 || cmbFincaCabe.selectedItem.equals("Elegir") ||
                 editTxtMetros.text.length == 0 || cmbCalibre.selectedItem.equals("Elegir") ||
                 txtViewBulbos.text.length == 0 || editTxtOtraPrueba.text.length == 0 ||
-                editTxtMetros.text.toString().toInt() == 0 || txtViewBulbos.text.toString().toInt() == 0 ){
+                editTxtMetros.text.toString().toInt() == 0 || txtViewBulbos.text.toString().toInt() == 0 ||
+                editTxtCodigo.text.length == 0 ){
 
             if (editTxtCama.text.length == 0)
                 validaciones_Campos_Vacíos("Cama")
@@ -441,6 +446,8 @@ class Registro : AppCompatActivity() {
                 validaciones_Campos_Vacíos("Metros")
             else if (txtViewBulbos.text.toString().toInt() == 0)
                 validaciones_Campos_Vacíos("Bulbos")
+            else if (editTxtCodigo.text.length == 0)
+                validaciones_Campos_Vacíos("Codigo")
 
         } else {
 
@@ -464,14 +471,16 @@ class Registro : AppCompatActivity() {
             val calibre = cmbCalibre.selectedItem.toString()
             val bulbos = txtViewBulbos.text.toString().toInt()
 
+            val codigo = editTxtCodigo.text.toString()
+
             ServicioBDDMemoria.agregarListaDatosSiembra(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
-                bloqueGeneral,ladoGeneral,etiquetaGeneral, color)
+                bloqueGeneral,ladoGeneral,etiquetaGeneral, color,codigo)
 
             //exportarCSV()
             exportarCSV(cama, variedad,tipoSiembra,procedimiento,prueba1,prueba2,fincaCabe,semanaCabe,bloqueCabe,metros,
                 calibre, bulbos,tamanioCama,brote,origen,otraPrueba,fechaGeneral,semanaGeneral,fincaGeneral, valvulaGeneral,
-                bloqueGeneral,ladoGeneral,etiquetaGeneral, color)
+                bloqueGeneral,ladoGeneral,etiquetaGeneral, color,codigo)
 
             /*if (isConnected()){
 
@@ -801,16 +810,17 @@ class Registro : AppCompatActivity() {
                     prueba2: String, fincaCabe: String, semanaCabe: Int, bloqueCabe: Int, metros: Int, calibre: String,
                     bulbos: Int, tamanioCama: String, brote: String, origen: String, otraPrueba: String, fechaGeneral1: String,
                     semanaGeneral1: Int, fincaGeneral1: String, valvulaGeneral: Int, bloqueGeneral1: Int, ladoGeneral1: String,
-                    etiquetaGeneral1: String, color: String) {
+                    etiquetaGeneral1: String, color: String, codigo: String) {
 
         val datosRecibidos = DatosSiembra( fechaGeneral1,cama,prueba1,prueba2,origen,
             variedad,tipoSiembra,color,fincaGeneral1,bloqueGeneral1,
             etiquetaGeneral1,procedimiento,calibre,semanaGeneral1, metros,
             bulbos, semanaCabe, bloqueCabe, fincaCabe, tamanioCama,
-            brote, otraPrueba, valvulaGeneral, ladoGeneral1 )
+            brote, otraPrueba, valvulaGeneral, ladoGeneral1, codigo )
 
         try {
-            val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+            //val file = File("/sdcard/ExportarDatosCSV/DatosSiembra4.csv")
+            val file = File("/sdcard/DatosSiembraCalla/Callas${day}-11-2020.csv")
             //val file = File("/sdcard/Download/Libro2.csv.xlsx")
             //val file = File("/sdcard/Download/DatosSiembra2.csv")
             // /sdcard/Download/DatosSiembra2.csv

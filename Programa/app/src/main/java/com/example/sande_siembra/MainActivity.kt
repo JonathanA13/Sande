@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     val currentDate: String =
         DateFormat.getDateInstance(DateFormat.DEFAULT).format(calendar.time)
     var numeroSemana = 0
+    private var especie = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         numeroSemana = calendar[Calendar.WEEK_OF_YEAR]
         txtViewNumeroSemana.text = numeroSemana.toString()
 
-        val especie = intent.getStringExtra("especie")
+        especie = intent.getStringExtra("especie").toString()
         tvEspecie.text= especie
 
         //parametros()
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         agregar3()
 
         btnListo.setOnClickListener{ obtener_Datos() }
+        btn_Menu.setOnClickListener { irMenu() }
 
     }
 
@@ -139,6 +141,19 @@ class MainActivity : AppCompatActivity() {
             }
             show()
         }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
+
+    fun irMenu(){
+        val intent = Intent(
+            this,
+            MenuInicio::class.java
+        )
+        intent.putExtra("especie",especie)
+        startActivity(intent)
     }
 
 }
